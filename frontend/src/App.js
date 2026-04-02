@@ -1,24 +1,25 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Header from './components/jsx/Header';  
+import Footer from './components/jsx/Footer'; 
+
+import HomePage from './pages/jsx/Homepage';
+import MuralVagas from './pages/jsx/MuralVagas';
+
 import './App.css';
 
-// 1. Importação dos componentes globais (Header e Footer)
-import Header from './components/jsx/header';   // Correto (sem chaves)
-import Footer from './components/jsx/footer';   // Correto (sem chaves)
-import Homepage from './pages/jsx/homepage';    // Correto (sem chaves)
 function App() {
   return (
-    <div className="App">
-      {/* O Header aparece em todas as páginas */}
-      <Header />
+    <Router>
+      <Header /> 
       
-      <main>
-        {/* O conteúdo principal da Home */}
-        <Homepage />
-      </main>
-
-      {/* O Footer aparece no final de todas as páginas */}
-      /<Footer />
-    </div>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/MuralVagas" element={<MuralVagas />} />
+      </Routes>
+      <Footer />
+    </Router>
   );
 }
 
