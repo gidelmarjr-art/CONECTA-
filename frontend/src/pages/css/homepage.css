@@ -13,8 +13,8 @@
 
 .hp-hero-container {
     background: linear-gradient(180deg, #067DC0 0%, #05649E 100%);
-    width: 782px;  /* Tamanho fixo solicitado */
-    height: 346px; /* Tamanho fixo solicitado */
+width: 782px;
+height: 346px;
     border-radius: 60px;
     display: flex;
     padding: 0 60px 0 80px; /* Ajustado para dar espaço à imagem na direita */
@@ -56,6 +56,7 @@
 .hp-feature-box {
     display: flex;
     gap: 8px;
+    text-align: left;
     align-items: flex-start;
 }
 
@@ -99,8 +100,7 @@
 .hp-hero-image {
     position: absolute;
     right: 20px;   /* Distância da borda direita */
-    bottom: 0;      /* COLA NO FUNDO DO BOX */
-    height: 90%;    /* Define o tamanho da área da imagem */
+    bottom: -12%;      /* COLA NO FUNDO DO BOX */
     display: flex;
     align-items: flex-end; /* Garante que a imagem alinhe pela base */
     pointer-events: none;  /* Evita que a imagem atrapalhe cliques nos botões */
@@ -108,7 +108,7 @@
 
 .hp-hero-image img {
     height: 100%;   /* Ocupa a altura total do container de imagem */
-    width: auto;
+        width: 400px;   
     object-fit: contain;
     display: block;
 }
@@ -150,5 +150,278 @@
     }
     .hp-hero-grid {
         justify-content: center;
+    }
+}
+
+/* --- SEÇÃO DE COMPROMISSOS (CARDS) --- */
+.hp-commitments-section {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 80px;
+}
+
+.hp-commitments-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas */
+    gap: 30px;
+    max-width: 900px;
+    width: 100%;
+}
+
+.hp-commitment-card {
+    background-color: #F2F2F2; /* Cinza claro dos cards */
+    border-radius: 40px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hp-card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.hp-card-number {
+    background-color: #BDD7EE; /* Azul clarinho do número */
+    color: #05649E;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.hp-card-header h3 {
+    color: #05649E;
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0;
+    flex: 1;
+}
+
+.hp-card-content {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.hp-card-content p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+}
+
+.hp-card-content img {
+    width: 120px; /* Ajuste conforme o tamanho das suas imagens */
+    height: auto;
+    object-fit: contain;
+}
+
+/* Responsividade: vira 1 coluna em telas pequenas */
+@media (max-width: 900px) {
+    .hp-commitments-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+}
+
+/* --- SEÇÃO ONGS EM DESTAQUE --- */
+.hp-featured-ongs {
+    background-color: #1D9C49; /* Verde da marca */
+    padding: 60px 20px;
+    text-align: center;
+    color: white;
+}
+
+.hp-featured-ongs h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 40px;
+}
+
+.hp-ongs-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Para telas menores */
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.hp-ong-card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    width: 280px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.hp-ong-card:hover {
+    transform: translateY(-10px);
+}
+
+.hp-ong-image-container {
+    width: 100%;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.hp-ong-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hp-ong-info h3 {
+    color: #05649E; /* Azul */
+    font-size: 20px;
+    font-weight: 800;
+    margin: 10px 0;
+}
+
+/* Barra de Progresso */
+.hp-progress-container {
+    margin: 15px 0;
+}
+
+.hp-progress-bar {
+    background-color: #E0E0E0;
+    height: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.hp-progress-fill {
+    background-color: #1D9C49; /* Verde */
+    height: 100%;
+}
+
+.hp-progress-container span {
+    color: #333;
+    font-size: 10px;
+    font-weight: 700;
+    display: block;
+}
+
+/* Botão Azul do Card */
+.hp-btn-help {
+    background-color: #05649E;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 800;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.hp-btn-help:hover {
+    background-color: #044e7a;
+}
+
+/* --- SEÇÃO DE CONQUISTAS (TROFÉU) --- */
+.hp-rewards-section {
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px;
+    background-color: #ffffff;
+}
+
+.hp-rewards-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1000px;
+    width: 100%;
+    gap: 50px;
+}
+
+.hp-rewards-content {
+    flex: 1.5;
+}
+
+.hp-rewards-content h2 {
+    color: #05649E; /* Azul padrão */
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 30px;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.hp-rewards-list {
+    list-style: none;
+        text-align: left;
+    padding: 0;
+}
+
+.hp-rewards-list li {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 25px;
+    line-height: 1.4;
+}
+
+/* Marcador de bolinha customizado */
+.hp-rewards-list li::before {
+    content: "•";
+    color: #333;
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+}
+
+.hp-rewards-list li strong {
+    color: #333;
+    font-weight: 700;
+}
+
+.hp-rewards-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hp-rewards-image img {
+    max-width: 350px; /* Tamanho do troféu */
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+}
+
+/* Responsividade */
+@media (max-width: 850px) {
+    .hp-rewards-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hp-rewards-list li {
+        padding-left: 0;
+    }
+    
+    .hp-rewards-list li::before {
+        display: none;
+    }
+    
+    .hp-rewards-image img {
+        max-width: 250px;
     }
 }
