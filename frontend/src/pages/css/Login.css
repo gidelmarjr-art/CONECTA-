@@ -16,7 +16,7 @@
     margin-bottom: 35px;
 }
 
-/* Card Azul */
+/* O Card Azul */
 .hp-hero-container {
     background: linear-gradient(180deg, #05649E 10%, #033B5A 100%);
     width: 100%;
@@ -68,7 +68,7 @@
     font-size: 16px;
 }
 
-/* Botão do LOGIN */
+/* Botão LOGIN */
 .btn-login-submit {
     width: 107%;
     height: 60px;
