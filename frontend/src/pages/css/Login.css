@@ -1,5 +1,5 @@
 /* Container Principal */
-.hp-hero-section {
+.pg-log-secao-principal {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,7 +7,7 @@
     min-height: 80vh;
 }
 
-.hp-hero-title {
+.pg-log-titulo-principal {
     font-size: 50px;
     font-weight: 900;
     margin-bottom: 20px;
@@ -17,7 +17,7 @@
 }
 
 /* O Card Azul */
-.hp-hero-container {
+.pg-log-cartao-central {
     background: linear-gradient(180deg, #05649E 10%, #033B5A 100%);
     width: 100%;
     max-width: 1000px; 
@@ -31,7 +31,7 @@
     align-items: flex-start; 
 }
 
-.hp-hero-content {
+.pg-log-bloco-conteudo {
     flex: 1;
     z-index: 2;
     display: flex;
@@ -40,24 +40,23 @@
     max-width: 490px;
     height: 100%;
     min-height: 400px;
-
 }
 
-/* Inputs */
-.login-form {
+/* Formário e Inputs */
+.pg-log-formulario-entrada {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.input-group label {
+.pg-log-grupo-entrada label {
     display: block;
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 4px;
 }
 
-.login-input {
+.pg-log-campo-texto {
     width: 100%;
     height: 55px;
     background: transparent;
@@ -69,7 +68,7 @@
 }
 
 /* Botão LOGIN */
-.btn-login-submit {
+.pg-log-botao-acessar {
     width: 107%;
     height: 60px;
     background-color: #ffffff; 
@@ -84,13 +83,13 @@
     transition: transform 0.2s;
 }
 
-.btn-login-submit:hover {
+.pg-log-botao-acessar:hover {
     transform: scale(1.05);
     background-color: #BFE385;
 }
 
-
-.social-login-divider {
+/* Divisor Social */
+.pg-log-divisor-social {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -98,29 +97,30 @@
     width: 107%;
 }
 
-.social-login-divider::before, .social-login-divider::after {
+.pg-log-divisor-social::before, 
+.pg-log-divisor-social::after {
     content: "";
     flex: 2;
     height: 2px;
     background: rgb(255, 255, 255);
 }
 
-.social-icons-grid {
+.pg-log-grade-social {
     display: flex;
     gap: 107px;
     margin-top: 15px;
     width: 107%;
 }
 
-.social-box {
+.pg-log-caixa-social {
     background: rgb(255, 255, 255);
     width: 105px;
     height: 75px;
     border-radius: 10px;
 }
 
-/* Imagem da Menina */
-.hp-hero-image {
+/* Imagem Lateral */
+.pg-log-imagem-destaque {
     position: absolute;
     right: -2%; 
     bottom: -70px;
@@ -130,19 +130,14 @@
     z-index: 1; 
 }
 
-.hp-hero-image img {
+.pg-log-imagem-destaque img {
     width: 100%; 
     height: auto; 
     object-fit: contain;
 }
 
-.hp-hero-content p a {
-    color: #BFE385; 
-    text-decoration: none;
-    font-weight: 1000;
-}
-
-.hp-hero-content p {
+/* Links e Textos */
+.pg-log-texto-cadastro {
     margin-top: auto; 
     margin-bottom: -120px;
     margin-left: 160px;
@@ -152,15 +147,21 @@
     padding-left: 10px;
 }
 
+.pg-log-texto-cadastro a {
+    color: #BFE385; 
+    text-decoration: none;
+    font-weight: 1000;
+}
+
 /* Esqueci minha senha */
-.forgot-password-container {
+.pg-log-bloco-recuperar {
     width: 100%;
     display: flex;
     justify-content: flex-end;
     margin-top: -13px;
 }
 
-.forgot-password-link {
+.pg-log-link-esqueci {
     color: #ffffff; 
     font-size: 13px;
     text-decoration: none;
@@ -169,33 +170,31 @@
     transition: opacity 0.2s;
 }
 
-.forgot-password-link:hover {
-    opacity: 5;
+.pg-log-link-esqueci:hover {
+    opacity: 0.8; /* Corrigido de 5 para um valor válido de opacidade */
     text-decoration: underline;
     color: #BFE385;
 }
 
-
-/* Ajuste para telas menores  */
+/* Ajuste para telas menores */
 @media (max-width: 900px) {
-    .hp-hero-container {
+    .pg-log-cartao-central {
         flex-direction: column;
         border-radius: 40px;
         padding: 30px;
         overflow: visible; 
     }
-    .hp-hero-content {
+    .pg-log-bloco-conteudo {
         max-width: 100%;
         align-items: center;
     }
-    .hp-hero-image {
+    .pg-log-imagem-destaque {
         position: static;
         margin-top: 20px;
         justify-content: center;
         width: 100%; 
     }
-    .hp-hero-image img {
+    .pg-log-imagem-destaque img {
         max-width: 350px; 
     }
-
 }
