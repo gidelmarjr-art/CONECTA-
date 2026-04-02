@@ -1,13 +1,12 @@
-/* Container da Página - Previne transbordamento lateral */
 .mural-page {
     width: 100%;
-    max-width: 100vw; /* Garante que não ultrapasse a largura da janela */
+    max-width: 100vw; 
     background-color: #ffffff;
-    overflow-x: hidden; /* Corta qualquer elemento que tente sair pela direita */
+    overflow-x: hidden; 
     box-sizing: border-box;
 }
 
-/* Barra de Filtro Azul */
+
 .vagas-filter-section {
     background-color: #007dc0;
     padding: 15px 0;
@@ -17,8 +16,7 @@
 .vagas-filter-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px; /* Padding reduzido para evitar quebra em telas médias */
-    display: flex;
+    padding: 0 40px;
     align-items: center;
     gap: 12px;
     box-sizing: border-box;
@@ -40,11 +38,11 @@
     cursor: pointer;
 }
 
-/* Área do Conteúdo Principal */
+
 .vagas-content-area {
     max-width: 1200px;
     margin: 40px auto;
-    padding: 0 40px; /* Alinhado com o container de filtro */
+    padding: 0 40px; 
     box-sizing: border-box;
 }
 
@@ -54,9 +52,7 @@
 
 .vagas-main-h1 {
     color: #007dc0;
-    font-size: clamp(28px, 5vw, 38px); /* Fonte diminui em telas menores para não empurrar o layout */
-    font-weight: 900;
-    margin: 0;
+    font-size: clamp(28px, 5vw, 38px);
 }
 
 .vagas-subtitle {
@@ -66,7 +62,7 @@
     margin-top: 5px;
 }
 
-/* Grid de Vagas - Ajuste dinâmico */
+
 .vagas-cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
@@ -76,14 +72,14 @@
     width: 100%;
 }
 
-/* Força 4 colunas apenas quando houver espaço suficiente */
+
 @media (min-width: 1100px) {
     .vagas-cards-grid {
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
-/* Responsividade para tablets e celulares */
+
 @media (max-width: 1099px) and (min-width: 651px) {
     .vagas-cards-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -99,11 +95,10 @@
     }
 }
 
-/* Alinhamento do SVG na barra azul */
 .vagas-filter-container {
     display: flex;
     align-items: center;
-    gap: 15px; /* Espaço entre o ícone e o botão */
+    gap: 15px; 
 }
 
 .vagas-filter-svg {
@@ -112,7 +107,6 @@
     display: block;
 }
 
-/* Redução sutil no botão se ele parecer grande */
 .vagas-filter-tag {
     background: transparent;
     border: 1px solid white;

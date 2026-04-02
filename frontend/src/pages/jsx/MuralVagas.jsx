@@ -13,11 +13,9 @@ const MuralVagas = () => {
 
   return (
     <div className="mural-page">
-      {/* Barra de Filtro Azul - Identidade Conecta+ */}
+
       <section className="vagas-filter-section">
         <div className="vagas-filter-container">
-          
-          {/* SVG de Filtro no lugar do emoji ⏳ */}
           <svg 
             className="vagas-filter-svg" 
             viewBox="0 0 24 24" 
@@ -43,7 +41,6 @@ const MuralVagas = () => {
           <p className="vagas-subtitle">516 vagas encontradas...</p>
         </div>
 
-        {/* Grid de Vagas */}
         <div className="vagas-cards-grid">
           {listaVagas.map((vaga, index) => (
             <VagasCard 

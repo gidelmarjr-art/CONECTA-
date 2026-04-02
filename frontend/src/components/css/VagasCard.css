@@ -1,11 +1,11 @@
 .vagas-card {
-    width: 100%; /* Ocupa o espaço que o Grid der para ele */
-    max-width: 300px; /* Não deixa ele ficar gigante em telas vazias */
+    width: 100%; 
+    max-width: 300px; 
     background: #ffffff;
     border: 1px solid #c4c4c4;
     border-radius: 25px;
     padding: 20px;
-    box-sizing: border-box; /* Fundamental para o padding não somar na largura */
+    box-sizing: border-box; 
     display: flex;
     flex-direction: column;
 }
@@ -25,7 +25,7 @@
 }
 
 .vagas-card-title {
-    color: #1a4d2e; /* Verde do título */
+    color: #1a4d2e;
     font-size: 24px;
     font-weight: 700;
     margin: 0 0 10px 0;
@@ -47,7 +47,7 @@
 
 .vagas-card-divider {
     height: 3px;
-    background: #007dc0; /* Linha azul */
+    background: #007dc0; 
     width: 100%;
     margin-bottom: 15px;
 }
@@ -60,25 +60,21 @@
 }
 
 .vagas-card-button {
-    width: 90%; /* Não ocupa 100% para não colar nas bordas arredondadas do card */
-    max-width: 240px; /* Limita o crescimento em telas grandes */
-    margin: 0 auto 10px auto; /* Centraliza o botão */
-    
+    width: 90%; 
+    max-width: 240px; 
+    margin: 0 auto 10px auto;
     background: linear-gradient(180deg, #007dc0 0%, #054a75 100%);
     color: #ffffff;
     border: none;
-    border-radius: 25px; /* Bordas um pouco menos circulares que o anterior */
-    
-    /* Ajuste de tamanho aqui */
-    padding: 8px 0; /* Diminuído de 12px para 8px para ficar mais fino */
-    font-size: 18px; /* Reduzido de 22px para 18px */
+    border-radius: 25px; 
+    padding: 8px 0;
+    font-size: 18px;
     font-weight: 800;
-    
     cursor: pointer;
-    display: block; /* Necessário para o margin auto funcionar */
+    display: block; 
     transition: transform 0.2s;
 }
 
 .vagas-card-button:hover {
-    transform: scale(1.02); /* Leve feedback visual */
+    transform: scale(1.02); 
 }
