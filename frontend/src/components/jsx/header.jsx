@@ -1,3 +1,4 @@
+/*git*/
 import React from 'react';
 import { Search } from 'lucide-react'; 
 import logoImg from '../../images/identidade/logo.png';

@@ -1,3 +1,5 @@
+/*git*/
+
 import React from 'react';
 import '../css/VagasCard.css';
 

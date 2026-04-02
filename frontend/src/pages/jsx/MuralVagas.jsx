@@ -1,3 +1,4 @@
+/*git*/
 import React from 'react';
 import VagasCard from '../../components/jsx/VagasCard'; 
 import '../css/MuralVagas.css';
