@@ -8,6 +8,9 @@ import Footer from './components/jsx/Footer';
 
 import HomePage from './pages/jsx/Homepage';
 import MuralVagas from './pages/jsx/MuralVagas';
+import Login from './pages/jsx/Login';
+import CadastroUser from './pages/jsx/CadastroUser';
+
 
 import './App.css';
 
@@ -19,6 +22,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/MuralVagas" element={<MuralVagas />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/CadastroUser" element={<CadastroUser />} />
       </Routes>
       <Footer />
     </Router>

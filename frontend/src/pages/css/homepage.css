@@ -14,10 +14,10 @@
 .hp-hero-container {
     background: linear-gradient(180deg, #067DC0 0%, #05649E 100%);
     width: 782px;
-    height: 346px;
+    min-height: auto;
     border-radius: 60px;
     display: flex;
-    padding: 0 60px 0 80px; 
+    padding: 40px 60px 40px 80px; 
     align-items: center;
     position: relative; 
     color: white;
@@ -28,6 +28,7 @@
 .hp-hero-content {
     max-width: 440px; 
     z-index: 2; 
+    margin-right: 200px;
 }
 
 .hp-hero-title {
@@ -48,8 +49,9 @@
 
 .hp-hero-grid {
     display: flex;
-    gap: 25px;
-    margin-bottom: 30px;
+    flex-direction: column;
+    gap: 35px;
+    margin-bottom: 150px;
 }
 
 .hp-feature-box {
@@ -74,7 +76,7 @@
 
 .hp-hero-btns {
     display: flex;
-    gap: 15px;
+    gap: 40px;
 }
 
 .hp-btn-white {
