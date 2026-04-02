@@ -138,7 +138,7 @@
 
 /* Links e Textos */
 .pg-log-texto-cadastro {
-    margin-top: auto; 
+    margin-top: 45px; 
     margin-bottom: -120px;
     margin-left: 160px;
     font-size: 15px;
@@ -171,7 +171,7 @@
 }
 
 .pg-log-link-esqueci:hover {
-    opacity: 0.8; /* Corrigido de 5 para um valor válido de opacidade */
+    opacity: 0.8;
     text-decoration: underline;
     color: #BFE385;
 }

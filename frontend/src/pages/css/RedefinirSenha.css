@@ -1,0 +1,121 @@
+/* Container Principal */
+.alt-s-secao-principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 80vh;
+}
+
+.alt-s-titulo-principal {
+    font-size: 40px;
+    margin-top: -90px;  
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    margin-bottom: 35px;
+    text-transform: uppercase;
+}
+
+/* O Card Azul */
+.alt-s-cartao-central {
+    background: linear-gradient(180deg, #05649E 10%, #033B5A 100%);
+    width: 100%;
+    max-width: 1000px; 
+    min-height: 550px; 
+    border-radius: 60px; 
+    display: flex;
+    position: relative;
+    color: white;
+    overflow: hidden;
+    padding: 80px 80px;
+    align-items: center; 
+}
+
+.alt-s-bloco-conteudo {
+    flex: 1;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+}
+
+/* Formulário e Inputs */
+.alt-s-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.alt-s-grupo-entrada label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.alt-s-campo-texto {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 12px;
+    color: white;
+    padding: 0 15px;
+    font-size: 16px;
+    outline: none;
+}
+
+/* Botão Alterar Senha */
+.alt-s-botao-confirmar {
+    width: 107%;
+    height: 55px;
+    background-color: #ffffff; /* Cor azul claro conforme a imagem */
+    color: #05649E;
+    border: none;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.alt-s-botao-confirmar:hover {
+    background-color: #BFE385; /* Mantendo o hover verde do seu projeto */
+    transform: scale(1.02);
+}
+
+/* Imagem Lateral */
+.alt-s-imagem-destaque {
+    position: absolute;
+    right: 20px; 
+    bottom: -20px;
+    width: 450px; 
+    z-index: 1; 
+}
+
+.alt-s-imagem-destaque img {
+    width: 100%; 
+    height: auto; 
+    object-fit: contain;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .alt-s-cartao-central {
+        flex-direction: column;
+        padding: 40px 20px;
+        text-align: center;
+    }
+    .alt-s-bloco-conteudo {
+        max-width: 100%;
+    }
+    .alt-s-imagem-destaque {
+        position: static;
+        width: 80%;
+        margin-top: 30px;
+    }
+    .alt-s-titulo-principal {
+        font-size: 30px;
+    }
+}

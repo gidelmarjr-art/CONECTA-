@@ -23,7 +23,7 @@ const Login = () => {
               </div>
 
               <div className="pg-log-bloco-recuperar">
-                <a href="/recuperar" className="pg-log-link-esqueci">Esqueci minha senha?</a>
+                <a href="/redefinirsenhagmail" className="pg-log-link-esqueci">Esqueci minha senha?</a>
               </div>
 
               <button type="submit" className="pg-log-botao-acessar">
@@ -42,7 +42,7 @@ const Login = () => {
             </div>
 
             <p className="pg-log-texto-cadastro">
-              Não tem Conta? <a href="/CadastroUsuario">Crie aqui</a>
+              Não tem Conta? <a href="/CadastroUser">Crie aqui</a>
             </p>
           </div>
 
