@@ -14,10 +14,10 @@
 .hp-hero-container {
     background: linear-gradient(180deg, #067DC0 0%, #05649E 100%);
     width: 782px;
-    min-height: auto;
+    height: 346px;
     border-radius: 60px;
     display: flex;
-    padding: 40px 60px 40px 80px; 
+    padding: 0 60px 0 80px; 
     align-items: center;
     position: relative; 
     color: white;
@@ -28,7 +28,6 @@
 .hp-hero-content {
     max-width: 440px; 
     z-index: 2; 
-    margin-right: 200px;
 }
 
 .hp-hero-title {
@@ -49,9 +48,8 @@
 
 .hp-hero-grid {
     display: flex;
-    flex-direction: column;
-    gap: 35px;
-    margin-bottom: 150px;
+    gap: 25px;
+    margin-bottom: 30px;
 }
 
 .hp-feature-box {
@@ -76,7 +74,7 @@
 
 .hp-hero-btns {
     display: flex;
-    gap: 40px;
+    gap: 15px;
 }
 
 .hp-btn-white {
@@ -484,7 +482,6 @@
     display: flex;
     align-items: flex-end;
     pointer-events: none;
-    animation: slideInRight 1s ease-out, float 4s ease-in-out infinite; 
 }
 
 .hp-hero-image img {
