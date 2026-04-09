@@ -1,177 +1,218 @@
-/* Container Principal */
+/* --- CONFIGURAÇÕES GERAIS --- */
 .pg-cad-secao-principal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 60px 20px;
-    min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px;
+  background-color: #fff;
 }
 
-/* Card Azul */
-.pg-cad-cartao-central {
-    background: linear-gradient(180deg, #05649E 10%, #033B5A 100%);
-    width: 100%;
-    max-width: 1000px; 
-    min-height: 850px; 
-    border-radius: 80px; 
-    display: flex;
-    position: relative;
-    color: white;
-    padding: 60px 80px;
-    align-items: flex-start; 
+.pg-cad-moldura-azul {
+  background: linear-gradient(180deg, #05649e 10%, #033b5a 100%);
+  width: 100%;
+  max-width: 900px;
+  border-radius: 50px;
+  padding: 100px;
+  color: white;
 }
 
-.pg-cad-bloco-conteudo {
-    flex: 1;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    max-width: 500px;
+.pg-cad-area-conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-.pg-cad-titulo-principal {
-    font-size: 40px;
-    font-weight: 900;
-    margin-bottom: 25px;
-    text-align: center;
+.pg-cad-chamada-topo {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 30px;
+  text-align: center;
+  width: 100%;
 }
 
-/* Divisor Social */
-.pg-cad-divisor-social {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    margin-bottom: 15px;
+/* --- DROPDOWN SELETOR --- */
+.pg-cad-dropdown-custom {
+  position: relative;
+  width: 350px;
+  margin-bottom: 40px;
+  z-index: 10;
 }
 
-.pg-cad-divisor-social::before, 
-.pg-cad-divisor-social::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: white;
+.pg-cad-btn-dropdown {
+  width: 100%;
+  padding: 12px 20px;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.pg-cad-grade-social {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    margin-bottom: 30px;
+.pg-cad-lista-opcoes {
+  position: absolute;
+  top: 110%;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-.pg-cad-caixa-social {
-    background: white;
-    width: 30%;
-    height: 50px;
-    border-radius: 10px;
+.ativo .pg-cad-lista-opcoes {
+  opacity: 1;
+  visibility: visible;
 }
 
-.pg-cad-formulario-registro {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.pg-cad-item-opcao {
+  padding: 15px;
+  color: #033b5a;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.pg-cad-linha-dupla {
-    display: flex;
-    gap: 60px;
-    width: 100%;
+.pg-cad-item-opcao:hover {
+  background: #f0f0f0;
 }
 
-.pg-cad-linha-dupla .pg-cad-grupo-entrada {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+/* --- FORMULÁRIO E CAMPOS --- */
+.pg-cad-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
 }
 
-.pg-cad-linha-dupla .pg-cad-campo-texto {
-    width: 100%;
+.pg-cad-linha-campos {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  align-items: flex-end;
 }
 
-.pg-cad-grupo-entrada {
-    flex: 1;
+.pg-cad-grupo-input {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.pg-cad-grupo-entrada label {
-    display: block;
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 4px;
+.pg-cad-grupo-input label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
 }
 
-.pg-cad-campo-texto {
-    width: 100%;
-    height: 40px;
-    background: transparent;
-    border: 2px solid white;
-    border-radius: 12px;
-    color: white;
-    padding: 0 15px;
+.pg-cad-campo,
+.pg-cad-campo-senha {
+  height: 42px;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 8px;
+  color: white;
+  padding: 0 10px;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.pg-cad-grupo-selecao {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 10px;
+/* --- LÓGICA DE SENHA E OLHO --- */
+.pg-cad-caixa-senha {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
-.pg-cad-caixa-selecao {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-    accent-color: #BFE385;
+.pg-cad-campo-senha {
+  padding-right: 40px;
 }
 
-/* Botão Criar Conta */
-.pg-cad-botao-enviar {
-    width: 100%;
-    max-width: 350px;
-    height: 55px;
-    background-color: #BDD7EE; 
-    color: #05649E;
-    border: none;
-    border-radius: 20px;
-    font-weight: 900;
-    font-size: 20px;
-    margin-top: 20px;
-    align-self: center;
-    cursor: pointer;
-    transition: transform 0.2s;
+.pg-cad-icone-olho {
+  position: absolute;
+  right: 12px;
+  cursor: pointer;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  z-index: 2;
 }
 
-.pg-cad-botao-enviar:hover {
-    transform: scale(1.05);
-    background-color: #BFE385;
+/* --- AJUSTES DO LAYOUT ONG --- */
+.pg-cad-flex-07 {
+  flex: 0.7 !important;
+}
+.pg-cad-flex-05 {
+  flex: 0.5 !important;
 }
 
-/* Imagem Lateral */
-.pg-cad-imagem-destaque {
-    position: absolute;
-    right: 2%; 
-    bottom: 20%;
-    width: 450px; 
-    z-index: 1; 
-    pointer-events: none;
+/* --- ANIMAÇÃO DE ERRO --- */
+.shake-anim input {
+  border: 2px solid #ff4d4d !important;
 }
 
-.pg-cad-imagem-destaque img {
-    width: 100%;
+.shake-anim label {
+  color: #ff4d4d;
 }
 
-/* Responsividade */
-@media (max-width: 900px) {
-    .pg-cad-cartao-central {
-        flex-direction: column;
-        padding: 40px 20px;
-        border-radius: 40px;
-    }
-    .pg-cad-imagem-destaque {
-        position: relative;
-        width: 80%;
-        margin: 20px auto 0;
-        right: 0;
-        bottom: 0;
-    }
+.shake-anim {
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+
+/* --- BOTÃO ENVIAR --- */
+.pg-cad-btn-enviar {
+  width: 280px;
+  height: 48px;
+  background-color: #ffffff;
+  color: #033b5a;
+  border: none;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 18px;
+  align-self: center;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.pg-cad-btn-enviar:hover {
+  transform: scale(1.03);
+}
+
+.pg-cad-bloco-animado {
+  width: 100%;
+  animation: surgimento 0.6s ease-out forwards;
+}
+
+@keyframes surgimento {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

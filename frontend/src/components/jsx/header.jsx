@@ -24,7 +24,7 @@ const Header = () => {
         </div>
 
         <div className="header-actions">
-          <NavLink to="/Cadastro" className="btn-link">
+          <NavLink to="/CadastroUser" className="btn-link">
             <button className="btn btn-cadastro">CADASTRO</button>
           </NavLink>
           
