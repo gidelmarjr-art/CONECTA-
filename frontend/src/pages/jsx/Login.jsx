@@ -1,10 +1,11 @@
 import React from 'react';
 import '../css/Login.css';
 import heroImg from '../../images/ImgHome.png'; 
+import { FaGoogle, FaApple, FaMicrosoft } from "react-icons/fa";
 
 const Login = () => {
   return (
-    <div className="pg-log-envoltório">
+    <div className="pg-log-envoltorio">
       <section className="pg-log-secao-principal">
         <div className="pg-log-cartao-central">
           
@@ -13,7 +14,7 @@ const Login = () => {
 
             <form className="pg-log-formulario-entrada">
               <div className="pg-log-grupo-entrada">
-                <label>✱ Usuário/E-mail:</label>
+                <label>✱ CPF/E-mail:</label>
                 <input type="text" className="pg-log-campo-texto" />
               </div>
 
@@ -31,14 +32,16 @@ const Login = () => {
               </button>
             </form>
 
+            {/* Divisor Social atualizado conforme padrão do cadastro */}
             <div className="pg-log-divisor-social">
               <span>Entre com uma conta</span>
             </div>
 
+            {/* Grades de botões sociais atualizadas */}
             <div className="pg-log-grade-social">
-              <div className="pg-log-caixa-social"></div>
-              <div className="pg-log-caixa-social"></div>
-              <div className="pg-log-caixa-social"></div>
+              <button className="pg-log-btn-social"><FaGoogle /></button>
+              <button className="pg-log-btn-social"><FaApple /></button>
+              <button className="pg-log-btn-social"><FaMicrosoft /></button>
             </div>
 
             <p className="pg-log-texto-cadastro">
