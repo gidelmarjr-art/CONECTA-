@@ -1,5 +1,5 @@
-/*git*/
 import React from 'react';
+
 import '../css/Homepage.css';
 
 import heroImg from '../../images/ImgHome.png'; 
@@ -33,20 +33,18 @@ const Homepage = () => {
               <button className="hp-btn-white">SOU UMA ONG</button>
             </div>
           </div>
-
-          {/* Renderização da Imagem */}
+          
           <div className="hp-hero-image">
             <img src={heroImg} alt="Ilustração Conecta+" />
           </div>
         </div>
       </section>
 
-      {/* Frase Verde */}
       <section className="hp-impact-phrase">
         <h2>O nosso compromisso <span>com o futuro.</span></h2>
       </section>
 
-      {/* Nova Seção: Cards de Compromisso */}
+
 <section className="hp-commitments-section">
   <div className="hp-commitments-grid">
     
@@ -62,7 +60,7 @@ const Homepage = () => {
       </div>
     </div>
 
-    {/* Card 2 */}
+
     <div className="hp-commitment-card">
       <div className="hp-card-header">
         <span className="hp-card-number">2</span>
@@ -74,7 +72,7 @@ const Homepage = () => {
       </div>
     </div>
 
-    {/* Card 3 */}
+    
     <div className="hp-commitment-card">
       <div className="hp-card-header">
         <span className="hp-card-number">3</span>
@@ -86,7 +84,7 @@ const Homepage = () => {
       </div>
     </div>
 
-    {/* Card 4 */}
+    
     <div className="hp-commitment-card">
       <div className="hp-card-header">
         <span className="hp-card-number">4</span>
@@ -103,16 +101,13 @@ const Homepage = () => {
   </div>
 </section>
 
-{/* Seção ONGs em Destaque */}
+
 <section className="hp-featured-ongs">
   <h2>ONGS EM DESTAQUE</h2>
-  
   <div className="hp-ongs-grid">
-    {/* Card de ONG - Repetido 3 vezes */}
     {[1, 2, 3].map((item) => (
       <div key={item} className="hp-ong-card">
         <div className="hp-ong-image-container">
-          {/* Use a imagem da sua pasta images aqui */}
           <img src={require('../../images/ImgHome.png')} alt="ONG em destaque" />
         </div>
         
@@ -133,7 +128,6 @@ const Homepage = () => {
   </div>
 </section>
 
-{/* Seção de Conquistas e Certificados */}
 <section className="hp-rewards-section">
   <div className="hp-rewards-container">
     
@@ -164,6 +158,5 @@ const Homepage = () => {
   );
 };
 
-/*home*/
 
 export default Homepage;
