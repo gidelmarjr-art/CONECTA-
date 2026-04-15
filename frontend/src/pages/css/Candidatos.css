@@ -1,14 +1,10 @@
-/* =========================================
-   KEYFRAMES (ANIMAÇÕES)
-========================================= */
+/*KEYFRAMES (ANIMAÇÕES) */
 @keyframes pong-cand-fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* =========================================
-   CONTAINER PRINCIPAL
-========================================= */
+/* CONTAINER PRINCIPAL */
 .pong-cand-container {
   display: flex;
   flex-direction: column;
@@ -23,9 +19,7 @@
   animation: pong-cand-fadeUp 0.5s ease forwards;
 }
 
-/* =========================================
-   CABEÇALHO
-========================================= */
+/* CABEÇALHO */
 .pong-cand-header {
   display: flex;
   justify-content: space-between;
@@ -35,9 +29,7 @@
 .pong-cand-titulos h1 { margin: 0 0 5px 0; font-size: 28px; color: #1a252f; }
 .pong-cand-titulos p { margin: 0; color: #7f8c8d; font-size: 15px; }
 
-/* =========================================
-   KPIs (MÉTRICAS)
-========================================= */
+/* KPIs (MÉTRICAS) */
 .pong-cand-kpis {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -62,9 +54,7 @@
 }
 .pong-cand-kpi-card strong { font-size: 32px; color: #2c3e50; line-height: 1; }
 
-/* =========================================
-   CONTROLES (BUSCA E FILTRO)
-========================================= */
+/* CONTROLES (BUSCA E FILTRO) */
 .pong-cand-controles {
   display: flex;
   justify-content: space-between;
@@ -108,9 +98,7 @@
 
 .pong-cand-select:focus { border-color: #0056d2; }
 
-/* =========================================
-   LISTA DE CANDIDATOS (CARDS EM LINHA)
-========================================= */
+/* LISTA DE CANDIDATOS (CARDS EM LINHA) */
 .pong-cand-lista {
   display: flex;
   flex-direction: column;
@@ -134,7 +122,7 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
-/* 1. Perfil */
+/* Perfil */
 .pong-cand-perfil {
   display: flex;
   align-items: center;
@@ -167,7 +155,7 @@
 
 .pong-cand-data { font-size: 12px; color: #95a5a6; }
 
-/* 2. Skills e Match */
+/* Skills e Match */
 .pong-cand-skills-area {
   flex: 2;
   display: flex;
@@ -198,7 +186,7 @@
   font-weight: 600;
 }
 
-/* 3. Status */
+/*Status */
 .pong-cand-status-area {
   flex: 1;
   display: flex;
@@ -219,7 +207,7 @@
 .pong-cand-badge-aprovado { background-color: #dff5de; color: #27ae60; }
 .pong-cand-badge-recusado { background-color: #ffeaea; color: #e74c3c; }
 
-/* 4. Ações */
+/* Ações */
 .pong-cand-acoes {
   display: flex;
   align-items: center;
@@ -258,9 +246,7 @@
 .btn-aprovar { background-color: rgba(39, 174, 96, 0.1); color: #27ae60; }
 .btn-aprovar:hover { background-color: #27ae60; color: #fff; transform: scale(1.1); }
 
-/* =========================================
-   RESPONSIVIDADE
-========================================= */
+/* RESPONSIVIDADE */
 @media (max-width: 1024px) {
   .pong-cand-card-linha {
     flex-direction: column;
