@@ -21,31 +21,6 @@ const Faq = () => {
   return (
     <div className="faq-page-wrapper">
       
-      {/* --- CABEÇALHO (HEADER) --- */}
-      <header className="faq-header">
-        <div className="faq-header-content">
-          <div className="faq-logo-area">
-            {/* Substitua pelo caminho real da sua logo */}
-            <img src="/caminho-para-sua-logo.png" alt="Logo Conecta+" className="faq-logo" />
-          </div>
-          
-          <nav className="faq-nav-links">
-            <a href="#explorar">EXPLORAR</a>
-            <a href="#sobre-nos">SOBRE NÓS</a>
-          </nav>
-
-          <div className="faq-header-search">
-            <input type="text" className="faq-header-search-input" />
-            <span className="faq-header-search-icon">🔍</span>
-          </div>
-
-          <div className="faq-header-buttons">
-            <button className="faq-btn-cadastro">CADASTRO</button>
-            <button className="faq-btn-login">LOGIN</button>
-          </div>
-        </div>
-      </header>
-
       {/* --- FAIXA DE PESQUISA AZUL --- */}
       <div className="faq-search-banner">
         <div className="faq-search-container">
