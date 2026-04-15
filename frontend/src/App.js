@@ -19,6 +19,7 @@ import Doacoes from './pages/jsx/Doacoes';
 import Relatorios from './pages/jsx/Relatorios';
 import FAQ from './pages/jsx/FAQ';
 import SobreNos from './pages/jsx/SobreNos';
+import ChatBox from './pages/jsx/ChatBox';
 
 import './App.css';
 
@@ -51,6 +52,7 @@ function App() {
             <Route path="/Relatorios" element ={<Relatorios/>} />
             <Route path="/FAQ" element={<FAQ />} />
             <Route path="/SobreNos" element={<SobreNos />} />
+            <Route path="/ChatBox" element={<ChatBox />} /> 
 
           </Routes>
           
