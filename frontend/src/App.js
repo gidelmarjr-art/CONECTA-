@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/jsx/Header';  
 import Footer from './components/jsx/Footer'; 
 import Sidebar from './components/jsx/Sidebar'; 
+import SeletorUsuario from './components/jsx/SeletorUsuario'; // <-- Importado aqui (ajuste o caminho se necessário)
+
 import HomePage from './pages/jsx/Homepage';
 import MuralVagas from './pages/jsx/MuralVagas';
 import Login from './pages/jsx/Login';
@@ -20,21 +22,34 @@ import Relatorios from './pages/jsx/Relatorios';
 import FAQ from './pages/jsx/FAQ';
 import SobreNos from './pages/jsx/SobreNos';
 import ChatBox from './pages/jsx/ChatBox';
+import Perfil from './pages/jsx/Perfil';
+import MinhasInscricoes from './pages/jsx/MinhasInscricoes';
+import Conquistas from './pages/jsx/Conquistas';
 
 import './App.css';
 
 function App() {
+  // Estado global que controla quem está "logado" na apresentação
+  const [tipoUsuario, setTipoUsuario] = useState('visitante'); // Começa como ONG para a apresentação
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  // Lógica: se for visitante, não está logado. Qualquer outro, está logado.
+  const isLoggedIn = tipoUsuario !== 'visitante';
 
   return (
     <Router>
       <div className="app-layout">
+        
+        {/* O botão flutuante que controla o site inteiro */}
+        <SeletorUsuario 
+          usuarioAtual={tipoUsuario} 
+          setUsuarioAtual={setTipoUsuario} 
+        />
       
-        {isLoggedIn && <Sidebar tipoUsuario="ADMIN" />}
+        {/* A Sidebar agora recebe o tipo de usuário dinamicamente! */}
+        {isLoggedIn && <Sidebar tipoUsuario={tipoUsuario} />}
 
         <div className="conteudo-principal">
-          <Header isLoggedIn={isLoggedIn} />
+          <Header isLoggedIn={isLoggedIn} tipoUsuario={tipoUsuario} />
           
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -53,7 +68,11 @@ function App() {
             <Route path="/FAQ" element={<FAQ />} />
             <Route path="/SobreNos" element={<SobreNos />} />
             <Route path="/ChatBox" element={<ChatBox />} /> 
-
+            <Route path="/MinhasInscricoes" element={<MinhasInscricoes />} /> 
+            <Route path="/Conquistas" element={<Conquistas />} /> 
+            
+            {/* O Perfil agora recebe a prop para saber se renderiza como ONG ou Voluntário */}
+            <Route path='/Perfil' element={<Perfil tipoUsuario={tipoUsuario} />} />
           </Routes>
           
           <Footer />

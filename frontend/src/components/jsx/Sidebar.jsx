@@ -15,9 +15,12 @@ import '../css/Sidebar.css';
 import ilustracaoImg from '../../images/Img6.png';
 import logoImg from '../../images/identidade/logo.png'; 
 
-// O componente agora recebe o "tipoUsuario" (pode ser 'VOLUNTARIO', 'ONG' ou 'ADMIN')
 const Sidebar = ({ tipoUsuario = 'VOLUNTARIO' }) => {
   const [isExpanded, setIsExpanded] = useState(true);
+
+  // Normaliza o texto para garantir que sempre fique em MAIÚSCULO, 
+  // independente do que vier do Seletor ou do App.js
+  const tipoNormalizado = tipoUsuario.toUpperCase();
 
   const toggleSidebar = () => {
     setIsExpanded(!isExpanded);
@@ -32,7 +35,7 @@ const Sidebar = ({ tipoUsuario = 'VOLUNTARIO' }) => {
     { path: '/MuralVagas', icon: Search, label: 'Explorar Vagas' },
     { path: '/MinhasInscricoes', icon: Bookmark, label: 'Minhas Inscrições' },
     { path: '/Conquistas', icon: Award, label: 'Conquistas e XP' },
-    { path: '/Chat', icon: MessageSquare, label: 'Mensagens' }
+    { path: '/ChatBox', icon: MessageSquare, label: 'Mensagens' }
   ];
 
   const menuONG = [
@@ -41,7 +44,7 @@ const Sidebar = ({ tipoUsuario = 'VOLUNTARIO' }) => {
     { path: '/Candidatos', icon: Users, label: 'Candidatos' },
     { path: '/Doacoes', icon: HeartHandshake, label: 'Doações' },
     { path: '/Relatorios', icon: FileText, label: 'Relatórios' },
-    { path: '/Chat', icon: MessageSquare, label: 'Mensagens' }
+    { path: '/ChatBox', icon: MessageSquare, label: 'Mensagens' }
   ];
 
   const menuAdmin = [
@@ -51,13 +54,13 @@ const Sidebar = ({ tipoUsuario = 'VOLUNTARIO' }) => {
     { path: '/Moderacao', icon: AlertTriangle, label: 'Moderação e Denúncias' },
     { path: '/Auditoria', icon: ShieldCheck, label: 'Log de Auditoria' }
   ];
-
-  // Lógica para selecionar qual menu renderizar
+  
   const obterMenuAtual = () => {
-    switch (tipoUsuario) {
+    switch (tipoNormalizado) {
       case 'ONG': return menuONG;
       case 'ADMIN': return menuAdmin;
       case 'VOLUNTARIO': 
+      case 'VISITANTE': // Visitante também pode ver o menu de voluntário por enquanto
       default: return menuVoluntario;
     }
   };
@@ -99,7 +102,7 @@ const Sidebar = ({ tipoUsuario = 'VOLUNTARIO' }) => {
 
       {/* MENU SECUNDÁRIO (COMUM A TODOS) */}
       <nav className="sidebar-menu secundario">
-        <NavLink to="/perfil" className="menu-item">
+        <NavLink to="/Perfil" className="menu-item">
           <User size={20} />
           {isExpanded && <span>Meu Perfil</span>}
         </NavLink>
@@ -112,9 +115,8 @@ const Sidebar = ({ tipoUsuario = 'VOLUNTARIO' }) => {
           {isExpanded && <span>Configurações</span>}
         </NavLink>
         
-        {/* Admin geralmente não precisa de botão de suporte na mesma área, mas mantive para Voluntário/ONG */}
-        {tipoUsuario !== 'ADMIN' && (
-          <NavLink to="/suporte" className="menu-item">
+        {tipoNormalizado !== 'ADMIN' && (
+          <NavLink to="/FAQ" className="menu-item">
             <HelpCircle size={20} />
             {isExpanded && <span>Suporte</span>}
           </NavLink>
@@ -123,8 +125,7 @@ const Sidebar = ({ tipoUsuario = 'VOLUNTARIO' }) => {
 
       {/* ÁREA INFERIOR (ILUSTRAÇÃO E PERFIL) */}
       <div className="sidebar-rodape">
-        {/* Esconde a ilustração se for ADMIN para ficar mais sério */}
-        {isExpanded && tipoUsuario !== 'ADMIN' && (
+        {isExpanded && tipoNormalizado !== 'ADMIN' && (
           <div className="sidebar-ilustracao">
              <img src={ilustracaoImg} alt="Ilustração" className="img-ilustracao" />
           </div>
@@ -138,7 +139,8 @@ const Sidebar = ({ tipoUsuario = 'VOLUNTARIO' }) => {
             <div className="perfil-info">
               <span className="perfil-saudacao">Bem-vindo(a) 👋</span>
               <span className="perfil-nome">
-                {tipoUsuario === 'ADMIN' ? 'Admin Global' : 'Johnathan'}
+                {tipoNormalizado === 'ADMIN' ? 'Admin Global' : 
+                 tipoNormalizado === 'ONG' ? 'ONG Esperança' : 'Johnathan'}
               </span>
             </div>
           )}
