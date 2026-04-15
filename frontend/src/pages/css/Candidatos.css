@@ -1,0 +1,281 @@
+/* =========================================
+   KEYFRAMES (ANIMAÇÕES)
+========================================= */
+@keyframes pong-cand-fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   CONTAINER PRINCIPAL
+========================================= */
+.pong-cand-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px 40px;
+  box-sizing: border-box;
+  gap: 30px;
+  animation: pong-cand-fadeUp 0.5s ease forwards;
+}
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+.pong-cand-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.pong-cand-titulos h1 { margin: 0 0 5px 0; font-size: 28px; color: #1a252f; }
+.pong-cand-titulos p { margin: 0; color: #7f8c8d; font-size: 15px; }
+
+/* =========================================
+   KPIs (MÉTRICAS)
+========================================= */
+.pong-cand-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.pong-cand-kpi-card {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  border-left: 5px solid #0056d2;
+}
+
+.pong-cand-kpi-card.destaque-amarelo { border-left-color: #f39c12; }
+.pong-cand-kpi-card.destaque-verde { border-left-color: #27ae60; }
+
+.pong-cand-kpi-card span {
+  font-size: 13px; color: #7f8c8d; font-weight: 600; margin-bottom: 5px; text-transform: uppercase;
+}
+.pong-cand-kpi-card strong { font-size: 32px; color: #2c3e50; line-height: 1; }
+
+/* =========================================
+   CONTROLES (BUSCA E FILTRO)
+========================================= */
+.pong-cand-controles {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.pong-cand-busca {
+  flex: 1;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 12px 20px;
+  border-radius: 12px;
+  gap: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.pong-cand-busca:focus-within { border-color: #0056d2; box-shadow: 0 0 0 3px rgba(0, 86, 210, 0.1); }
+.pong-cand-busca input { border: none; background: transparent; outline: none; width: 100%; font-size: 14px; }
+
+.pong-cand-filtros-grupo {
+  display: flex;
+  gap: 15px;
+}
+
+.pong-cand-select {
+  background-color: #fff;
+  border: 1px solid #ecf0f1;
+  padding: 12px 15px;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #2c3e50;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  transition: border-color 0.2s;
+}
+
+.pong-cand-select:focus { border-color: #0056d2; }
+
+/* =========================================
+   LISTA DE CANDIDATOS (CARDS EM LINHA)
+========================================= */
+.pong-cand-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.pong-cand-card-linha {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 20px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pong-cand-card-linha:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* 1. Perfil */
+.pong-cand-perfil {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 2;
+  min-width: 250px;
+}
+
+.pong-cand-avatar {
+  width: 50px;
+  height: 50px;
+  background-color: #e8f0fe;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pong-cand-info h3 { margin: 0 0 4px 0; font-size: 16px; color: #2c3e50; }
+
+.pong-cand-vaga-alvo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #5c6a79;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.pong-cand-data { font-size: 12px; color: #95a5a6; }
+
+/* 2. Skills e Match */
+.pong-cand-skills-area {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pong-cand-match {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: #2c3e50;
+}
+
+.pong-cand-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pong-cand-tag {
+  background-color: #f0f3f5;
+  color: #5c6a79;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* 3. Status */
+.pong-cand-status-area {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.pong-cand-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pong-cand-badge-pendente { background-color: #ffecd6; color: #e67e22; }
+.pong-cand-badge-aprovado { background-color: #dff5de; color: #27ae60; }
+.pong-cand-badge-recusado { background-color: #ffeaea; color: #e74c3c; }
+
+/* 4. Ações */
+.pong-cand-acoes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.btn-acao {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #f0f3f5;
+  color: #7f8c8d;
+}
+
+.btn-chat:hover { background-color: #0056d2; color: #fff; }
+.btn-perfil:hover { background-color: #34495e; color: #fff; }
+
+.pong-cand-divisor-acoes {
+  width: 1px;
+  height: 24px;
+  background-color: #ecf0f1;
+  margin: 0 5px;
+}
+
+.btn-recusar { background-color: rgba(231, 76, 60, 0.1); color: #e74c3c; }
+.btn-recusar:hover { background-color: #e74c3c; color: #fff; }
+
+.btn-aprovar { background-color: rgba(39, 174, 96, 0.1); color: #27ae60; }
+.btn-aprovar:hover { background-color: #27ae60; color: #fff; transform: scale(1.1); }
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+@media (max-width: 1024px) {
+  .pong-cand-card-linha {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pong-cand-status-area, .pong-cand-acoes {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .pong-cand-container { padding: 20px; }
+  .pong-cand-controles { flex-direction: column; }
+  .pong-cand-busca { max-width: 100%; }
+  .pong-cand-filtros-grupo { flex-direction: column; width: 100%; }
+  .pong-cand-select { width: 100%; }
+}

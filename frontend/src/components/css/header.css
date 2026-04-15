@@ -1,15 +1,45 @@
+/* =====================================
+   ANIMAÇÕES (KEYFRAMES)
+====================================== */
+@keyframes slideDownHeader {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
 
+@keyframes pulseNotificacao {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(255, 71, 87, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
+}
+
+@keyframes girarEngrenagem {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(90deg); }
+}
+
+@keyframes balancarSino {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(15deg); }
+    40% { transform: rotate(-10deg); }
+    60% { transform: rotate(5deg); }
+    80% { transform: rotate(-5deg); }
+}
+
+/* =====================================
+   ESTILOS GERAIS DA HEADER
+====================================== */
 .main-header {
     width: 100%;
     background-color: #ffffff;
     display: flex;
     justify-content: center; 
-    padding: 12px 0;
+    padding: 20px 0; /* <-- Aumentamos o espaçamento vertical aqui */
     font-family: sans-serif;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     position: sticky;
     top: 0;
     z-index: 1000;
+    animation: slideDownHeader 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .header-container {
@@ -22,12 +52,12 @@
 }
 
 /* Logo */
+/* Logo */
 .logo-img {
-    height: 38px;
+    height: 44px; /* <-- Aumentamos um pouquinho a logo para acompanhar */
     width: auto;
     transition: transform 0.3s ease;
 }
-
 .logo-img:hover {
     transform: scale(1.05);
 }
@@ -36,6 +66,8 @@
 .header-nav {
     display: flex;
     gap: 25px; 
+    align-items: center;
+    margin-left: 20px;
 }
 
 .nav-link {
@@ -45,6 +77,11 @@
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
     position: relative;
+    text-transform: uppercase;
+}
+
+.nav-link:hover {
+    opacity: 0.8;
 }
 
 /* Efeito de linha embaixo ao passar o mouse */
@@ -58,11 +95,16 @@
     transition: width 0.3s ease;
 }
 
+/* Cores dos Links */
+.nav-feed { color: #555; }
+.nav-feed:hover::after { background-color: #555; width: 100%; }
+
 .nav-explorar { color: #2888C9; }
 .nav-explorar:hover::after { background-color: #2888C9; width: 100%; }
 
 .nav-sobre { color: #53B848; }
 .nav-sobre:hover::after { background-color: #53B848; width: 100%; }
+
 
 /* Barra de Busca */
 .search-container {
@@ -78,12 +120,13 @@
     width: 220px; 
     outline: none;
     font-size: 13px;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .search-input:focus {
-    width: 280px; /* Expande ao clicar */
-    box-shadow: 0 0 8px rgba(237, 92, 55, 0.2);
+    width: 280px; 
+    box-shadow: 0 0 10px rgba(237, 92, 55, 0.3);
+    border-color: #d14926;
 }
 
 .search-icon {
@@ -98,7 +141,7 @@
     transform: scale(1.2);
 }
 
-/* Botões */
+/* Botões (Cadastro/Login) */
 .header-actions {
     display: flex;
     gap: 12px; 
@@ -116,19 +159,122 @@
 }
 
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
 }
 
 .btn-cadastro { background-color: #0074BD; }
 .btn-login { background-color: #169C46; padding: 8px 28px; }
 
-/* RESPONSIVIDADE */
 
+/* =====================================
+   ESTADO LOGADO (PERFIL E ÍCONES)
+====================================== */
+.header-perfil-logado {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Botões Redondos (Engrenagem e Sino) */
+.btn-icone {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-icone:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Aplica a animação ao passar o mouse */
+.btn-icone:hover .icone-azul {
+    animation: girarEngrenagem 0.5s ease;
+}
+
+.btn-icone:hover .icone-vermelho {
+    animation: balancarSino 0.5s ease;
+}
+
+.bg-azul-claro { background-color: #f0f4f8; }
+.icone-azul { color: #8ba4ce; }
+
+.bg-vermelho-claro { background-color: #fff0f0; }
+.icone-vermelho { color: #ff8b8b; }
+
+/* Bolinha vermelha de notificação nova animada */
+.indicador-notificacao {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 8px;
+    height: 8px;
+    background-color: #ff4757;
+    border-radius: 50%;
+    border: 2px solid #fff0f0;
+    animation: pulseNotificacao 2s infinite; /* Pisca organicamente */
+}
+
+/* Textos do Usuário */
+.info-usuario-header {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    margin-left: 10px;
+}
+
+.nome-usuario-header {
+    font-weight: bold;
+    font-size: 14px;
+    color: #000;
+    line-height: 1.2;
+}
+
+.arroba-usuario-header {
+    font-size: 11px;
+    color: #a0a0a0;
+}
+
+/* Avatar Amarelo */
+.avatar-usuario-header {
+    width: 40px;
+    height: 40px;
+    background-color: #ffc107;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.avatar-usuario-header:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+}
+
+/* =====================================
+   RESPONSIVIDADE
+====================================== */
 @media (max-width: 1024px) {
     .search-input { width: 150px; }
     .search-input:focus { width: 200px; }
-    .header-nav { gap: 15px; }
+    .header-nav { gap: 15px; margin-left: 10px; }
 }
 
 @media (max-width: 768px) {
