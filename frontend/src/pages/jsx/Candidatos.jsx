@@ -6,7 +6,8 @@ import {
 import '../css/Candidatos.css';
 
 const Candidatos = () => {
-  // Mock de dados dos candidatos
+
+  //Inicio de dados estáticos para teste
   const [candidatos] = useState([
     {
       id: 1,
@@ -46,7 +47,7 @@ const Candidatos = () => {
     }
   ]);
 
-  // Função para renderizar a tag de status visual
+  
   const renderStatusBadge = (status) => {
     switch(status) {
       case 'pendente': 
@@ -59,11 +60,11 @@ const Candidatos = () => {
         return null;
     }
   };
-
+//fim dos dados estáticos
+  
   return (
     <div className="pong-cand-container">
       
-      {/* CABEÇALHO */}
       <header className="pong-cand-header">
         <div className="pong-cand-titulos">
           <h1>Análise de Candidatos</h1>
@@ -71,7 +72,6 @@ const Candidatos = () => {
         </div>
       </header>
 
-      {/* MÉTRICAS (KPIs) */}
       <section className="pong-cand-kpis">
         <div className="pong-cand-kpi-card">
           <span>Total Inscritos</span>
@@ -87,7 +87,6 @@ const Candidatos = () => {
         </div>
       </section>
 
-      {/* BARRA DE PESQUISA E FILTROS */}
       <section className="pong-cand-controles">
         <div className="pong-cand-busca">
           <Search size={18} color="#7f8c8d" />
@@ -110,12 +109,10 @@ const Candidatos = () => {
         </div>
       </section>
 
-      {/* LISTA DE CANDIDATOS */}
       <section className="pong-cand-lista">
         {candidatos.map((cand) => (
           <article className="pong-cand-card-linha" key={cand.id}>
             
-            {/* 1. Info Básica do Usuário */}
             <div className="pong-cand-perfil">
               <div className="pong-cand-avatar">
                 <User size={24} color="#0056d2" />
@@ -129,7 +126,6 @@ const Candidatos = () => {
               </div>
             </div>
 
-            {/* 2. Afinidade e Habilidades */}
             <div className="pong-cand-skills-area">
               <div className="pong-cand-match" title="Compatibilidade com a vaga">
                 <Star size={16} color={cand.match >= 80 ? "#f1c40f" : "#bdc3c7"} />
@@ -142,12 +138,10 @@ const Candidatos = () => {
               </div>
             </div>
 
-            {/* 3. Status Atual */}
             <div className="pong-cand-status-area">
               {renderStatusBadge(cand.status)}
             </div>
 
-            {/* 4. Ações */}
             <div className="pong-cand-acoes">
               <button className="btn-acao btn-chat" title="Enviar Mensagem">
                 <MessageSquare size={18} />
@@ -155,8 +149,7 @@ const Candidatos = () => {
               <button className="btn-acao btn-perfil" title="Ver Perfil Completo">
                 <Eye size={18} />
               </button>
-              
-              {/* Só mostra botões de aprovar/recusar se estiver pendente */}
+            
               {cand.status === 'pendente' && (
                 <>
                   <div className="pong-cand-divisor-acoes"></div>
