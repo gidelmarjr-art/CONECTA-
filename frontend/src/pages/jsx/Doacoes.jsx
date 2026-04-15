@@ -6,10 +6,9 @@ import {
 import '../css/Doacoes.css';
 
 const Doacoes = () => {
-  // Estado para controlar a abertura do Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Mock de campanhas (Agora como estado para simular a adição de novas)
+ {/*DADOS ESTATICOS*/}s)
   const [campanhas, setCampanhas] = useState([
     {
       id: 1,
@@ -47,7 +46,6 @@ const Doacoes = () => {
   return (
     <div className="pong-doac-container">
       
-      {/* CABEÇALHO */}
       <header className="pong-doac-header">
         <div className="pong-doac-titulos">
           <h1>Gestão de Doações</h1>
@@ -65,7 +63,7 @@ const Doacoes = () => {
         </div>
       </header>
 
-      {/* KPIs */}
+       {/*DADOS ESTATICOS*/}
       <section className="pong-doac-kpis">
         <div className="pong-doac-kpi-card destaque-verde">
           <div className="kpi-icone"><DollarSign size={24} color="#27ae60"/></div>
@@ -83,7 +81,7 @@ const Doacoes = () => {
         </div>
       </section>
 
-      {/* CAMPANHAS ATIVAS */}
+     {/*DADOS ESTATICOS*/}
       <section className="pong-doac-secao">
         <div className="pong-doac-secao-header">
           <h2>Campanhas Ativas</h2>
@@ -115,7 +113,7 @@ const Doacoes = () => {
         </div>
       </section>
 
-      {/* HISTÓRICO - RESUMIDO PARA EXEMPLO */}
+       {/*DADOS ESTATICOS*/}
       <section className="pong-doac-secao">
         <h2>Transações Recentes</h2>
         <div className="pong-doac-tabela-container">
@@ -141,8 +139,7 @@ const Doacoes = () => {
           </table>
         </div>
       </section>
-
-      {/* MODAL PARA NOVA META */}
+      
       {isModalOpen && (
         <div className="pong-doac-modal-overlay">
           <div className="pong-doac-modal">
