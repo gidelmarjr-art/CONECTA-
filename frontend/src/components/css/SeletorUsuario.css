@@ -1,0 +1,125 @@
+/* Container principal - AGORA COM TAMANHO FIXO */
+.debug-seletor-container {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  z-index: 99999;
+  width: 50px;  
+  height: 50px; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* O botão Flutuante - AGORA OCUPA 100% DO CONTAINER */
+.debug-seletor-fab {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #1a252f;
+  color: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================
+   Painel (O Menu Inteligente)
+   ========================================= */
+.debug-seletor-painel {
+  position: absolute;
+  width: 260px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e0e6ed;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Oculto por padrão */
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95);
+}
+
+.debug-seletor-painel.painel-visivel {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+/* Classes dinâmicas para abrir na direção certa dependendo da posição na tela */
+.menu-bottom-left  { bottom: 65px; left: 0; transform-origin: bottom left; }
+.menu-bottom-right { bottom: 65px; right: 0; transform-origin: bottom right; }
+.menu-top-left     { top: 65px; left: 0; transform-origin: top left; }
+.menu-top-right    { top: 65px; right: 0; transform-origin: top right; }
+
+/* Cabeçalho do Menu */
+.debug-seletor-header {
+  padding: 15px 20px;
+  background-color: #f8fbff;
+  border-bottom: 1px solid #e0e6ed;
+}
+
+.debug-seletor-header h4 {
+  margin: 0;
+  font-size: 14px;
+  color: #1a252f;
+  font-weight: 700;
+}
+
+.debug-seletor-header p {
+  margin: 3px 0 0 0;
+  font-size: 11px;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Lista de Opções */
+.debug-seletor-opcoes {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Cada Botão de Opção */
+.debug-seletor-btn-opcao {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.debug-seletor-btn-opcao:hover {
+  background-color: #f4f6f9;
+}
+
+/* Estado Ativo (Selecionado) */
+.debug-seletor-btn-opcao.ativo {
+  background-color: var(--cor-hover);
+  border-color: var(--cor-borda);
+}
+
+.debug-seletor-icone-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.debug-seletor-check {
+  margin-left: auto; /* Empurra o check pro lado direito */
+}

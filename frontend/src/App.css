@@ -11,3 +11,13 @@
   flex-direction: column;
 }
 
+#footer { /* ou a div principal do seu App */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Isso faz o conteúdo no meio esticar e empurrar o footer pra baixo */
+.conteudo-principal { 
+  flex: 1; 
+}
