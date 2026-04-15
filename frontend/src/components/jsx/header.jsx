@@ -20,7 +20,7 @@ const Header = ({ isLoggedIn }) => {
         <nav className="header-nav">
           <NavLink to="/Feed" className="nav-link nav-feed">FEED</NavLink>
           <NavLink to="/MuralVagas" className="nav-link nav-explorar">EXPLORAR</NavLink>
-          <NavLink to="/DashboardONG" className="nav-link nav-sobre">SOBRE NÓS</NavLink>
+          <NavLink to="/SobreNos" className="nav-link nav-sobre">SOBRE NÓS</NavLink>
         </nav>
 
         {/* BARRA DE PESQUISA */}
