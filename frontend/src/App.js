@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/jsx/Header';  
 import Footer from './components/jsx/Footer'; 
-import Sidebar from './components/jsx/Sidebar'; // <-- Importe a Sidebar
-
+import Sidebar from './components/jsx/Sidebar'; 
 import HomePage from './pages/jsx/Homepage';
 import MuralVagas from './pages/jsx/MuralVagas';
 import Login from './pages/jsx/Login';
@@ -24,21 +23,16 @@ import SobreNos from './pages/jsx/SobreNos';
 import './App.css';
 
 function App() {
-  // SIMULAÇÃO DE LOGIN (Mude para false para ver a sidebar sumir)
+
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <Router>
-      {/* A div app-layout vai organizar a Sidebar na esquerda 
-        e o resto do site na direita 
-      */}
       <div className="app-layout">
-        
-        {/* Renderização Condicional: Só mostra a Sidebar SE estiver logado */}
+      
         {isLoggedIn && <Sidebar tipoUsuario="ADMIN" />}
 
         <div className="conteudo-principal">
-          {/* Se quiser que o Header também suma no login, coloque a condicional nele */}
           <Header isLoggedIn={isLoggedIn} />
           
           <Routes>
