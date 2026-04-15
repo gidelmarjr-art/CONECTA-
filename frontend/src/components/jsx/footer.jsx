@@ -12,14 +12,14 @@ const Footer = () => {
         <div className="footer-top">
           <div className="footer-left">
             <h2 className="footer-title">CONECTA+</h2>
-            <a href="#" className="footer-link">Sobre Nós</a>
+            <a href="SobreNos" className="footer-link">Sobre Nós</a>
           </div>
 
           <div className="footer-right">
             <h2 className="footer-title">CONTATO E SUPORTE</h2>
             <div className="footer-contact">
               <a href="mailto:email@gmail.com" className="footer-link">email@gmail.com</a>
-              <a href="#" className="footer-link">FAQ</a>
+              <a href="FAQ" className="footer-link">FAQ</a>
               <a href="#" className="footer-icon" aria-label="Camera">
                 <Camera size={18} strokeWidth={2} />
               </a>
