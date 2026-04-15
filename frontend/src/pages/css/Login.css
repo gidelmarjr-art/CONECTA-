@@ -4,15 +4,15 @@
     justify-content: center;
     align-items: center;
     padding: 40px 20px;
-    min-height: 80vh;
+    min-height: 100vh;
+    background-color: #fff;
 }
 
 .pg-log-titulo-principal {
     font-size: 50px;
     font-weight: 900;
-    margin-bottom: 20px;
     letter-spacing: 0.5px;
-    margin-top: -90px;
+    margin-top: -40px;
     margin-bottom: 35px;
 }
 
@@ -21,14 +21,14 @@
     background: linear-gradient(180deg, #05649E 10%, #033B5A 100%);
     width: 100%;
     max-width: 1000px; 
-    min-height: 450px; 
+    min-height: 550px; 
     border-radius: 80px; 
     display: flex;
     position: relative;
     color: white;
-    overflow: hidden;
-    padding: 150px 100px;
+    padding: 100px 80px;
     align-items: flex-start; 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
 .pg-log-bloco-conteudo {
@@ -36,13 +36,10 @@
     z-index: 2;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-width: 490px;
-    height: 100%;
-    min-height: 400px;
+    max-width: 450px;
 }
 
-/* Formário e Inputs */
+/* Formulário e Inputs */
 .pg-log-formulario-entrada {
     display: flex;
     flex-direction: column;
@@ -53,77 +50,99 @@
     display: block;
     font-size: 16px;
     font-weight: 700;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
 }
 
 .pg-log-campo-texto {
     width: 100%;
-    height: 55px;
+    height: 48px;
     background: transparent;
-    border: 2px solid white;
-    border-radius: 15px;
+    border: 1px solid white;
+    border-radius: 10px;
     color: white;
     padding: 0 15px;
     font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
 }
 
-/* Botão LOGIN */
+/* Botão LOGIN (Ajustado para padrão do cadastro) */
 .pg-log-botao-acessar {
-    width: 107%;
-    height: 60px;
+    width: 100%;
+    height: 52px;
     background-color: #ffffff; 
-    color: #05649E;
+    color: #033b5a;
     border: none;
-    border-radius: 20px;
-    font-weight: 900;
-    font-size: 22px;
-    margin-top: 40px;
-    margin-bottom: 30px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 18px;
+    margin-top: 30px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s, background-color 0.2s;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .pg-log-botao-acessar:hover {
-    transform: scale(1.05);
-    background-color: #BFE385;
+    transform: scale(1.03);
+    background-color: #f8f8f8;
 }
 
-/* Divisor Social */
+/* Divisor Social (Estilo linha com texto) */
 .pg-log-divisor-social {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-    width: 107%;
+    text-align: center;
+    margin: 30px 0 20px 0;
+    width: 100%;
 }
 
 .pg-log-divisor-social::before, 
 .pg-log-divisor-social::after {
     content: "";
-    flex: 2;
-    height: 2px;
-    background: rgb(255, 255, 255);
+    flex: 1;
+    border-bottom: 2px solid white;
 }
 
+.pg-log-divisor-social span {
+    padding: 0 15px;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Botões Sociais Brancos */
 .pg-log-grade-social {
     display: flex;
-    gap: 107px;
-    margin-top: 15px;
-    width: 107%;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
 }
 
-.pg-log-caixa-social {
-    background: rgb(255, 255, 255);
-    width: 105px;
-    height: 75px;
-    border-radius: 10px;
+.pg-log-btn-social {
+    flex: 1;
+    height: 65px;
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    font-size: 30px; 
+    color: #033b5a;
+}
+
+.pg-log-btn-social:hover {
+    transform: translateY(-5px);
+    background-color: #f0f0f0;
 }
 
 /* Imagem Lateral */
 .pg-log-imagem-destaque {
     position: absolute;
-    right: -2%; 
-    bottom: -70px;
+    right: 0px; 
+    bottom: -50px;
     display: flex;
     align-items: flex-end;
     width: 600px; 
@@ -138,19 +157,16 @@
 
 /* Links e Textos */
 .pg-log-texto-cadastro {
-    margin-top: 45px; 
-    margin-bottom: -120px;
-    margin-left: 160px;
+    margin-top: 40px; 
     font-size: 15px;
     font-weight: 500;
-    text-align: left;
-    padding-left: 10px;
+    text-align: center;
 }
 
 .pg-log-texto-cadastro a {
-    color: #BFE385; 
-    text-decoration: none;
-    font-weight: 1000;
+    color: white; 
+    text-decoration: underline;
+    font-weight: 700;
 }
 
 /* Esqueci minha senha */
@@ -158,7 +174,7 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    margin-top: -13px;
+    margin-top: 5px;
 }
 
 .pg-log-link-esqueci {
@@ -166,23 +182,14 @@
     font-size: 13px;
     text-decoration: none;
     font-weight: 500;
-    opacity: 1;
-    transition: opacity 0.2s;
 }
 
-.pg-log-link-esqueci:hover {
-    opacity: 0.8;
-    text-decoration: underline;
-    color: #BFE385;
-}
-
-/* Ajuste para telas menores */
+/* Responsividade */
 @media (max-width: 900px) {
     .pg-log-cartao-central {
         flex-direction: column;
         border-radius: 40px;
-        padding: 30px;
-        overflow: visible; 
+        padding: 50px 30px;
     }
     .pg-log-bloco-conteudo {
         max-width: 100%;
@@ -190,11 +197,7 @@
     }
     .pg-log-imagem-destaque {
         position: static;
-        margin-top: 20px;
-        justify-content: center;
+        margin-top: 30px;
         width: 100%; 
-    }
-    .pg-log-imagem-destaque img {
-        max-width: 350px; 
     }
 }

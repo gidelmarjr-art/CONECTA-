@@ -1,0 +1,209 @@
+.sn-main-wrapper {
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Hero Section - Banner Principal */
+.sn-hero-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.sn-hero-container {
+    background-color: #05649E;
+    width: 850px;
+    border-radius: 60px;
+    padding: 40px 60px 0 60px; 
+    color: white;
+    text-align: center;
+}
+
+.sn-hero-title {
+    font-size: 70px;
+    font-weight: 900;
+    margin: 0;
+}
+
+.sn-hero-description {
+    font-size: 18px;
+    margin: 20px 0;
+    line-height: 1.4;
+}
+
+.sn-img7 {
+    width: 450px;
+    height: auto;
+    display: block;
+    margin: -100px  auto -118px auto; 
+}
+
+/* Títulos das Seções */
+.sn-blue-title {
+    color: #05649E;
+    font-size: 28px;
+    font-weight: 800;
+    text-align: center;
+    margin: 40px 0 20px 0;
+    text-transform: uppercase;
+}
+
+/* Cards Arredondados */
+.sn-blue-card {
+    background-color: #05649E;
+    width: 850px;
+    border-radius: 50px;
+    padding: 40px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Layout da Equipe */
+.sn-team-header {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.sn-photo-container {
+    flex: 1.5;
+}
+
+.sn-equipe-img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.sn-team-intro {
+    flex: 1.5;
+    font-size: 19px;
+}
+
+.sn-integrantes-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: -40px;
+}
+
+.sn-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 5px;
+}
+
+.sn-list li {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.sn-img8 {
+    width: 200px;
+    margin: 30px  -30px -30px -25px; 
+}
+
+/* Formulário de Contato */
+.sn-input-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.sn-field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.sn-field label {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.sn-field input, .sn-field textarea {
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+}
+
+.sn-button-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.sn-send-btn {
+    background-color: white;
+    color: #05649E;
+    border: none;
+    padding: 10px 60px;
+    border-radius: 15px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.sn-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sn-input-row {
+    display: flex;
+    gap: 20px;
+}
+
+.sn-field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.sn-field label {
+    font-size: 13px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.sn-field input, .sn-field textarea {
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 12px;
+    color: white;
+    outline: none;
+}
+
+.sn-field input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.sn-button-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.sn-send-btn {
+    background-color: white;
+    color: #05649E;
+    border: none;
+    padding: 12px 100px;
+    border-radius: 15px;
+    font-weight: 800;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.sn-send-btn:hover {
+    transform: scale(1.05);
+}

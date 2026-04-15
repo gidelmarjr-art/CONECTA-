@@ -13,7 +13,7 @@ const RedefinirSenha = () => {
 
             <form className="alt-s-formulario">
               <div className="alt-s-grupo-entrada">
-                <label>✱ Usuário/E-mail:</label>
+                <label>✱ CPF/E-mail:</label>
                 <input type="text" className="alt-s-campo-texto" />
               </div>
 

@@ -1,4 +1,4 @@
-/* --- CONFIGURAÇÕES GERAIS --- */
+/* CONTAINER PRINCIPAL  */
 .pg-cad-container-geral {
   display: flex;
   justify-content: center;
@@ -72,7 +72,7 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* --- SOCIAL LOGIN STYLES --- */
+/* SOCIAL LOGIN STYLES  */
 .pg-cad-social-container {
   width: 100%;
   margin-bottom: 30px;
@@ -108,7 +108,7 @@
 }
 
 .pg-cad-btn-social {
-  width: 100px; /* Ajuste para o tamanho da imagem */
+  width: 100px; 
   height: 65px;
   background-color: white;
   border: none;
@@ -118,7 +118,7 @@
   align-items: center;
   cursor: pointer;
   transition: transform 0.2s, background-color 0.2s;
-  font-size: 30px; /* Tamanho dos ícones */
+  font-size: 30px; 
   color: #033b5a;
 }
 
@@ -127,7 +127,7 @@
   background-color: #f0f0f0;
 }
 
-/* --- FORMULÁRIO E CAMPOS --- */
+/* FORMULÁRIO E CAMPOS  */
 .pg-cad-formulario {
   display: flex;
   flex-direction: column;
@@ -169,7 +169,7 @@
   box-sizing: border-box;
 }
 
-/* --- SENHA --- */
+/* SENHA */
 .pg-cad-caixa-senha {
   position: relative;
   display: flex;
@@ -190,7 +190,7 @@
   z-index: 2;
 }
 
-/* --- BOTÃO ENVIAR --- */
+/* BOTÃO ENVIAR  */
 .pg-cad-btn-enviar {
   width: 280px;
   height: 52px;
@@ -208,7 +208,7 @@
 
 .pg-cad-btn-enviar:hover { transform: scale(1.03); }
 
-/* --- ANIMAÇÕES --- */
+/* ANIMAÇÕES */
 .pg-cad-bloco-animado {
   width: 100%;
   animation: surgimento 0.6s ease-out forwards;
@@ -229,7 +229,7 @@
   75% { transform: translateX(6px); }
 }
 
-/* --- RESPONSIVIDADE --- */
+/* RESPONSIVIDADE */
 @media (max-width: 768px) {
   .pg-cad-moldura-azul { padding: 40px 25px; }
   .pg-cad-linha-campos { flex-direction: column; gap: 15px; }
