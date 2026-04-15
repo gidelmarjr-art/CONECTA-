@@ -1,14 +1,10 @@
-/* =========================================
-   KEYFRAMES (ANIMAÇÕES)
-========================================= */
+/* ANIMAÇÕES */
 @keyframes pong-doac-fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* =========================================
-   CONTAINER PRINCIPAL
-========================================= */
+/* CONTAINER PRINCIPAL */
 .pong-doac-container {
   display: flex;
   flex-direction: column;
@@ -23,9 +19,7 @@
   animation: pong-doac-fadeUp 0.5s ease forwards;
 }
 
-/* =========================================
-   CABEÇALHO
-========================================= */
+/* CABEÇALHO */
 .pong-doac-header {
   display: flex;
   justify-content: space-between;
@@ -55,9 +49,7 @@
   color: #fff;
 }
 
-/* =========================================
-   KPIs (MÉTRICAS FINANCEIRAS)
-========================================= */
+/* KPIs (MÉTRICAS FINANCEIRAS) */
 .pong-doac-kpis {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -93,9 +85,7 @@
 .kpi-info span { font-size: 13px; color: #7f8c8d; font-weight: 600; text-transform: uppercase; margin-bottom: 4px; }
 .kpi-info strong { font-size: 26px; color: #2c3e50; line-height: 1; }
 
-/* =========================================
-   SEÇÕES GERAIS E CONTROLES
-========================================= */
+/* SEÇÕES GERAIS E CONTROLES */
 .pong-doac-secao {
   display: flex;
   flex-direction: column;
@@ -135,9 +125,7 @@
   background-color: #fff; border: 1px solid #ecf0f1; padding: 8px 12px; border-radius: 10px; cursor: pointer; color: #7f8c8d;
 }
 
-/* =========================================
-   CAMPANHAS (CARDS COM PROGRESSO)
-========================================= */
+/* CAMPANHAS (CARDS COM PROGRESSO) */
 .pong-doac-campanhas-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -171,9 +159,7 @@
 .porcentagem { color: #2c3e50; }
 .doadores { display: flex; align-items: center; gap: 5px; color: #5c6a79; }
 
-/* =========================================
-   TABELA DE TRANSAÇÕES
-========================================= */
+/* TABELA DE TRANSAÇÕES */
 .pong-doac-tabela-container {
   background-color: #fff;
   border-radius: 16px;
@@ -200,9 +186,7 @@
 .texto-verde { color: #27ae60; }
 .texto-vermelho { color: #e74c3c; }
 
-/* =========================================
-   RESPONSIVIDADE
-========================================= */
+/*  RESPONSIVIDADE */
 @media (max-width: 768px) {
   .pong-doac-container { padding: 20px; }
   .pong-doac-header { flex-direction: column; align-items: flex-start; gap: 15px; }
@@ -212,6 +196,7 @@
   .pong-doac-busca { flex: 1; }
   .pong-doac-busca input { width: 100%; }
 }
+
 /* Botões do Header */
 .pong-doac-header-acoes {
     display: flex;
@@ -238,9 +223,7 @@
     transform: translateY(-2px);
 }
 
-/* =========================================
-   MODAL STYLES
-========================================= */
+/* MODAL STYLES */
 .pong-doac-modal-overlay {
     position: fixed;
     top: 0;
