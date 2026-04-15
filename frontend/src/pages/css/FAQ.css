@@ -1,4 +1,4 @@
-/* --- RESET BÁSICO E WRAPPER --- */
+/*  RESET BÁSICO E WRAPPER */
 .faq-page-wrapper {
   width: 100%;
   background-color: #ffffff;
@@ -8,7 +8,7 @@
   min-height: 100vh;
 }
 
-/* --- CABEÇALHO (HEADER) --- */
+/* CABEÇALHO (HEADER) */
 .faq-header {
   background-color: #ffffff;
   padding: 15px 40px;
@@ -40,19 +40,19 @@
 
 .faq-nav-links a {
   text-decoration: none;
-  color: #05649E; /* Azul do tema */
+  color: #05649E; 
   font-size: 12px;
   font-weight: 700;
 }
 
 .faq-nav-links a:nth-child(2) {
-  color: #1D9C49; /* Verde do tema */
+  color: #1D9C49; 
 }
 
 .faq-header-search {
   display: flex;
   align-items: center;
-  border: 1px solid #D62828; /* Borda vermelha da imagem */
+  border: 1px solid #D62828; 
   border-radius: 20px;
   padding: 5px 15px;
   width: 250px;
@@ -88,7 +88,7 @@
 .faq-btn-cadastro { background-color: #05649E; }
 .faq-btn-login { background-color: #1D9C49; }
 
-/* --- BANNER DE PESQUISA (AZUL) --- */
+/* BANNER DE PESQUISA */
 .faq-search-banner {
   background-color: #05649E;
   padding: 15px 0;
@@ -118,7 +118,7 @@
   color: #333;
 }
 
-/* --- CONTEÚDO PRINCIPAL --- */
+/* CONTEÚDO PRINCIPAL  */
 .faq-main-content {
   flex: 1;
   padding-bottom: 60px;
@@ -281,7 +281,7 @@
   transform: translateY(-2px);
 }
 
-/* --- RODAPÉ (FOOTER) --- */
+/*  RODAPÉ (FOOTER)  */
 .faq-footer {
   background-color: #05649E;
   color: #ffffff;
