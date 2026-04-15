@@ -1,16 +1,19 @@
 import React from 'react';
+
 import { 
   Users, Briefcase, HeartHandshake, Hourglass, 
   School, HeartPulse, TreePine, UserPlus, CircleDollarSign 
 } from 'lucide-react';
-// NOVOS IMPORTS DO RECHARTS AQUI:
+
+//biblioteca para os gráficos
 import { 
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer 
 } from 'recharts';
+
 import '../css/DashboardONG.css';
 
 const DashboardONG = () => {
-  // DADOS PARA O GRÁFICO )
+  // INICIO DOS DADOS ESTATICOS PARA O GRÁFICO 
   const dadosGrafico = [
     { nome: 'Mar', doacoes: 150 },
     { nome: 'Abr', doacoes: 300 },
@@ -20,12 +23,12 @@ const DashboardONG = () => {
     { nome: 'Ago', doacoes: 550 },
     { nome: 'Set', doacoes: 450 },
   ];
+   // FIM DOS DADOS ESTATICOS PARA O GRÁFICO 
 
   return (
     <div className="painel-ong-container">
       <main className="painel-ong-conteudo">
-        
-        {/* BANNER PRINCIPAL DE ESTATÍSTICAS */}
+    
         <section className="painel-ong-secao-destaque">
           <div className="painel-ong-cabecalho-destaque">
             <div>
@@ -80,14 +83,11 @@ const DashboardONG = () => {
             </div>
           </div>
         </section>
-
-        {/* ÁREA DE CONTEÚDO EM GRID */}
+        
         <section className="painel-ong-grade-principal">
-          
-          {/* COLUNA ESQUERDA */}
+      
           <div className="painel-ong-coluna-esquerda">
         
-            {/* Gráfico de Doações (Limpo e Interativo com Recharts) */}
             <div className="painel-ong-cartao-widget">
               <h3 className="painel-ong-titulo-widget">Histórico de doações</h3>
               
@@ -118,7 +118,7 @@ const DashboardONG = () => {
             </div>
 
 
-            {/* Principais Causas Apoiadas */}
+             {/*DADOS ESTATICOS*/}
             <div className="painel-ong-cartao-widget">
               <h3 className="painel-ong-titulo-widget">Principais Causas Apoiadas</h3>
               <div className="painel-ong-lista-causas">
@@ -145,10 +145,10 @@ const DashboardONG = () => {
 
           </div>
 
-          {/* COLUNA DIREITA */}
+          
           <div className="painel-ong-coluna-direita">
             
-            {/* Vagas Abertas */}
+             {/*DADOS ESTATICOS*/}
             <div className="painel-ong-cartao-widget">
               <h3 className="painel-ong-titulo-widget">Vagas Abertas</h3>
               <div className="painel-ong-lista-itens">
@@ -174,8 +174,9 @@ const DashboardONG = () => {
                 </div>
               </div>
             </div>
+             {/*DADOS ESTATICOS*/}
 
-            {/* Atividade Recente */}
+           {/*DADOS ESTATICOS*/}
             <div className="painel-ong-cartao-widget">
               <h3 className="painel-ong-titulo-widget">Atividade recente</h3>
               <div className="painel-ong-lista-itens">
@@ -201,6 +202,7 @@ const DashboardONG = () => {
                 </div>
               </div>
             </div>
+             {/*DADOS ESTATICOS*/}
 
           </div>
         </section>
