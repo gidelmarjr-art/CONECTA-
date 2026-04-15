@@ -1,0 +1,181 @@
+.sidebar-container {
+  height: 100vh;
+  background-color: #ffffff;
+  box-shadow: 2px 0 15px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  position: sticky;
+  top: 0;
+  border-radius: 0 20px 20px 0; /* Arredonda os cantos direitos igual na imagem */
+  margin-right: 20px;
+  z-index: 10;
+}
+
+.sidebar-container.expandida {
+  width: 250px;
+}
+
+.sidebar-container.recolhida {
+  width: 80px;
+}
+
+/* Cabeçalho */
+.sidebar-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  position: relative;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #1b365d;
+}
+
+.btn-toggle {
+  position: absolute;
+  right: -12px;
+  top: 25px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  color: #555;
+}
+
+/* Menus */
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0 15px;
+  margin-top: 10px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 15px;
+  border-radius: 12px;
+  color: #5b6b82;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.menu-item:hover {
+  background-color: #f5f7fa;
+}
+
+.menu-item.ativo {
+  background-color: #dcf2ff; /* Azul clarinho de fundo */
+  color: #007bff; /* Azul forte no texto/ícone */
+}
+
+.sidebar-container.recolhida .menu-item {
+  justify-content: center;
+  padding: 12px 0;
+}
+
+/* Divisor */
+.sidebar-divisor {
+  border: none;
+  border-top: 1px solid #f0f0f0;
+  margin: 15px 20px;
+}
+
+/* Rodapé (Perfil) */
+.sidebar-rodape {
+  margin-top: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.sidebar-ilustracao {
+  text-align: center;
+  font-size: 40px;
+  padding: 20px 0;
+}
+
+.sidebar-perfil {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.sidebar-container.recolhida .sidebar-perfil {
+  justify-content: center;
+  border: none;
+  padding: 0;
+}
+
+.perfil-avatar {
+  background-color: #ffc107;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.perfil-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-saudacao {
+  font-size: 10px;
+  color: #888;
+}
+
+.perfil-nome {
+  font-size: 13px;
+  font-weight: bold;
+  color: #333;
+}
+
+.perfil-seta {
+  margin-left: auto;
+  color: #888;
+}
+
+/* Configuração para a Logo em Imagem */
+.logo-icone-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+/* Configuração para a Imagem de Ilustração */
+.img-ilustracao {
+  width: 100%;
+  max-width: 160px; /* Evita que fique gigante na sidebar */
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}

@@ -1,0 +1,295 @@
+/* =========================================
+   KEYFRAMES (ANIMAÇÕES ÚNICAS)
+========================================= */
+@keyframes pv-fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pv-preencherBarra {
+  from { max-width: 0%; }
+  to { max-width: var(--progresso, 100%); }
+}
+
+@keyframes pv-pulsarIcone {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* =========================================
+   CONTAINER
+========================================= */
+.pv-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fc;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  width: 100%;
+  padding: 20px 40px;
+  box-sizing: border-box;
+}
+
+/* =========================================
+   BANNER DE DESTAQUE (HERO)
+========================================= */
+.pv-hero {
+  background-color: #004b9e;
+  border-radius: 20px;
+  padding: 30px;
+  color: #fff;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(0, 86, 179, 0.2);
+  opacity: 0;
+  animation: pv-fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.pv-hero-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.pv-hero-cabecalho h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.pv-hero-cabecalho p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: #d1e3f8;
+}
+
+/* Barra de Progresso */
+.pv-progresso-container {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pv-progresso-textos {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.pv-progresso-trilha {
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.pv-progresso-preenchido {
+  height: 100%;
+  background-color: #2ecc71; 
+  border-radius: 4px;
+  max-width: 0; 
+  width: 100%;
+  animation: pv-preencherBarra 1.5s cubic-bezier(0.1, 0.7, 0.1, 1) 0.3s forwards;
+}
+
+.pv-progresso-legendas {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: bold;
+  color: #d1e3f8;
+}
+
+/* =========================================
+   CARTÕES DE ESTATÍSTICA (MINI CARDS)
+========================================= */
+.pv-hero-estatisticas {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.pv-card-estatistica {
+  flex: 1;
+  min-width: 180px;
+  background-color: #1a62ab;
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  animation: pv-fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.pv-card-estatistica:nth-child(1) { animation-delay: 0.2s; }
+.pv-card-estatistica:nth-child(2) { animation-delay: 0.3s; }
+.pv-card-estatistica:nth-child(3) { animation-delay: 0.4s; }
+.pv-card-estatistica:nth-child(4) { animation-delay: 0.5s; }
+
+.pv-card-estatistica:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.pv-estatistica-icone {
+  font-size: 32px;
+  color: #fff !important;
+  transition: transform 0.3s ease;
+}
+
+.pv-card-estatistica:hover .pv-estatistica-icone {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.pv-estatistica-textos { display: flex; flex-direction: column; }
+.pv-estatistica-textos span { font-size: 11px; font-weight: bold; text-transform: uppercase; color: #d1e3f8; margin-bottom: 5px; }
+.pv-estatistica-textos strong { margin: 0; font-size: 26px; color: #fff; }
+.pv-estatistica-textos p { margin: 0; font-size: 10px; font-weight: bold; color: #d1e3f8; }
+
+/* =========================================
+   GRID INFERIOR E SEÇÕES
+========================================= */
+.pv-listas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
+}
+
+.pv-card-secao {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  animation: pv-fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.6s;
+}
+
+.pv-card-secao:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+.pv-secao-titulo {
+  color: #1b365d;
+  margin: 0 0 20px 0;
+  font-size: 18px;
+}
+
+.pv-lista-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.pv-lista-scroll::-webkit-scrollbar { width: 6px; }
+.pv-lista-scroll::-webkit-scrollbar-track { background: transparent; }
+.pv-lista-scroll::-webkit-scrollbar-thumb { background-color: #e2e8f0; border-radius: 10px; }
+
+/* =========================================
+   ITENS DAS LISTAS
+========================================= */
+.pv-conquista-item,
+.pv-certificado-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: #fbfbfb;
+  border-radius: 12px;
+  border: 1px solid #f1f1f1;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.pv-conquista-item:hover,
+.pv-certificado-item:hover {
+  background-color: #ffffff;
+  border-color: #e2e8f0;
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.pv-conquista-item.pv-inativo {
+  opacity: 0.6;
+  background-color: #f0f3f5;
+}
+
+.pv-conquista-icone,
+.pv-certificado-icone {
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  background-color: #fef0d8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  transition: transform 0.3s ease;
+}
+
+.pv-conquista-item:hover .pv-conquista-icone,
+.pv-certificado-item:hover .pv-certificado-icone {
+  animation: pv-pulsarIcone 0.5s ease;
+}
+
+.pv-conquista-info, 
+.pv-certificado-info { flex: 1; }
+.pv-conquista-info h3, .pv-certificado-info h3 { margin: 0 0 5px 0; font-size: 14px; color: #333; }
+.pv-conquista-info p, .pv-certificado-info p { margin: 0; font-size: 12px; color: #888; }
+
+.pv-conquista-xp,
+.pv-certificado-horas {
+  font-size: 13px;
+  font-weight: bold;
+  color: #aaa;
+  margin-left: 10px;
+}
+
+.pv-conquista-item:not(.pv-inativo) .pv-conquista-xp {
+  color: #1a62ab;
+}
+
+.pv-certificado-conteudo-esq {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.pv-certificado-acoes { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+
+.pv-btn-download {
+  padding: 6px 16px;
+  background-color: transparent;
+  color: #004b9e;
+  border: 1px solid #004b9e;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pv-btn-download:hover {
+  background-color: #004b9e;
+  color: #fff;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+@media (max-width: 768px) {
+  .pv-container { padding: 20px; }
+  .pv-hero-cabecalho { flex-direction: column; gap: 20px; }
+  .pv-progresso-container { width: 100%; }
+  .pv-listas-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,352 @@
+/* =========================================
+   KEYFRAMES (ANIMAÇÕES)
+========================================= */
+@keyframes pong-vagas-fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   CONTAINER PRINCIPAL
+========================================= */
+.pong-vagas-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px 40px;
+  box-sizing: border-box;
+  gap: 30px;
+  animation: pong-vagas-fadeUp 0.5s ease forwards;
+}
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+.pong-vagas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.pong-vagas-titulos h1 {
+  margin: 0 0 5px 0;
+  font-size: 28px;
+  color: #1a252f;
+}
+
+.pong-vagas-titulos p {
+  margin: 0;
+  color: #7f8c8d;
+  font-size: 15px;
+}
+
+.pong-vagas-btn-primario {
+  background-color: #0056d2;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 86, 210, 0.2);
+}
+
+.pong-vagas-btn-primario:hover {
+  background-color: #0046ab;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 86, 210, 0.3);
+}
+
+/* =========================================
+   KPIs (MÉTRICAS)
+========================================= */
+.pong-vagas-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.pong-vagas-kpi-card {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  border-left: 5px solid #bdc3c7;
+}
+
+.pong-vagas-kpi-card.destaque-verde { border-left-color: #27ae60; }
+.pong-vagas-kpi-card.destaque-azul { border-left-color: #0056d2; }
+
+.pong-vagas-kpi-card span {
+  font-size: 13px;
+  color: #7f8c8d;
+  font-weight: 600;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pong-vagas-kpi-card strong {
+  font-size: 32px;
+  color: #2c3e50;
+  line-height: 1;
+}
+
+/* =========================================
+   CONTROLES (BUSCA E FILTRO)
+========================================= */
+.pong-vagas-controles {
+  display: flex;
+  gap: 15px;
+}
+
+.pong-vagas-busca {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 12px 20px;
+  border-radius: 12px;
+  gap: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.pong-vagas-busca:focus-within {
+  border-color: #0056d2;
+  box-shadow: 0 0 0 3px rgba(0, 86, 210, 0.1);
+}
+
+.pong-vagas-busca input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 15px;
+  color: #333;
+}
+
+.pong-vagas-btn-filtro {
+  background-color: #fff;
+  border: 1px solid #ecf0f1;
+  padding: 0 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  color: #2c3e50;
+  font-weight: 500;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  transition: all 0.2s ease;
+}
+
+.pong-vagas-btn-filtro:hover {
+  background-color: #f8fbff;
+  border-color: #0056d2;
+  color: #0056d2;
+}
+
+/* =========================================
+   GRID DE CARDS DE VAGAS
+========================================= */
+.pong-vagas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+.pong-vagas-card {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pong-vagas-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.pong-vagas-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* Badges */
+.pong-vagas-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.pong-vagas-badge-ativa { background-color: #dff5de; color: #27ae60; }
+.pong-vagas-badge-pausada { background-color: #ffecd6; color: #e67e22; }
+.pong-vagas-badge-encerrada { background-color: #ecf0f1; color: #7f8c8d; }
+
+.pong-vagas-btn-opcoes {
+  background: transparent;
+  border: none;
+  color: #bdc3c7;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.pong-vagas-btn-opcoes:hover { color: #2c3e50; }
+
+/* Corpo do Card */
+.pong-vagas-card-body h3 {
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  color: #2c3e50;
+  line-height: 1.3;
+}
+
+.pong-vagas-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.pong-vagas-infos span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #7f8c8d;
+}
+
+.pong-vagas-descricao {
+  font-size: 14px;
+  color: #5c6a79;
+  line-height: 1.5;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Trunca o texto em 2 linhas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Rodapé do Card */
+.pong-vagas-card-footer {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #ecf0f1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto; /* Empurra pro final caso a altura varie */
+}
+
+.pong-vagas-candidatos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.pong-vagas-candidatos strong {
+  background-color: #e8f0fe;
+  color: #0056d2;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.pong-vagas-btn-secundario {
+  background: transparent;
+  border: 1px solid #0056d2;
+  color: #0056d2;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pong-vagas-btn-secundario:hover {
+  background-color: #0056d2;
+  color: #fff;
+}
+
+/* Ações Rápidas Ocultas (Hover) */
+.pong-vagas-acoes-hover {
+  position: absolute;
+  top: 15px;
+  right: -50px; /* Escondido pra fora */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.pong-vagas-card:hover .pong-vagas-acoes-hover {
+  right: 15px; /* Desliza pra dentro */
+}
+
+.pong-vagas-card:hover .pong-vagas-btn-opcoes {
+  opacity: 0; /* Esconde o ícone de três pontinhos */
+}
+
+.pong-vagas-acoes-hover button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background-color: #f0f3f5;
+  color: #2c3e50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.pong-vagas-acoes-hover button:hover {
+  background-color: #0056d2;
+  color: #fff;
+}
+
+.pong-vagas-acoes-hover button.btn-deletar:hover {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+@media (max-width: 768px) {
+  .pong-vagas-container { padding: 20px; }
+  .pong-vagas-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+  .pong-vagas-btn-primario { width: 100%; justify-content: center; }
+  .pong-vagas-controles { flex-direction: column; }
+  .pong-vagas-grid { grid-template-columns: 1fr; }
+}
