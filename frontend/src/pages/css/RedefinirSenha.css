@@ -39,7 +39,7 @@
     max-width: 480px;
 }
 
-/* Formulário e Inputs */
+/* Formulário e campos */
 .alt-s-formulario {
     display: flex;
     flex-direction: column;
@@ -69,7 +69,7 @@
 .alt-s-botao-confirmar {
     width: 107%;
     height: 55px;
-    background-color: #ffffff; /* Cor azul claro conforme a imagem */
+    background-color: #ffffff; 
     color: #05649E;
     border: none;
     border-radius: 15px;
@@ -81,7 +81,7 @@
 }
 
 .alt-s-botao-confirmar:hover {
-    background-color: #BFE385; /* Mantendo o hover verde do seu projeto */
+    background-color: #BFE385; 
     transform: scale(1.02);
 }
 
