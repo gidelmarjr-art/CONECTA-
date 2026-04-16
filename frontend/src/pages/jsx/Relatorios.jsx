@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
 import { 
-  BarChart2, Download, Calendar, Users, 
+  Download, Calendar, Users, 
   Clock, FileText, Filter, Heart, ArrowUp
 } from 'lucide-react';
 import '../css/Relatorios.css';

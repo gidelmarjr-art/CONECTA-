@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   Briefcase, Clock, FileCheck, Award, 
-  Download, Star, Zap, Target, Sparkles, 
+  Download, Star, Target, Sparkles, 
   HeartHandshake, Flag
 } from 'lucide-react';
 import '../css/PainelVoluntario.css';

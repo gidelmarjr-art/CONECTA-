@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { 
   Pencil, Building, Mail, Phone, MapPin, Globe, 
   FileText, Heart, ShieldCheck, Check, X, Image as ImageIcon, 
-  MessageSquare, ThumbsUp, Calendar, Camera, User, Award, Clock, Star, Activity
+  MessageSquare, ThumbsUp, Camera, User, Award, Clock, Star, Activity
 } from 'lucide-react';
 import '../css/Perfil.css'; 
 
