@@ -33,10 +33,8 @@ const Faq = () => {
         </div>
       </div>
 
-      {/* --- CONTEÚDO PRINCIPAL --- */}
       <main className="faq-main-content">
-        
-        {/* Seção de Perguntas */}
+      
         <section className="faq-section">
           <h2 className="faq-section-title">PERGUNTAS FREQUENTES</h2>
           
@@ -97,37 +95,6 @@ const Faq = () => {
           </div>
         </section>
       </main>
-
-      {/* --- RODAPÉ (FOOTER) --- */}
-      <footer className="faq-footer">
-        <div className="faq-footer-top">
-          <div className="faq-footer-brand">
-            <h2>CONECTA+</h2>
-            <a href="#sobre">Sobre Nós</a>
-          </div>
-          
-          <div className="faq-footer-contact">
-            <h2>CONTATO E SUPORTE</h2>
-            <div className="faq-contact-links">
-              <span>email@gmail.com</span>
-              <a href="#faq">FAQ</a>
-              {/* Ícone do Instagram (placeholder) */}
-              <span className="faq-insta-icon">📷</span>
-            </div>
-          </div>
-        </div>
-        
-        <div className="faq-footer-divider"></div>
-        
-        <div className="faq-footer-bottom">
-          <p>© 2026 Conecta+. Todos os direitos reservados.</p>
-          <div className="faq-footer-legal">
-            <a href="#privacidade">Políticas de Privacidade</a>
-            <a href="#termos">Termos de Uso</a>
-            <a href="#cookies">Política de cookies</a>
-          </div>
-        </div>
-      </footer>
 
     </div>
   );

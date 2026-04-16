@@ -13,7 +13,7 @@ import {
 import '../../css/ONG/PainelONG.css';
 
 const PainelONG = () => {
-  // INICIO DOS DADOS ESTATICOS PARA O GRÁFICO 
+  //DADOS ESTATICOS PARA O GRÁFICO 
   const dadosGrafico = [
     { nome: 'Mar', doacoes: 150 },
     { nome: 'Abr', doacoes: 300 },
@@ -23,7 +23,7 @@ const PainelONG = () => {
     { nome: 'Ago', doacoes: 550 },
     { nome: 'Set', doacoes: 450 },
   ];
-   // FIM DOS DADOS ESTATICOS PARA O GRÁFICO 
+
 
   return (
     <div className="painel-ong-container">

@@ -1,6 +1,5 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Link } from 'react-router-dom'; // Importado para navegação interna
+import { Link } from 'react-router-dom'; 
 import { Camera } from 'lucide-react'; 
 
 import '../css/Footer.css';
@@ -13,7 +12,6 @@ const Footer = () => {
         <div className="footer-top">
           <div className="footer-left">
             <h2 className="footer-title">CONECTA+</h2>
-            {/* Use Link em vez de 'a href' para rotas internas do React */}
             <Link to="/SobreNos" className="footer-link">Sobre Nós</Link>
           </div>
 

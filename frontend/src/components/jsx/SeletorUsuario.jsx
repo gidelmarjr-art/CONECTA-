@@ -9,19 +9,17 @@ const SeletorUsuario = ({ usuarioAtual, setUsuarioAtual }) => {
   
   const nodeRef = useRef(null);
 
-  // Função inteligente que calcula onde o botão está antes de abrir o menu
+
   const toggleMenu = () => {
     if (!aberto && nodeRef.current) {
       const rect = nodeRef.current.getBoundingClientRect();
       const telaLargura = window.innerWidth;
       const telaAltura = window.innerHeight;
 
-      // Descobre se está mais pro topo ou mais pro fundo
       const isTop = rect.top < telaAltura / 2;
-      // Descobre se está mais pra direita ou mais pra esquerda
       const isRight = rect.left > telaLargura / 2;
 
-      // Define a classe CSS correspondente
+
       setClassePosicao(`menu-${isTop ? 'top' : 'bottom'}-${isRight ? 'right' : 'left'}`);
     }
     setAberto(!aberto);
@@ -38,7 +36,6 @@ const SeletorUsuario = ({ usuarioAtual, setUsuarioAtual }) => {
     <Draggable nodeRef={nodeRef} bounds="body" cancel=".area-menu">
       <div ref={nodeRef} className="debug-seletor-container">
         
-        {/* Botão Flutuante (FAB) */}
         <button 
           className={`debug-seletor-fab ${aberto ? 'aberto' : ''}`}
           onClick={toggleMenu}
@@ -48,7 +45,6 @@ const SeletorUsuario = ({ usuarioAtual, setUsuarioAtual }) => {
           {aberto ? <X size={24} /> : <Settings size={24} />}
         </button>
 
-        {/* Card do Menu dinâmico */}
         <div className={`debug-seletor-painel area-menu ${classePosicao} ${aberto ? 'painel-visivel' : ''}`}>
           <div className="debug-seletor-header">
             <div>

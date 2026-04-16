@@ -41,11 +41,10 @@ const Mascote = () => {
         setMensagemAtual(msgAleatoria);
         setTimeout(() => { setMensagemAtual(null); }, 5000);
       }
-    }, 20000); // Aumentei um pouco o tempo entre falas
+    }, 20000); 
     return () => clearInterval(intervaloFala);
   }, [isDragging]);
 
-  // Lógica para piscar os olhos aleatoriamente
   useEffect(() => {
     const blinkBody = document.querySelectorAll('.mascote-olho');
     const randomizeBlink = () => {
@@ -55,7 +54,7 @@ const Mascote = () => {
         setTimeout(() => {
           blinkBody.forEach(olho => olho.classList.remove('piscar'));
           randomizeBlink();
-        }, 200); // Tempo da piscada
+        }, 200);
       }, timeout);
     };
     randomizeBlink();
@@ -64,15 +63,13 @@ const Mascote = () => {
   const eyeMoveX = (mousePos.x / windowSize.width) * 12 - 6;
   const eyeMoveY = (mousePos.y / windowSize.height) * 12 - 6;
 
-  // Funções para controlar o clique e arrasto
   const handleStart = () => {
     setIsDragging(true);
-    setIsClicked(false); // Remove efeito gelatina se virar arrasto
+    setIsClicked(false); 
   };
 
   const handleStop = () => {
     setIsDragging(false);
-    // Adiciona uma classe temporária para o balanço final no CSS
     nodeRef.current.classList.add('soltou');
     setTimeout(() => {
       nodeRef.current.classList.remove('soltou');
@@ -91,7 +88,7 @@ const Mascote = () => {
         className={`mascote-wrapper-global ${isDragging ? 'arrastando' : ''} ${isClicked ? 'clicado' : ''}`}
         onMouseDown={() => !isDragging && setIsClicked(true)}
         onMouseUp={() => setIsClicked(false)}
-        onMouseLeave={() => setIsClicked(false)} // Garante que saia o efeito se soltar fora
+        onMouseLeave={() => setIsClicked(false)} 
       >
         
         {mensagemAtual && (
@@ -101,7 +98,6 @@ const Mascote = () => {
         )}
 
         <div className="mascote-conecta">
-          {/* Gotinha de suor engraçada (só aparece no CSS quando arrasta) */}
           <div className="suor-engracado">💧</div>
 
           <div className="mascote-corpo">

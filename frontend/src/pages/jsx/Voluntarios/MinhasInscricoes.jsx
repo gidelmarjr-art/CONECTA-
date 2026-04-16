@@ -48,13 +48,12 @@ const MinhasInscricoes = () => {
     }
   ];
 
-  // Filtra as inscrições com base na aba selecionada
+
   const inscricoesFiltradas = inscricoesMock.filter(inscricao => {
     if (filtroAtivo === 'TODAS') return true;
     return inscricao.status === filtroAtivo;
   });
 
-  // Função auxiliar para renderizar o Status com cor e ícone correto
   const renderStatusBadge = (status) => {
     switch (status) {
       case 'APROVADO':
@@ -73,7 +72,7 @@ const MinhasInscricoes = () => {
   return (
     <div className="inscricoes-container">
       
-      {/* CABEÇALHO (Mesmo estilo do Perfil) */}
+      {/* CABEÇALHO  */}
       <header className="inscricoes-header">
         <div className="inscricoes-titulos">
           <h1>Minhas Inscrições</h1>
@@ -126,7 +125,6 @@ const MinhasInscricoes = () => {
                   <Eye size={16} /> Ver Detalhes da Vaga
                 </button>
                 
-                {/* Só mostra botão de cancelar se estiver pendente ou recém aprovado */}
                 {(item.status === 'PENDENTE' || item.status === 'APROVADO') && (
                   <button className="btn-acao-texto btn-cancelar">
                     <Trash2 size={16} /> Cancelar Inscrição

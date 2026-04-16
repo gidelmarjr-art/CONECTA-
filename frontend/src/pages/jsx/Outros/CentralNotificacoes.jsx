@@ -31,7 +31,6 @@ const CentralNotificacoes = () => {
   const indiceInicial = (paginaAtual - 1) * itensPorPagina;
   const notificacoesExibidas = notificacoesFiltradas.slice(indiceInicial, indiceInicial + itensPorPagina);
 
-  // Handlers
   const mudarFiltro = (filtro) => {
     setFiltroAtivo(filtro);
     setPaginaAtual(1); 

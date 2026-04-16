@@ -64,7 +64,7 @@ const Perfil = ({ tipoUsuario = 'VOLUNTARIO' }) => {
     const newData = { ...baseData, email: emailDinamico, descricao: descricaoDinamica };
     setFormData(newData);
     setTempData(newData);
-    setIsEditing(false); // Sai do modo de edição se trocar de usuário
+    setIsEditing(false); 
   }, [tipoNormalizado]);
 
   const galeriaMock = [

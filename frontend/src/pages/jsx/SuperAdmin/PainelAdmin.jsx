@@ -53,7 +53,7 @@ const PainelAdmin = () => {
   return (
     <div className="padm-container">
       
-      {/* B. CABEÇALHO SUPERIOR (TOPBAR) */}
+      {/* CABEÇALHO SUPERIOR (TOPBAR) */}
       <header className="padm-topbar">
         <div className="padm-busca-global">
           <Search size={18} color="#7f8c8d" />
@@ -80,7 +80,7 @@ const PainelAdmin = () => {
         </div>
       </header>
 
-      {/* C. CARDS DE INDICADORES (KPI WIDGETS) */}
+      {/* CARDS DE INDICADORES */}
       <section className="padm-kpi-grid">
         <div className="padm-kpi-card">
           <div className="padm-kpi-icone" style={{ backgroundColor: '#dff5de', color: '#27ae60' }}>
@@ -123,8 +123,7 @@ const PainelAdmin = () => {
         </div>
       </section>
 
-      {/* D. ÁREA DE GRÁFICOS ANALÍTICOS */}
-      {/* D. ÁREA DE GRÁFICOS ANALÍTICOS (AGORA COM RECHARTS) */}
+      {/* ÁREA DE GRÁFICOS ANALÍTICOS */}
       <section className="padm-graficos-grid">
         
         {/* GRÁFICO DE LINHA */}
@@ -231,7 +230,7 @@ const PainelAdmin = () => {
         </div>
       </section>
 
-      {/* E. TABELA DE ATIVIDADES RECENTES (LOG DE AUDITORIA) */}
+      {/* TABELA DE ATIVIDADES RECENTES (LOG DE AUDITORIA) */}
       <section className="padm-tabela-section">
         <div className="padm-card-cabecalho">
           <h3>Log de Auditoria de Sistema</h3>

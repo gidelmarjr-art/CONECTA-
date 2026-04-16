@@ -9,7 +9,7 @@ const Feed = () => {
       id: 1,
       user: { name: 'ONG Vida Animal', handle: '@vidaanimal', avatar: '', tag: 'ONG' },
       content: 'Dia de adoção concluído com sucesso!',
-      image: '', // URL da imagem vinda do banco
+      image: '', 
       likes: 120,
       comments: 45
     },
@@ -40,7 +40,6 @@ const Feed = () => {
               <div className="post-header">
                 <div className="post-user">
                   <div className="avatar-placeholder-small">
-                    {/* Imagem temporária para dar visual de produto real */}
                     <img src={`https://i.pravatar.cc/150?u=${post.id}`} alt={post.user.name} />
                   </div>
                   <div className="post-user-info">
@@ -62,11 +61,11 @@ const Feed = () => {
               </div>
               
               <div className="post-image-placeholder">
-                {/* TODO: <img src={post.image} alt="Conteúdo do post" /> */}
+
                 <div className="placeholder-text">Imagem do Post</div>
               </div>
 
-              {/* Rodapé do Post (Interações) */}
+              {/* Rodapé do Post  */}
               <div className="post-footer">
                 <div className="post-interactions">
                   <button className="interaction-item">
@@ -97,7 +96,6 @@ const Feed = () => {
             {miniCards.map((card) => (
               <div key={card} className="mini-card fade-in-up" style={{animationDelay: `${card * 0.1}s`}}>
                 <div className="mini-card-image">
-                   {/* Placeholder visual */}
                 </div>
                 <div className="mini-card-info">
                   <div className="mini-card-header">

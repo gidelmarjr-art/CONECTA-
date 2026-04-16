@@ -16,7 +16,7 @@ const Relatorios = () => {
     { mes: 'Jun', valor: 72, altura: '72%' }
   ];
 
-  // Mock de relatórios salvos
+  // relatórios salvos (dados estáticos)
   const relatoriosSalvos = [
     { id: 1, nome: "Relatório de Impacto - Q1 2026", data: "10 Abr 2026", tipo: "PDF", tamanho: "2.4 MB" },
     { id: 2, nome: "Horas Voluntárias - Março", data: "01 Abr 2026", tipo: "XLSX", tamanho: "1.1 MB" },

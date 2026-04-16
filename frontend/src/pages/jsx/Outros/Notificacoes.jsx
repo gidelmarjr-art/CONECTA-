@@ -8,7 +8,7 @@ import '../../css/Outros/Notificacoes.css';
 const Notificacoes = () => {
   const [filtro, setFiltro] = useState('todas');
 
-  // Mock de notificações baseado na sua imagem
+  // Notificações de exemplo
   const [notificacoes, setNotificacoes] = useState([
     {
       id: 1,
@@ -61,7 +61,6 @@ const Notificacoes = () => {
     <div className="notificacoes-wrapper">
       <div className="noti-app-container">
         
-        {/* HEADER BRANCO COM ABAS */}
         <div className="noti-top-bar">
           <div className="noti-tabs-scroll">
             <button className={`noti-tab-btn ${filtro === 'todas' ? 'active' : ''}`} onClick={() => setFiltro('todas')}>
@@ -82,10 +81,9 @@ const Notificacoes = () => {
           </div>
         </div>
 
-        {/* CORPO AZUL COM AS NOTIFICAÇÕES */}
         <div className="noti-blue-body">
           
-          {/* BOTÕES DE AÇÃO */}
+
           <div className="noti-actions-bar">
             <button className="btn-pill btn-success" onClick={marcarTodasComoLidas}>
               <Check size={18} /> Marcar todas como lidas
@@ -95,7 +93,7 @@ const Notificacoes = () => {
             </button>
           </div>
 
-          {/* LISTA */}
+
           <div className="noti-list-glass">
             {notificacoes.length === 0 ? (
               <div className="noti-empty-glass">Nenhuma notificação encontrada.</div>
@@ -120,7 +118,7 @@ const Notificacoes = () => {
             )}
           </div>
 
-          {/* PAGINAÇÃO */}
+
           <div className="noti-pagination">
             <button className="btn-page"><ChevronLeft size={18} /> Anterior</button>
             <span className="page-number">1</span>

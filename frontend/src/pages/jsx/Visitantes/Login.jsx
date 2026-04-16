@@ -32,12 +32,10 @@ const Login = () => {
               </button>
             </form>
 
-            {/* Divisor Social atualizado conforme padrão do cadastro */}
             <div className="pg-log-divisor-social">
               <span>Entre com uma conta</span>
             </div>
 
-            {/* Grades de botões sociais atualizadas */}
             <div className="pg-log-grade-social">
               <button className="pg-log-btn-social"><FaGoogle /></button>
               <button className="pg-log-btn-social"><FaApple /></button>

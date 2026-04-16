@@ -101,7 +101,7 @@ const Conquistas = () => {
           </div>
         </section>
 
-        {/* DISTINTIVOS LATERAIS */}
+        {/* DISTINTIVOS LATERAIS (SERÃO SUBSTITUIDOS POR ISIGNIAS) */}
         <aside className="badges-sidebar-pro">
           <h3>Distintivos Extraordinários</h3>
           <div className="badges-list">

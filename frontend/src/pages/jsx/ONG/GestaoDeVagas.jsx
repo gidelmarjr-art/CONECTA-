@@ -7,7 +7,7 @@ import {
 import '../../css/ONG/GestaoDeVagas.css';
 
 const GestaoVagas = () => {
-  // Mock de dados das vagas criadas pela ONG
+  // dados das vagas criadas pela ONG(estáticos)
   const [vagas] = useState([
     {
       id: 1,
@@ -47,7 +47,6 @@ const GestaoVagas = () => {
     }
   ]);
 
-  // Função auxiliar para definir as cores e textos das tags de status
   const renderStatusBadge = (status) => {
     switch(status) {
       case 'ativa': 
@@ -76,7 +75,7 @@ const GestaoVagas = () => {
         </button>
       </header>
 
-      {/* MÉTRICAS RÁPIDAS (KPIs) */}
+      {/* MÉTRICAS RÁPIDAS  */}
       <section className="pong-vagas-kpis">
         <div className="pong-vagas-kpi-card">
           <span>Total de Vagas</span>

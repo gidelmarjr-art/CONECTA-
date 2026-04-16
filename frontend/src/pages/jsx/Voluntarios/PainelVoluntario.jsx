@@ -7,7 +7,7 @@ import {
 import '../../css/Voluntarios/PainelVoluntario.css';
 
 const PainelVoluntario = () => {
-  // Mocks de dados
+  // Mocks de dados estatiocos
   const conquistas = [
     { id: 1, titulo: "Primeiro voluntariado", desc: "Sua jornada começou aqui!", xp: 20, ativo: true },
     { id: 2, titulo: "Mão na massa", desc: "5 campanhas concluídas", xp: 50, ativo: true },
@@ -29,7 +29,6 @@ const PainelVoluntario = () => {
   return (
     <div className="pv-wrapper">
       
-      {/* HEADER - Agora com o Azul do Conecta+ e Background Pattern */}
       <section className="pv-brand-header">
         <div className="pv-hero-main">
           <div className="pv-welcome">
@@ -60,7 +59,7 @@ const PainelVoluntario = () => {
           </div>
         </div>
 
-        {/* STATS FLOATING - Agora com 4 itens para preencher o vazio */}
+
         <div className="pv-floating-stats">
           <div className="pv-stat-item">
             <div className="stat-icon-bg green"><Briefcase /></div>
@@ -108,7 +107,7 @@ const PainelVoluntario = () => {
         {/* COLUNA DIREITA: CERTIFICADOS E METAS */}
         <div className="pv-right-column">
           
-          {/* SESSÃO DE METAS (Novo - Preenche o espaço) */}
+          {/* SESSÃO DE METAS  */}
           <div className="pv-card-glass mb-20">
             <div className="pv-card-header">
               <Flag size={22} className="header-icon blue-icon" />
@@ -132,7 +131,7 @@ const PainelVoluntario = () => {
             </div>
           </div>
 
-          {/* SESSÃO DE CERTIFICADOS (Estilo Ticket Horizontal) */}
+          {/* SESSÃO DE CERTIFICADOS  */}
           <div className="pv-card-glass">
             <div className="pv-card-header">
               <FileCheck size={22} className="header-icon blue-icon" />

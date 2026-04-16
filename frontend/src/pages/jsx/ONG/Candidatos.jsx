@@ -7,7 +7,6 @@ import '../../css/ONG/Candidatos.css';
 
 const Candidatos = () => {
 
-  //Inicio de dados estáticos para teste
   const [candidatos] = useState([
     {
       id: 1,
@@ -60,7 +59,6 @@ const Candidatos = () => {
         return null;
     }
   };
-//fim dos dados estáticos
   
   return (
     <div className="pong-cand-container">

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import '../../css/ONG/CadastroDeVaga.css';
 
 const CadastroDeVaga = () => {
-  // Estado inicial do formulário
   const [formData, setFormData] = useState({
     titulo: '',
     tipo: 'Presencial',
@@ -15,7 +14,7 @@ const CadastroDeVaga = () => {
 
   const [mensagem, setMensagem] = useState({ texto: '', tipo: '' });
 
-  // Gerencia múltipla seleção dos períodos
+
   const togglePeriodo = (periodo) => {
     const novos = formData.periodos.includes(periodo)
       ? formData.periodos.filter(p => p !== periodo)
@@ -49,7 +48,7 @@ const CadastroDeVaga = () => {
         periodos: [], experiencia: 'Iniciante', vagasDisponiveis: '', descricao: ''
       });
     } else {
-      setMensagem({ texto: '❌ Por favor, preencha todos os campos obrigatórios.', tipo: 'erro' });
+      setMensagem({ texto: ' Por favor, preencha todos os campos obrigatórios.', tipo: 'erro' });
     }
 
     setTimeout(() => setMensagem({ texto: '', tipo: '' }), 4000);

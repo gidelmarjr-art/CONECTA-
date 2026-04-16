@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Settings, Bell, User } from 'lucide-react'; // <-- Adicionamos o User aqui!
+import { Search, Settings, Bell, User } from 'lucide-react'; 
 import { NavLink } from 'react-router-dom';
 import logoImg from '../../images/identidade/logo.png'; 
 import '../css/Header.css'; 

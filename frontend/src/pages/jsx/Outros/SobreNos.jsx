@@ -22,7 +22,7 @@ const SobreNos = () => {
     "THALINE THAIS TELES DA SILVA"
   ];
 
-  // Funções de máscara replicadas do seu CadastroUser
+  // Funções de máscara replicadas do CadastroUser
   const maskCpf = (v) => {
     return v
       .replace(/(\d{3})(\d)/, "$1.$2")
