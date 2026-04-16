@@ -1,4 +1,5 @@
 /*git*/
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Camera } from 'lucide-react'; 
 
@@ -20,7 +21,7 @@ const Footer = () => {
             <div className="footer-contact">
               <a href="mailto:email@gmail.com" className="footer-link">email@gmail.com</a>
               <a href="FAQ" className="footer-link">FAQ</a>
-              <a href="#" className="footer-icon" aria-label="Camera">
+              <a href="Homepage" className="footer-icon" aria-label="Camera">
                 <Camera size={18} strokeWidth={2} />
               </a>
             </div>
@@ -32,9 +33,9 @@ const Footer = () => {
         <div className="footer-bottom">
           <p>© 2026 Conecta+. Todos os direitos reservados.</p>
           <div className="footer-legal">
-            <a href="#">Políticas de Privacidade</a>
-            <a href="#">Termos de Uso</a>
-            <a href="#">Política de cookies</a>
+            <a href="Homepage">Políticas de Privacidade</a>
+            <a href="Homepage">Termos de Uso</a>
+            <a href="Homepage">Política de cookies</a>
           </div>
         </div>
 
