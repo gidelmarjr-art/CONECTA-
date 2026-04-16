@@ -30,7 +30,11 @@ CREATE TABLE ONG_DATA(
 
 -- Tabela para as vagas:
 
+<<<<<<< HEAD
+CREATE TABLE Volunteer_data(
+=======
 CREATE TABLE Volunter_data(
+>>>>>>> upstream/main
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100),
     supplement VARCHAR(255),
@@ -46,6 +50,17 @@ CREATE TABLE Volunter_data(
 
 -- Tabela para os usuários:
 
+<<<<<<< HEAD
+CREATE TABLE User_data(  
+    name VARCHAR(100) NOT NULL PRIMARY KEY,
+    familyname VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    pictureurl VARCHAR(255),
+    locale VARCHAR(15) NOT NULL,
+    rtoken TEXT NOT NULL,
+    googleid VARCHAR(255) NOT NULL,
+    CPF VARCHAR(11) NOT NULL,
+=======
 CREATE TABLE user_data(  
     ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(512) NOT NULL,
@@ -57,5 +72,6 @@ CREATE TABLE user_data(
     SUB VARCHAR(512) NULL,
     CPF VARCHAR(11) NULL,
     password VARCHAR(512) NULL,
+>>>>>>> upstream/main
     registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) COMMENT 'Tabela para armazenar as informações dos usuários';

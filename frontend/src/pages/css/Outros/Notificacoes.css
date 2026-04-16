@@ -1,0 +1,220 @@
+:root {
+  --conecta-blue: #007fb2;
+  --conecta-blue-dark: #005f86;
+  --conecta-green: #27ae60;
+  --bg-subtle: #f8fafc;
+  --text-main: #1e293b;
+}
+
+.notificacoes-wrapper {
+  background-color: var(--bg-subtle);
+  min-height: calc(100vh - 80px);
+  padding: 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.noti-app-container {
+  width: 100%;
+  max-width: 1100px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 127, 178, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER BRANCO - ABAS */
+.noti-top-bar {
+  background-color: #ffffff;
+  padding: 15px 30px 0 30px;
+}
+
+.noti-tabs-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+.noti-tabs-scroll::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+.noti-tab-btn {
+  background: none;
+  border: none;
+  padding: 15px 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 4px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.noti-tab-btn:hover {
+  color: var(--conecta-blue);
+}
+
+.noti-tab-btn.active {
+  color: var(--conecta-blue);
+  border-bottom-color: var(--conecta-blue);
+}
+
+/* CORPO AZUL */
+.noti-blue-body {
+  background: linear-gradient(135deg, var(--conecta-blue) 0%, var(--conecta-blue-dark) 100%);
+  padding: 30px 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 600px;
+}
+
+/* BOTÕES DE AÇÃO (Pílulas) */
+.noti-actions-bar {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.btn-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.btn-success { color: var(--conecta-green); }
+.btn-danger { color: #1e293b; } /* Escuro como na print */
+
+/* CARDS DE NOTIFICAÇÃO (Efeito Vidro / Pílula) */
+.noti-list-glass {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.noti-glass-card {
+  background: rgba(255, 255, 255, 0.9); /* Quase branco, levemente transparente */
+  backdrop-filter: blur(10px);
+  border-radius: 16px; /* Arredondado moderno */
+  padding: 20px 25px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+.noti-glass-card:hover {
+  background: #ffffff;
+  transform: translateX(5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.noti-circle-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-gold { background: transparent; color: #f59e0b; }
+.icon-dark { background: transparent; color: #0f172a; }
+.icon-red { background: transparent; color: #ef4444; }
+.icon-green { background: transparent; color: var(--conecta-green); }
+.icon-blue { background: transparent; color: var(--conecta-blue); }
+
+.noti-glass-content {
+  flex: 1;
+}
+
+.noti-glass-content h3 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  color: var(--conecta-blue-dark); /* Texto azul escuro como na print */
+  font-weight: 700;
+}
+
+.noti-glass-content p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--conecta-blue); /* Texto azul mais claro */
+  font-weight: 500;
+}
+
+.noti-glass-time {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--conecta-blue-dark);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.noti-empty-glass {
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+}
+
+/* PAGINAÇÃO */
+.noti-pagination {
+  margin-top: auto; /* Empurra pro final da tela azul */
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-page {
+  background: #ffffff;
+  border: none;
+  color: var(--conecta-blue);
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-page:hover {
+  background: var(--bg-subtle);
+  transform: translateY(-2px);
+}
+
+.page-number {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .noti-blue-body { padding: 20px; }
+  .noti-glass-card { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .noti-glass-time { text-align: left; margin-top: 5px; opacity: 0.8; }
+}

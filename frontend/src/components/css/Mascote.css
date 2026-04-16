@@ -1,0 +1,444 @@
+/* Container que fica fixo e pode ser arrastado */
+.mascote-wrapper-global {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 9999;
+  cursor: grab;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Quando você clica e segura, o cursor muda */
+.mascote-wrapper-global:active {
+  cursor: grabbing;
+}
+
+/* =========================================
+   BALÃO DE FALA
+   ========================================= */
+.balao-fala {
+  position: absolute;
+  bottom: 100%;
+  margin-bottom: 20px;
+  background: white;
+  color: var(--text-main, #1e293b);
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none; /* Para não atrapalhar o arrasto */
+}
+
+/* Setinha do balão apontando para baixo */
+.balao-fala::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+}
+
+/* =========================================
+   ESTRUTURA DO MASCOTE (O mesmo de antes)
+   ========================================= */
+.mascote-conecta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mascote-corpo {
+  width: 65px;
+  height: 60px;
+  background: var(--conecta-blue, #007fb2);
+  border-radius: 40% 40% 50% 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 25px rgba(0, 127, 178, 0.4), inset -5px -5px 15px rgba(0,0,0,0.15), inset 5px 5px 15px rgba(255,255,255,0.2);
+  animation: mascoteFloat 3s ease-in-out infinite;
+  position: relative;
+}
+
+/* Antena */
+.mascote-corpo::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  width: 4px;
+  height: 15px;
+  background: var(--conecta-blue, #007fb2);
+  border-radius: 5px;
+}
+.mascote-corpo::after {
+  content: '';
+  position: absolute;
+  top: -16px;
+  width: 10px;
+  height: 10px;
+  background: var(--accent-gold, #f1c40f);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-gold, #f1c40f);
+}
+
+.mascote-olho {
+  width: 18px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; 
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.mascote-pupila {
+  width: 8px;
+  height: 8px;
+  background: var(--text-main, #1e293b);
+  border-radius: 50%;
+  transition: transform 0.1s ease-out;
+}
+
+.mascote-sombra {
+  width: 40px;
+  height: 8px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 50%;
+  margin-top: 15px;
+  filter: blur(3px);
+  animation: sombraFloat 3s ease-in-out infinite;
+}
+
+/* =========================================
+   ANIMAÇÕES
+   ========================================= */
+@keyframes mascoteFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes sombraFloat {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(0.7); opacity: 0.4; }
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.8) translateY(10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .mascote-wrapper-global {
+    display: none; /* Esconde no mobile para não ocupar espaço na tela de toque */
+  }
+}
+
+/* =========================================
+   EFEITOS DURANTE O ARRASTO (DRAG)
+   ========================================= */
+
+/* O corpo balança e aumenta de tamanho, a sombra fica mais intensa */
+.mascote-wrapper-global.arrastando .mascote-corpo {
+  animation: mascoteBalançando 0.4s ease-in-out infinite alternate;
+  box-shadow: 0 25px 35px rgba(0, 127, 178, 0.6), inset -5px -5px 15px rgba(0,0,0,0.15), inset 5px 5px 15px rgba(255,255,255,0.2);
+}
+
+/* Os olhos ficam um pouco mais "assustados/surpresos" enquanto voam */
+.mascote-wrapper-global.arrastando .mascote-olho {
+  height: 24px;
+}
+
+/* A sombra no chão diminui e fica transparente porque ele foi "levantado" */
+.mascote-wrapper-global.arrastando .mascote-sombra {
+  animation: none; /* Para a animação padrão da sombra */
+  transform: scale(0.3);
+  opacity: 0.1;
+  margin-top: 30px; /* Distancia a sombra para dar sensação de altura */
+  transition: all 0.2s ease;
+}
+
+/* Animação dele balançando pendurado pelo cursor */
+@keyframes mascoteBalançando {
+  0% { transform: scale(1.1) rotate(-8deg); }
+  100% { transform: scale(1.1) rotate(8deg); }
+}
+
+/* =========================================
+   CONTAINER E ESTRUTURA BÁSICA
+   ========================================= */
+.mascote-wrapper-global {
+  position: fixed;
+  bottom: 50px; /* Subi um pouquinho */
+  right: 50px;
+  z-index: 9999;
+  cursor: grab;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Transição suave para efeitos de clique e soltar */
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.mascote-wrapper-global:active { cursor: grabbing; }
+
+/* =========================================
+   BALÃO DE FALA (Mais fofinho)
+   ========================================= */
+.balao-fala {
+  position: absolute;
+  bottom: 110%;
+  background: white;
+  color: #1e293b;
+  padding: 12px 18px;
+  border-radius: 20px; /* Mais arredondado */
+  border-bottom-left-radius: 2px; /* Pontinha charmosa */
+  font-size: 14px;
+  font-weight: 700; /* Mais negrito */
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  animation: popInFala 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+  border: 2px solid #e2e8f0; /* Bordinha leve */
+}
+
+/* Setinha do balão */
+.balao-fala::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 20px; /* Alinhado com a pontinha torta */
+  border-width: 10px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+}
+.balao-fala::before { /* Bordinha da setinha */
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 19px;
+  border-width: 11px;
+  border-style: solid;
+  border-color: #e2e8f0 transparent transparent transparent;
+}
+
+/* =========================================
+   O MASCOTE EM SI
+   ========================================= */
+.mascote-corpo {
+  width: 70px; /* Um tiquinho maior */
+  height: 65px;
+  background: #007fb2; /* var(--conecta-blue) */
+  border-radius: 45% 45% 50% 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 25px rgba(0, 127, 178, 0.3), inset -5px -5px 15px rgba(0,0,0,0.1), inset 5px 5px 15px rgba(255,255,255,0.2);
+  /* Animação padrão: flutuar, girar leve e tremer antena */
+  animation: mascoteIdle 4s ease-in-out infinite;
+  position: relative;
+  transform-origin: bottom center; /* Importante para efeito gelatina */
+}
+
+/* Antena e Luzinha */
+.mascote-corpo::before { /* Haste */
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 18px;
+  background: #007fb2;
+  border-radius: 5px;
+}
+.mascote-corpo::after { /* Bolinha */
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: #f1c40f; /* var(--accent-gold) */
+  border-radius: 50%;
+  box-shadow: 0 0 10px #f1c40f;
+  animation: luzPulsante 2s infinite;
+}
+
+/* Olhos */
+.mascote-olho {
+  width: 20px;
+  height: 24px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; 
+  box-shadow: inset 0 3px 5px rgba(0,0,0,0.15);
+  transition: all 0.2s ease; /* Para abrir no drag */
+  position: relative;
+}
+
+/* Pálpebra para piscar (via classe adicionada no JS) */
+.mascote-olho::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 0%;
+  background: #007fb2;
+  transition: height 0.1s ease-in-out;
+  border-radius: 50% 50% 0 0;
+  z-index: 2;
+}
+.mascote-olho.piscar::after { height: 100%; }
+
+.mascote-pupila {
+  width: 10px;
+  height: 10px;
+  background: #1e293b;
+  border-radius: 50%;
+  transition: transform 0.05s linear; /* Pupila mais rápida e direta */
+}
+
+/* Sombra */
+.mascote-sombra {
+  width: 45px;
+  height: 10px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 50%;
+  margin-top: 15px;
+  filter: blur(4px);
+  animation: sombraIdle 4s ease-in-out infinite;
+}
+
+/* =========================================
+   ANIMAÇÕES DE INTERAÇÃO (Fofura extrema aqui)
+   ========================================= */
+
+/* 1. Efeito Gelatina ao Clicar (não arrastar ainda) */
+.mascote-wrapper-global.clicado {
+  transform: scaleX(1.3) scaleY(0.7);
+}
+
+/* 2. Efeitos durante o ARRASTO (Pânico Engraçado) */
+.mascote-wrapper-global.arrastando .mascote-corpo {
+  /* Balança frenético e para animação idle */
+  animation: mascoteArrastando 0.3s ease-in-out infinite alternate;
+  box-shadow: 0 30px 50px rgba(0, 127, 178, 0.5);
+  background: #006b96; /* Escurece um tiquinho de medo */
+}
+
+/* Olhos arregalados de susto */
+.mascote-wrapper-global.arrastando .mascote-olho {
+  width: 26px; height: 26px; /* Ficam redondos e grandes */
+  box-shadow: inset 0 0 10px rgba(255,0,0,0.1); /* Leve vermelhinho de pânico */
+}
+/* Pupilas pequenas e trêmulas */
+.mascote-wrapper-global.arrastando .mascote-pupila {
+  width: 6px; height: 6px;
+  animation: pupilaTreca 0.1s infinite;
+}
+
+/* Gotinha de suor engraçada */
+.suor-engracado {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 20px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+.mascote-wrapper-global.arrastando .suor-engracado {
+  opacity: 1;
+  animation: suorCaindo 1s infinite;
+}
+
+/* Sombra some no drag */
+.mascote-wrapper-global.arrastando .mascote-sombra {
+  animation: none;
+  transform: scale(0.1);
+  opacity: 0;
+  margin-top: 40px;
+}
+
+/* 3. Balanço fofo ao soltar (classe temporária do JS) */
+.mascote-wrapper-global.soltou {
+  animation: balaoSoltou 1s ease-out;
+}
+
+/* =========================================
+   KEYFRAMES (O segredo da alma do bicho)
+   ========================================= */
+
+/* Idle padrão: Flutua, rotaciona bem leve e antena dá tremidinha */
+@keyframes mascoteIdle {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  25% { transform: translateY(-8px) rotate(1deg) scaleX(1.02); }
+  50% { transform: translateY(-15px) rotate(-1deg); }
+  75% { transform: translateY(-8px) rotate(1deg) scaleX(0.98); }
+}
+
+@keyframes sombraIdle {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(0.6); opacity: 0.3; filter: blur(6px); }
+}
+
+@keyframes luzPulsante {
+  0%, 100% { box-shadow: 0 0 10px #f1c40f; transform: translateX(-50%) scale(1); }
+  50% { box-shadow: 0 0 20px #f1c40f, 0 0 30px #f1c40f; transform: translateX(-50%) scale(1.1); }
+}
+
+@keyframes popInFala {
+  0% { opacity: 0; transform: scale(0.5) translateY(20px); rotate: -10deg; }
+  70% { transform: scale(1.1) translateY(-5px); rotate: 2deg; }
+  100% { opacity: 1; transform: scale(1) translateY(0); rotate: 0deg; }
+}
+
+/* Animação frenética de arrasto pendurado */
+@keyframes mascoteArrastando {
+  0% { transform: scale(1.1) rotate(-10deg) translateY(-5px); }
+  100% { transform: scale(1.1) rotate(10deg) translateY(5px); }
+}
+
+@keyframes pupilaTreca {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(1px, -1px); }
+  50% { transform: translate(-1px, 1px); }
+  75% { transform: translate(1px, 1px); }
+}
+
+@keyframes suorCaindo {
+  0% { transform: translateY(0) rotate(0); opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(20px) rotate(20deg); opacity: 0; }
+}
+
+/* Balanço elástico ao soltar */
+@keyframes balaoSoltou {
+  0% { transform: scale(0.8) translateY(20px); }
+  20% { transform: scale(1.2) translateY(-10px); }
+  40% { transform: scale(0.9) translateY(5px); }
+  60% { transform: scale(1.05) translateY(-2px); }
+  80% { transform: scale(0.98) translateY(1px); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+/* Esconder no mobile */
+@media (max-width: 768px) {
+  .mascote-wrapper-global { display: none; }
+}
+

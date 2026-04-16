@@ -31,7 +31,10 @@ dependencies {
     implementation("io.micronaut.serde:micronaut-serde-jackson")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("io.micronaut.toml:micronaut-toml")
+<<<<<<< HEAD
+=======
     implementation("org.mindrot:jbcrypt:0.4")
+>>>>>>> upstream/main
     compileOnly("io.micronaut:micronaut-http-client")
     compileOnly("io.micronaut.openapi:micronaut-openapi-annotations")
     compileOnly("org.projectlombok:lombok")

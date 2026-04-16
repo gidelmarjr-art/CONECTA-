@@ -1,2 +1,5 @@
 .env
+<<<<<<< HEAD
+=======
 backend/src/main/resources/application.toml
+>>>>>>> upstream/main

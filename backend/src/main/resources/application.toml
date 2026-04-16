@@ -1,0 +1,46 @@
+jpa.default.properties.hibernate.hbm2ddl.auto = 'update'
+
+[micronaut.test.resources]
+enabled = false
+
+[datasources.default]
+enabled = false
+
+[micronaut.server.ssl]
+enabled = true
+build-self-signed = true
+
+[micronaut]
+application.name = 'backend'
+#server.ssl.enabled = 'true'
+
+#[datasources.default]
+#driver-class-name = 'com.mysql.cj.jdbc.Driver'
+#db-type = 'mysql'
+#dialect = 'MYSQL'
+
+[acme]
+enabled = false
+#enabled = 'true'
+#tos-agree = 'true'
+
+[micronaut.security]
+enabled = true
+authentication = 'bearer'
+token.jwt.signatures.secret.generator.secret = '${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}'
+
+[[micronaut.security.intercept-url-map]]
+pattern = "/swagger/**"
+access = ["isAnonymous()"]
+
+[[micronaut.security.intercept-url-map]]
+pattern = "/swagger-ui/**"
+access = ["isAnonymous()"]
+
+[micronaut.router.static-resources.swagger]
+paths = ["classpath:META-INF/swagger"]
+mapping = '/swagger/**'
+
+[micronaut.router.static-resources.swagger-ui]
+paths = 'classpath:META-INF/swagger/views/swagger-ui'
+mapping = '/swagger-ui/**'

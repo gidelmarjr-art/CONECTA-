@@ -13,5 +13,8 @@ out/
 .settings
 .classpath
 .factorypath
+<<<<<<< HEAD
+=======
 *.hprof
 ChavedeCriptografica.md
+>>>>>>> upstream/main

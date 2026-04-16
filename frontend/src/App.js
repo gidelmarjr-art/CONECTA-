@@ -4,29 +4,40 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/jsx/Header';  
 import Footer from './components/jsx/Footer'; 
 import Sidebar from './components/jsx/Sidebar'; 
-import SeletorUsuario from './components/jsx/SeletorUsuario'; // <-- Importado aqui (ajuste o caminho se necessário)
+import SeletorUsuario from './components/jsx/SeletorUsuario';
+import Mascote from './components/jsx/Mascote'; // <-- IMPORTAMOS O MASCOTE AQUI!
 
-import HomePage from './pages/jsx/Homepage';
-import MuralVagas from './pages/jsx/MuralVagas';
-import Login from './pages/jsx/Login';
-import CadastroUser from './pages/jsx/CadastroUser';
-import RedefinirSenha from './pages/jsx/RedefinirSenha';
-import RedefinirSenhaGmail from './pages/jsx/RedefinirSenhaGmail';
-import DashboardONG from './pages/jsx/DashboardONG';
-import PainelVoluntario from './pages/jsx/PainelVoluntario';
-import PainelAdmin from './pages/jsx/PainelAdmin';
-import GestaoVagas from './pages/jsx/GestaoDeVagas';
-import Candidatos from './pages/jsx/Candidatos';
-import Doacoes from './pages/jsx/Doacoes';  
-import Relatorios from './pages/jsx/Relatorios';
-import FAQ from './pages/jsx/FAQ';
-import SobreNos from './pages/jsx/SobreNos';
-import ChatBox from './pages/jsx/ChatBox';
-import Perfil from './pages/jsx/Perfil';
-import MinhasInscricoes from './pages/jsx/MinhasInscricoes';
-import Conquistas from './pages/jsx/Conquistas';
+import HomePage from './pages/jsx/Visitantes/Homepage';
+import Login from './pages/jsx/Visitantes/Login';
+import CadastroUser from './pages/jsx/Visitantes/CadastroUser';
+import RedefinirSenha from './pages/jsx/Visitantes/RedefinirSenha';
+import RedefinirSenhaGmail from './pages/jsx/Visitantes/RedefinirSenhaGmail';
+
+import MuralVagas from './pages/jsx/Outros/MuralVagas';
+import FAQ from './pages/jsx/Outros/FAQ';
+import SobreNos from './pages/jsx/Outros/SobreNos';
+import CentralNotificacoes from './pages/jsx/Outros/CentralNotificacoes'; 
+import Notificacoes from './pages/jsx/Outros/Notificacoes'; 
+import ChatBox from './pages/jsx/Outros/ChatBox';
+import Perfil from './pages/jsx/Outros/Perfil';
+
+import DashboardONG from './pages/jsx/ONG/PainelONG';
+import Candidatos from './pages/jsx/ONG/Candidatos';
+import Doacoes from './pages/jsx/ONG/Doacoes';  
+import Relatorios from './pages/jsx/ONG/Relatorios';
+import GestaoVagas from './pages/jsx/ONG/GestaoDeVagas';
+import CadastroDeVaga from './pages/jsx/ONG/CadastroDeVaga';
+
+import PainelVoluntario from './pages/jsx/Voluntarios/PainelVoluntario';
+
+
+import MinhasInscricoes from './pages/jsx/Voluntarios/MinhasInscricoes';
+import Conquistas from './pages/jsx/Voluntarios/Conquistas';
+ 
+import PainelAdmin from './pages/jsx/SuperAdmin/PainelAdmin';
 
 import './App.css';
+
 
 function App() {
   // Estado global que controla quem está "logado" na apresentação
@@ -44,6 +55,9 @@ function App() {
           usuarioAtual={tipoUsuario} 
           setUsuarioAtual={setTipoUsuario} 
         />
+
+        {/* NOSSO MASCOTE FLUTUANTE EM TODAS AS PÁGINAS! */}
+        <Mascote />
       
         {/* A Sidebar agora recebe o tipo de usuário dinamicamente! */}
         {isLoggedIn && <Sidebar tipoUsuario={tipoUsuario} />}
@@ -70,8 +84,11 @@ function App() {
             <Route path="/ChatBox" element={<ChatBox />} /> 
             <Route path="/MinhasInscricoes" element={<MinhasInscricoes />} /> 
             <Route path="/Conquistas" element={<Conquistas />} /> 
+            <Route path="/CentralNotificacoes" element={<CentralNotificacoes />} /> 
+            <Route path="/Notificacoes" element={<Notificacoes />} /> 
+            <Route path="/CadastroDeVaga" element={<CadastroDeVaga />} /> 
+
             
-            {/* O Perfil agora recebe a prop para saber se renderiza como ONG ou Voluntário */}
             <Route path='/Perfil' element={<Perfil tipoUsuario={tipoUsuario} />} />
           </Routes>
           
