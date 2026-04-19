@@ -3,8 +3,25 @@ jpa.default.properties.hibernate.hbm2ddl.auto = 'update'
 [micronaut.test.resources]
 enabled = false
 
-[datasources.default]
+[test-resources]
 enabled = false
+
+[datasources.default]
+url = 'jdbc:mysql://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/${DATASOURCE_DB:conecta}'
+username = '${DATASOURCE_USERNAME:yamada}'
+password = '${DATASOURCE_PASSWORD:2005}'
+driver-class-name = 'com.mysql.cj.jdbc.Driver'
+dialect = 'MYSQL'
+
+[redis]
+uri = 'redis://localhost:6379'
+
+[redis.pool]
+enabled = true
+max-idle = 8
+min-idle = 1
+max-active = 16
+max-wait = '-1ms'
 
 [micronaut.server.ssl]
 enabled = true

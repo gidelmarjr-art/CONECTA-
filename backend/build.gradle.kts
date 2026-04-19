@@ -2,7 +2,6 @@ plugins {
     id("io.micronaut.application") version "4.6.2"
     id("com.gradleup.shadow") version "8.3.9"
     id("com.google.cloud.tools.jib") version "2.8.0"
-    id("io.micronaut.test-resources") version "4.6.2"
     id("io.micronaut.aot") version "4.6.2"
 }
 
@@ -30,11 +29,9 @@ dependencies {
     implementation("io.micronaut.security:micronaut-security-jwt")
     implementation("io.micronaut.serde:micronaut-serde-jackson")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation("io.micronaut.redis:micronaut-redis-lettuce")
     implementation("io.micronaut.toml:micronaut-toml")
-<<<<<<< HEAD
-=======
     implementation("org.mindrot:jbcrypt:0.4")
->>>>>>> upstream/main
     compileOnly("io.micronaut:micronaut-http-client")
     compileOnly("io.micronaut.openapi:micronaut-openapi-annotations")
     compileOnly("org.projectlombok:lombok")
