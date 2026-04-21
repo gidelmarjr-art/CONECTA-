@@ -1,10 +1,13 @@
 package com.conecta.util;
 
+import java.security.MessageDigest;
+import java.util.Base64;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.MessageDigest;
-import java.util.Base64;
 
 public class AesEncryptor {
 
@@ -34,5 +37,17 @@ public class AesEncryptor {
         } catch (Exception e) {
             throw new RuntimeException("Erro ao descriptografar", e);
         }
+    }
+
+    public static List<String> encrypt(List<String> values, String secret) {
+        return values.stream()
+                .map(v -> encrypt(v, secret))
+                .collect(Collectors.toList());
+    }
+
+    public static List<String> decrypt(List<String> values, String secret) {
+        return values.stream()
+                .map(v -> decrypt(v, secret))
+                .collect(Collectors.toList());
     }
 }

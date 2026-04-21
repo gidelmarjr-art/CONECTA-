@@ -8,7 +8,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.util.Optional;
 
 @Singleton
-public class AuthService {
+public class AuthService implements IAuthService {
 
     private final UserRepository userRepository;
     private final SessionService sessionService;

@@ -6,6 +6,22 @@ CREATE DATABASE CONECTA_DB DEFAULT CHARACTER SET = 'utf8mb4';
 USE CONECTA_DB;
 
 -- Criando as tabelas:
+-- Tabela para os usuários:
+
+CREATE TABLE user_data(  
+    ID INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(512) NOT NULL,
+    familyname VARCHAR(512) NOT NULL,
+    email VARCHAR(512) NOT NULL,
+    pictureurl VARCHAR(255),
+    locale VARCHAR(15) NULL,
+    rtoken VARCHAR(100) NULL,
+    SUB VARCHAR(512) NULL,
+    CPF VARCHAR(512) NULL,
+    password VARCHAR(512) NULL,
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) COMMENT 'Tabela para armazenar as informações dos usuários';
+
 -- Tabela com dados das ONGs:
 
 CREATE TABLE ONG_DATA(
@@ -43,19 +59,3 @@ CREATE TABLE Volunter_data(
     ong_cnpj VARCHAR(14),
     FOREIGN KEY (ongname, ong_cnpj) REFERENCES ONG_DATA(name, cnpj)
 ) COMMENT 'Tabela para armazenar as informações dos voluntários';
-
--- Tabela para os usuários:
-
-CREATE TABLE user_data(  
-    ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(512) NOT NULL,
-    familyname VARCHAR(512) NOT NULL,
-    email VARCHAR(512) NOT NULL,
-    pictureurl VARCHAR(255),
-    locale VARCHAR(15) NULL,
-    rtoken VARCHAR(100) NULL,
-    SUB VARCHAR(512) NULL,
-    CPF VARCHAR(11) NULL,
-    password VARCHAR(512) NULL,
-    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) COMMENT 'Tabela para armazenar as informações dos usuários';

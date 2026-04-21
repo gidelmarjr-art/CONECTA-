@@ -19,7 +19,8 @@ public class SessionFilter implements HttpServerFilter {
     private static final Set<String> PUBLIC_ROUTES = Set.of(
         "POST /auth/",
         "POST /auth/login",
-        "POST /auth/refresh"
+        "POST /auth/refresh",
+        "POST /auth/logout"
     );
 
     public SessionFilter(SessionService sessionService) {
@@ -39,6 +40,13 @@ public class SessionFilter implements HttpServerFilter {
         String sessionToken = request.getCookies().findCookie("session_token")
                 .map(cookie -> cookie.getValue())
                 .orElse(null);
+
+        if (sessionToken == null) {
+            String authHeader = request.getHeaders().get("Authorization");
+            if (authHeader != null && authHeader.startsWith("Bearer ")) {
+                sessionToken = authHeader.substring(7);
+            }
+        }
 
         if (sessionToken == null || sessionService.validateSessionToken(sessionToken) == null) {
             return Mono.just(HttpResponse.unauthorized());

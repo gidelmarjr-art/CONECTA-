@@ -1,7 +1,5 @@
 package com.conecta.controller;
 
-import java.util.List;
-
 import com.conecta.entities.Databaseconnection;
 import com.conecta.repositories.UserRepository;
 import com.conecta.service.SessionService;
@@ -11,13 +9,12 @@ import io.micronaut.http.annotation.Delete;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.Status;
 import org.mindrot.jbcrypt.BCrypt;
-import com.conecta.service.AuthService;
+import com.conecta.service.IAuthService;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MutableHttpResponse;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.CookieValue;
-import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.cookie.Cookie;
 import io.micronaut.serde.annotation.Serdeable;
@@ -31,9 +28,9 @@ public class UserController {
 
     private final UserRepository repository;
     private final SessionService sessionService;
-    private final AuthService authService;
+    private final IAuthService authService;
 
-    public UserController(UserRepository repo, SessionService sessionService, AuthService authService) {
+    public UserController(UserRepository repo, SessionService sessionService, IAuthService authService) {
         this.repository = repo;
         this.sessionService = sessionService;
         this.authService = authService;
@@ -109,11 +106,6 @@ public class UserController {
                 .maxAge(0);
 
         return HttpResponse.ok().cookie(expiredSession).cookie(expiredRefresh);
-    }
-
-    @Get("/")
-    public List<Databaseconnection> getAll() {
-        return repository.findAll();
     }
 
     @Post(value = "/", consumes = "application/json")

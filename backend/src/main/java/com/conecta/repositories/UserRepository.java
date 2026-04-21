@@ -7,7 +7,7 @@ import io.micronaut.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<Databaseconnection, String> {
+public interface UserRepository extends JpaRepository<Databaseconnection, Integer> {
 
     Optional<Databaseconnection> findByEmail(String encryptedEmail);
 
