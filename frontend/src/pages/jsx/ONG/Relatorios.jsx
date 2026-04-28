@@ -6,7 +6,6 @@ import {
 import '../../css/ONG/Relatorios.css';
 
 const Relatorios = () => {
-  // Dados simulados para o gráfico de Voluntários por Mês
   const dadosGrafico = [
     { mes: 'Jan', valor: 45, altura: '45%' },
     { mes: 'Fev', valor: 52, altura: '52%' },

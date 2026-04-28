@@ -19,6 +19,7 @@ const SeletorUsuario = ({ usuarioAtual, setUsuarioAtual }) => {
       const isTop = rect.top < telaAltura / 2;
       const isRight = rect.left > telaLargura / 2;
 
+  
 
       setClassePosicao(`menu-${isTop ? 'top' : 'bottom'}-${isRight ? 'right' : 'left'}`);
     }
