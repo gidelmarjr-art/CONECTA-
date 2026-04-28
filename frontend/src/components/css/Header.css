@@ -33,7 +33,7 @@
     background-color: #ffffff;
     display: flex;
     justify-content: center; 
-    padding: 20px 0; /* <-- Aumentamos o espaçamento vertical aqui */
+    padding: 20px 0;
     font-family: sans-serif;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     position: sticky;
@@ -52,9 +52,8 @@
 }
 
 /* Logo */
-/* Logo */
 .logo-img {
-    height: 44px; /* <-- Aumentamos um pouquinho a logo para acompanhar */
+    height: 44px;
     width: auto;
     transition: transform 0.3s ease;
 }
@@ -62,7 +61,7 @@
     transform: scale(1.05);
 }
 
-/* Navegação */
+/* Navegação Desktop */
 .header-nav {
     display: flex;
     gap: 25px; 
@@ -80,11 +79,8 @@
     text-transform: uppercase;
 }
 
-.nav-link:hover {
-    opacity: 0.8;
-}
+.nav-link:hover { opacity: 0.8; }
 
-/* Efeito de linha embaixo ao passar o mouse */
 .nav-link::after {
     content: '';
     position: absolute;
@@ -95,7 +91,6 @@
     transition: width 0.3s ease;
 }
 
-/* Cores dos Links */
 .nav-feed { color: #555; }
 .nav-feed:hover::after { background-color: #555; width: 100%; }
 
@@ -104,7 +99,6 @@
 
 .nav-sobre { color: #53B848; }
 .nav-sobre:hover::after { background-color: #53B848; width: 100%; }
-
 
 /* Barra de Busca */
 .search-container {
@@ -137,14 +131,18 @@
     transition: transform 0.2s ease;
 }
 
-.search-icon:hover {
-    transform: scale(1.2);
-}
+.search-icon:hover { transform: scale(1.2); }
 
 /* Botões (Cadastro/Login) */
 .header-actions {
     display: flex;
+    align-items: center;
     gap: 12px; 
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
 }
 
 .btn {
@@ -163,24 +161,18 @@
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.btn:active {
-    transform: translateY(0);
-}
+.btn:active { transform: translateY(0); }
 
 .btn-cadastro { background-color: #0074BD; }
 .btn-login { background-color: #169C46; padding: 8px 28px; }
 
-
-/* =====================================
-   ESTADO LOGADO (PERFIL E ÍCONES)
-====================================== */
+/* Estado Logado */
 .header-perfil-logado {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-/* Botões Redondos (Engrenagem e Sino) */
 .btn-icone {
     width: 40px;
     height: 40px;
@@ -199,14 +191,8 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
-/* Aplica a animação ao passar o mouse */
-.btn-icone:hover .icone-azul {
-    animation: girarEngrenagem 0.5s ease;
-}
-
-.btn-icone:hover .icone-vermelho {
-    animation: balancarSino 0.5s ease;
-}
+.btn-icone:hover .icone-azul { animation: girarEngrenagem 0.5s ease; }
+.btn-icone:hover .icone-vermelho { animation: balancarSino 0.5s ease; }
 
 .bg-azul-claro { background-color: #f0f4f8; }
 .icone-azul { color: #8ba4ce; }
@@ -214,7 +200,6 @@
 .bg-vermelho-claro { background-color: #fff0f0; }
 .icone-vermelho { color: #ff8b8b; }
 
-/* Bolinha vermelha de notificação nova animada */
 .indicador-notificacao {
     position: absolute;
     top: 8px;
@@ -224,10 +209,9 @@
     background-color: #ff4757;
     border-radius: 50%;
     border: 2px solid #fff0f0;
-    animation: pulseNotificacao 2s infinite; /* Pisca organicamente */
+    animation: pulseNotificacao 2s infinite; 
 }
 
-/* Textos do Usuário */
 .info-usuario-header {
     display: flex;
     flex-direction: column;
@@ -247,7 +231,6 @@
     color: #a0a0a0;
 }
 
-/* Avatar Amarelo */
 .avatar-usuario-header {
     width: 40px;
     height: 40px;
@@ -269,7 +252,88 @@
 }
 
 /* =====================================
-   RESPONSIVIDADE
+   MENU MOBILE
+====================================== */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s ease;
+}
+
+.mobile-menu-dropdown {
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    border-top: 1px solid #eee;
+    animation: slideDownHeader 0.3s ease forwards;
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.mobile-nav .nav-link {
+    font-size: 16px;
+}
+
+.search-container-mobile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.mobile-input {
+    width: 100%;
+}
+
+.mobile-input:focus {
+    width: 100%; /* Previne que o input estique e quebre o layout no celular */
+}
+
+.mobile-auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.mobile-btn-full {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+}
+
+.mobile-settings {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    justify-content: center;
+}
+
+.mobile-settings-text {
+    font-weight: bold;
+    color: #555;
+}
+
+/* =====================================
+   RESPONSIVIDADE (MEDIA QUERIES)
 ====================================== */
 @media (max-width: 1024px) {
     .search-input { width: 150px; }
@@ -278,8 +342,16 @@
 }
 
 @media (max-width: 768px) {
-    .header-nav, .search-container {
-        display: none; 
+    /* Esconde elementos do desktop no celular */
+    .desktop-only {
+        display: none !important;
+    }
+    
+    /* Mostra o botão hamburguer */
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .header-container {
