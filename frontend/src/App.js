@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // <-- Adicionado useEffect aqui
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 // Importações de componentes
@@ -49,17 +49,38 @@ const ProtectedRoute = ({ user, allowedTypes, children }) => {
 function App() {
   const [tipoUsuario, setTipoUsuario] = useState('visitante'); 
 
+  // --- NOVA LÓGICA PARA DETECTAR CELULAR ---
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    // Função que atualiza o estado quando a janela muda de tamanho
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Adiciona o "escutador" de eventos na tela
+    window.addEventListener('resize', handleResize);
+
+    // Limpa o evento quando o componente é desmontado (boa prática)
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  // -----------------------------------------
+
   const isLoggedIn = tipoUsuario !== 'visitante';
 
   return (
     <Router>
       <div className="app-layout">
         
-        <SeletorUsuario 
-          usuarioAtual={tipoUsuario} 
-          setUsuarioAtual={setTipoUsuario} 
-        />
+        {/* Renderiza o seletor APENAS se NÃO for mobile */}
+        {!isMobile && (
+          <SeletorUsuario 
+            usuarioAtual={tipoUsuario} 
+            setUsuarioAtual={setTipoUsuario} 
+          />
+        )}
 
+        {/* O mascote continua aparecendo para todos, incluindo mobile */}
         <Mascote />
       
         {isLoggedIn && <Sidebar tipoUsuario={tipoUsuario} />}
