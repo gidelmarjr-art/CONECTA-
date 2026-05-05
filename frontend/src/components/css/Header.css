@@ -264,6 +264,9 @@
     transition: transform 0.2s ease;
 }
 
+/* =====================================
+   MENU MOBILE (CORRIGIDO)
+====================================== */
 .mobile-menu-dropdown {
     position: absolute;
     top: 100%; 
@@ -272,11 +275,13 @@
     background-color: #ffffff;
     box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
     padding: 20px;
+    box-sizing: border-box; /* ISSO RESOLVE O VAZAMENTO */
     display: flex;
     flex-direction: column;
     gap: 25px;
     border-top: 1px solid #eee;
     animation: slideDownHeader 0.3s ease forwards;
+    z-index: 1000; /* Garante que o menu fique sobrepondo tudo */
 }
 
 .mobile-nav {
@@ -290,19 +295,42 @@
     font-size: 16px;
 }
 
+/* =====================================
+   BARRA DE BUSCA MOBILE (AUMENTADA)
+====================================== */
 .search-container-mobile {
     position: relative;
     display: flex;
     align-items: center;
     width: 100%;
+    margin: 5px 0 10px 0; /* Dá um respiro em cima e embaixo da barra */
 }
 
 .mobile-input {
     width: 100%;
+    box-sizing: border-box;
+    /* Aumentamos o padding: 14px em cima/embaixo deixa ela mais alta. 
+       Os 45px na direita garantem que o texto não passe por cima da lupa */
+    padding: 14px 45px 14px 20px; 
+    font-size: 16px; /* Tamanho 16px é ideal no mobile (evita que o iPhone dê zoom automático na tela) */
+    border: 1px solid #ED5C37;
+    border-radius: 25px; /* Bordas bem arredondadas */
+    outline: none;
+    transition: all 0.3s ease;
 }
 
 .mobile-input:focus {
-    width: 100%; /* Previne que o input estique e quebre o layout no celular */
+    border-color: #d14926;
+    box-shadow: 0 0 10px rgba(237, 92, 55, 0.3);
+}
+
+/* Se você estiver usando a mesma classe da lupa do desktop aqui, 
+   isso garante que ela fique centralizada e um pouco maior */
+.search-container-mobile .search-icon {
+    position: absolute;
+    right: 15px;
+    font-size: 18px; 
+    color: #ED5C37;
 }
 
 .mobile-auth-buttons {
@@ -316,6 +344,7 @@
     width: 100%;
     padding: 12px;
     font-size: 14px;
+    box-sizing: border-box; /* Mantém o botão perfeitamente alinhado */
 }
 
 .mobile-settings {

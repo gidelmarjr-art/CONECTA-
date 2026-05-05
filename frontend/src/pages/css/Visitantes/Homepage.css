@@ -236,11 +236,11 @@
 }
 
 /* =====================================
-   ONGS EM DESTAQUE 
+   ONGS EM DESTAQUE (AJUSTADO PARA CARROSSEL)
 ====================================== */
 .hp-featured-ongs {
     background-color: #1D9C49; 
-    padding: 60px 20px;
+    padding: 60px 20px 80px 20px; /* Padding bottom maior para as bolinhas de paginação */
     text-align: center;
     color: white;
 }
@@ -251,30 +251,31 @@
     margin-bottom: 40px;
 }
 
-/* Alterado de flex para grid para forçar as 3 colunas sempre */
-.hp-ongs-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    justify-content: center;
-    gap: 30px;
+/* Container do Swiper em si */
+.hp-carousel-container {
     max-width: 1100px;
     margin: 0 auto;
+    padding: 0 40px; /* Dá espaço para as setas nas laterais no PC */
+    position: relative;
 }
 
+/* O Card Individual (sem float/grid) */
 .hp-ong-card {
     background-color: #ffffff;
     border-radius: 20px;
-    width: 100%; /* Agora ocupa 100% do espaço da grid */
-    max-width: 280px; /* Limite máximo */
-    margin: 0 auto;
-    padding: 15px;
+    padding: 20px;
+    margin: 15px 5px; /* Respiro para a sombra não ser cortada pelo slider */
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
+    text-align: left;
+    color: #333; /* Força cor do texto já que a seção mãe é branca */
+    height: auto;
+    box-sizing: border-box;
 }
 
 .hp-ong-card:hover {
-    transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
 .hp-ong-image-container {
@@ -313,7 +314,6 @@
 .hp-progress-fill {
     background-color: #1D9C49; 
     height: 100%;
-    width: 0; 
     transition: width 1.5s cubic-bezier(0.1, 0.5, 0.5, 1);
 }
 
@@ -328,7 +328,7 @@
     background-color: #05649E;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 25px;
     font-weight: 800;
     font-size: 14px;
@@ -341,6 +341,20 @@
 .hp-btn-help:hover {
     background-color: #067DC0;
     letter-spacing: 1px; 
+}
+
+/* Customização de cores das setas e paginação do Swiper */
+.swiper-button-next, .swiper-button-prev {
+    color: #ffffff !important;
+}
+
+.swiper-pagination-bullet {
+    background: #ffffff !important;
+    opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1 !important;
 }
 
 /* =====================================
@@ -424,105 +438,112 @@
 }
 
 /* =====================================
-   MEDIA QUERIES (VERSÃO "ENCOLHIDA")
+   MEDIA QUERIES (CORRIGIDO PARA MOBILE)
 ====================================== */
-/* =====================================
-   MEDIA QUERIES (VERSÃO "ENCOLHIDA")
-====================================== */
-/* =====================================
-   MEDIA QUERIES (VERSÃO "ENCOLHIDA")
-====================================== */
+
 @media (max-width: 850px) {
-    /* HERO */
+    /* 1. Ajuste Geral da Tela */
+    .hp-main-wrapper {
+        width: 100vw;
+        overflow-x: hidden;
+    }
+
+    /* 2. Hero Section */
     .hp-hero-container {
-        width: 95%;
+        width: 90%;
         height: auto;
-        padding: 40px 20px;
+        padding: 30px 20px;
         flex-direction: column;
         text-align: center;
-        border-radius: 40px;
+        border-radius: 30px;
+        margin: 0 auto;
     }
-    .hp-hero-content { max-width: 100%; align-items: center; }
+    .hp-hero-title { font-size: 45px; }
+    .hp-hero-subtitle { font-size: 16px; margin-bottom: 20px; }
     .hp-hero-image { display: none; }
-    .hp-hero-grid { flex-direction: column; align-items: center; gap: 15px; }
-    .hp-hero-btns { justify-content: center; }
+    .hp-hero-grid { flex-direction: column; align-items: center; }
 
-    /* Frase de impacto menor */
-    .hp-impact-phrase h2 { font-size: 26px; }
-
-    /* TÓPICOS: Força o formato 2x2 */
+    /* 3. Tópicos (Compromissos) */
     .hp-commitments-grid {
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 15px; 
-        padding: 0 10px;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 20px;
     }
+    
     .hp-commitment-card {
-        padding: 15px; 
-        border-radius: 20px;
-    }
-    .hp-card-header h3 { font-size: 14px; }
-    .hp-card-number { width: 25px; height: 25px; font-size: 14px; }
-    .hp-card-content p { font-size: 10px; line-height: 1.3; } 
-    .hp-card-content img { width: 50px; } 
-
-    /* ONGS: 3 Lado a Lado (CORRIGIDO PARA NÃO SOBREPOR) */
-    .hp-ongs-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px; 
-        padding: 0 10px;
-        width: 100%; /* Garante que a grid respeite a tela */
-    }
-    .hp-ong-card { 
-        padding: 8px; /* Espaço interno menor */
-        min-width: 0; /* O SEGREDO: Força o card a encolher sem vazar */
-        width: 100%;
-        margin: 0;
-    }
-    .hp-ong-image-container { 
-        height: 80px; /* Imagem mais compacta */
-        margin-bottom: 8px; 
-    } 
-    .hp-ong-info h3 { 
-        font-size: 11px; 
-        margin: 5px 0; 
-        white-space: nowrap; /* Não quebra linha */
-        overflow: hidden; 
-        text-overflow: ellipsis; /* Coloca "..." se o nome for gigante */
-    }
-    .hp-progress-container span { 
-        font-size: 8px; 
-        line-height: 1.2;
-        display: block;
-    }
-    .hp-btn-help { 
-        padding: 6px 5px; 
-        font-size: 9px; 
-        margin-top: 8px; 
-        width: 100%;
-        white-space: nowrap; /* Impede o botão de deformar */
+        padding: 25px;
+        border-radius: 25px;
     }
 
-    /* RECOMPENSAS: Texto de um lado e Imagem do outro */
-    .hp-rewards-container {
-        flex-direction: row; 
-        gap: 15px;
+    .hp-card-content {
+        flex-direction: row;
         align-items: center;
-        padding: 0 10px;
+        gap: 15px;
     }
-    .hp-rewards-content { flex: 1.5; }
+
+    .hp-card-content p {
+        font-size: 14px;
+    }
+
+    .hp-card-content img {
+        width: 80px; 
+        height: auto;
+    }
+
+    /* 4. ONGs EM DESTAQUE (Swiper Mobile Adjustments) */
+    .hp-carousel-container {
+        padding: 0; /* Remove padding lateral das setas para o card ocupar mais espaço */
+    }
+
+    .hp-ong-card {
+        margin: 15px auto; /* Centraliza o card individual */
+        padding: 15px;
+    }
+
+    .hp-ong-image-container {
+        height: 180px; 
+    }
+
+    .hp-ong-info h3 {
+        font-size: 18px;
+        white-space: normal;
+    }
+
+    .hp-btn-help {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    /* Oculta as setas em telas pequenas (usuário usa o dedo para arrastar) */
+    .swiper-button-next, .swiper-button-prev {
+        display: none !important;
+    }
+
+    /* 5. RECOMPENSAS */
+    .hp-rewards-container {
+        flex-direction: column-reverse; 
+        text-align: center;
+        gap: 30px;
+    }
+
     .hp-rewards-content h2 {
-        font-size: 20px; 
-        margin-bottom: 15px;
-        text-align: left; 
+        font-size: 24px;
+        text-align: center;
     }
+
     .hp-rewards-list li {
-        font-size: 11px; 
-        margin-bottom: 10px;
-        padding-left: 15px;
+        font-size: 14px;
+        text-align: left;
     }
-    .hp-rewards-image { flex: 1; display: flex; justify-content: flex-end; }
+
     .hp-rewards-image img {
-        width: 100%;
-        max-width: 140px; 
+        max-width: 200px;
     }
+}
+
+/* Ajuste para telas MUITO pequenas (iPhone SE, etc) */
+@media (max-width: 380px) {
+    .hp-hero-title { font-size: 35px; }
+    .hp-card-content { flex-direction: column; text-align: center; }
+    .hp-card-content img { width: 100px; margin-top: 10px; }
 }

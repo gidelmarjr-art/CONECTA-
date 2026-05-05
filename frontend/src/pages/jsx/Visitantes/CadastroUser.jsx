@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import '../../css/Visitantes/CadastroUser.css';
-import { FaEye, FaEyeSlash, FaGoogle, FaApple, FaMicrosoft } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGoogle, FaApple, FaMicrosoft, FaCheck, FaTimes } from "react-icons/fa"; // Adicionado FaCheck e FaTimes
 
 const CadastroUser = () => {
   const [opcaoSelecionada, setOpcaoSelecionada] = useState("usuario");
@@ -24,12 +24,33 @@ const CadastroUser = () => {
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [erroAtivo, setErroAtivo] = useState(false);
 
+  // NOVO: Estados para controlar as regras da senha e se o input está focado
+  const [senhaFocada, setSenhaFocada] = useState(false);
+  const [regrasSenha, setRegrasSenha] = useState({
+    tamanho: false,
+    maiuscula: false,
+    minuscula: false,
+    numero: false,
+    especial: false,
+  });
+
   const handleChange = (e, mascara) => {
     const { name, value } = e.target;
     let valorLimpo = value;
 
     if (["cpf", "telefone", "cnpj", "cpfResponsavel", "dataFundacao"].includes(name)) {
       valorLimpo = value.replace(/\D/g, "");
+    }
+
+    // NOVO: Validação em tempo real da senha
+    if (name === "senha") {
+      setRegrasSenha({
+        tamanho: value.length >= 8,
+        maiuscula: /[A-Z]/.test(value),
+        minuscula: /[a-z]/.test(value),
+        numero: /[0-9]/.test(value),
+        especial: /[^A-Za-z0-9]/.test(value), // Qualquer coisa que não seja letra ou número
+      });
     }
 
     setForm({ ...form, [name]: mascara ? mascara(valorLimpo) : valorLimpo });
@@ -46,14 +67,49 @@ const CadastroUser = () => {
     const camposOng = ["razaoSocial", "nomeFantasia", "cnpj", "dataFundacao", "nomeResponsavel", "cpfResponsavel", "email", "senha", "confirmarSenha"];
     const camposParaValidar = opcaoSelecionada === "usuario" ? camposUsuario : camposOng;
 
-    const temErro = camposParaValidar.some((campo) => !form[campo]) || form.senha !== form.confirmarSenha;
+    // NOVO: Verifica se TODAS as regras da senha foram cumpridas (todas são true)
+    const senhaValida = Object.values(regrasSenha).every((regra) => regra === true);
+
+    const temErro = camposParaValidar.some((campo) => !form[campo]) || form.senha !== form.confirmarSenha || !senhaValida;
 
     if (temErro) {
       setErroAtivo(true);
       setTimeout(() => setErroAtivo(false), 500);
+      
+      if (!senhaValida) {
+        alert("A senha não cumpre todas as regras exigidas.");
+      } else if (form.senha !== form.confirmarSenha) {
+        alert("As senhas não coincidem.");
+      }
+
     } else {
       alert("Cadastro realizado com sucesso!");
     }
+  };
+
+  // Componente extra para renderizar as regras da senha (evita repetição de código)
+  const CaixaRegrasSenha = () => {
+    if (!senhaFocada && form.senha.length === 0) return null; // Só mostra se estiver digitando ou se tiver texto
+
+    return (
+      <div className="pg-cad-regras-senha-box">
+        <span className={regrasSenha.tamanho ? "regra-ok" : "regra-erro"}>
+          {regrasSenha.tamanho ? <FaCheck /> : <FaTimes />} Mínimo de 8 caracteres
+        </span>
+        <span className={regrasSenha.maiuscula ? "regra-ok" : "regra-erro"}>
+          {regrasSenha.maiuscula ? <FaCheck /> : <FaTimes />} Uma letra maiúscula
+        </span>
+        <span className={regrasSenha.minuscula ? "regra-ok" : "regra-erro"}>
+          {regrasSenha.minuscula ? <FaCheck /> : <FaTimes />} Uma letra minúscula
+        </span>
+        <span className={regrasSenha.numero ? "regra-ok" : "regra-erro"}>
+          {regrasSenha.numero ? <FaCheck /> : <FaTimes />} Um número
+        </span>
+        <span className={regrasSenha.especial ? "regra-ok" : "regra-erro"}>
+          {regrasSenha.especial ? <FaCheck /> : <FaTimes />} Um caractere especial (!@#$...)
+        </span>
+      </div>
+    );
   };
 
   return (
@@ -119,16 +175,27 @@ const CadastroUser = () => {
                     <label>✱ E-mail:</label>
                     <input type="email" name="email" className="pg-cad-campo" value={form.email} onChange={handleChange} />
                   </div>
+                  
                   <div className="pg-cad-linha-campos">
-                    <div className={`pg-cad-grupo-input ${erroAtivo && !form.senha ? "shake-anim" : ""}`}>
+                    <div className={`pg-cad-grupo-input ${erroAtivo && (!form.senha || !Object.values(regrasSenha).every(Boolean)) ? "shake-anim" : ""}`}>
                       <label>✱ Senha:</label>
                       <div className="pg-cad-caixa-senha">
-                        <input type={mostrarSenha ? "text" : "password"} name="senha" className="pg-cad-campo-senha" value={form.senha} onChange={handleChange} />
+                        <input 
+                          type={mostrarSenha ? "text" : "password"} 
+                          name="senha" 
+                          className="pg-cad-campo-senha" 
+                          value={form.senha} 
+                          onChange={handleChange}
+                          onFocus={() => setSenhaFocada(true)} // NOVO: Detecta clique
+                          onBlur={() => setSenhaFocada(false)} // NOVO: Detecta saída
+                        />
                         <span className="pg-cad-icone-olho" onClick={() => setMostrarSenha(!mostrarSenha)}>
                           {mostrarSenha ? <FaEyeSlash /> : <FaEye />}
                         </span>
                       </div>
+                      <CaixaRegrasSenha /> {/* NOVO: Chamando o componente de regras */}
                     </div>
+                    
                     <div className={`pg-cad-grupo-input ${erroAtivo && (form.senha !== form.confirmarSenha || !form.confirmarSenha) ? "shake-anim" : ""}`}>
                       <label>✱ Confirmar Senha:</label>
                       <input type={mostrarSenha ? "text" : "password"} name="confirmarSenha" className="pg-cad-campo" value={form.confirmarSenha} onChange={handleChange} />
@@ -181,16 +248,27 @@ const CadastroUser = () => {
                     <label>✱ E-mail:</label>
                     <input type="email" name="email" className="pg-cad-campo" value={form.email} onChange={handleChange} />
                   </div>
+                  
                   <div className="pg-cad-linha-campos">
-                    <div className={`pg-cad-grupo-input ${erroAtivo && !form.senha ? "shake-anim" : ""}`}>
+                    <div className={`pg-cad-grupo-input ${erroAtivo && (!form.senha || !Object.values(regrasSenha).every(Boolean)) ? "shake-anim" : ""}`}>
                       <label>✱ Senha:</label>
                       <div className="pg-cad-caixa-senha">
-                        <input type={mostrarSenha ? "text" : "password"} name="senha" className="pg-cad-campo-senha" value={form.senha} onChange={handleChange} />
+                        <input 
+                          type={mostrarSenha ? "text" : "password"} 
+                          name="senha" 
+                          className="pg-cad-campo-senha" 
+                          value={form.senha} 
+                          onChange={handleChange}
+                          onFocus={() => setSenhaFocada(true)}
+                          onBlur={() => setSenhaFocada(false)}
+                        />
                         <span className="pg-cad-icone-olho" onClick={() => setMostrarSenha(!mostrarSenha)}>
                           {mostrarSenha ? <FaEyeSlash /> : <FaEye />}
                         </span>
                       </div>
+                      <CaixaRegrasSenha /> {/* NOVO: Chamando o componente de regras */}
                     </div>
+
                     <div className={`pg-cad-grupo-input ${erroAtivo && (form.senha !== form.confirmarSenha || !form.confirmarSenha) ? "shake-anim" : ""}`}>
                       <label>✱ Confirmar Senha:</label>
                       <input type={mostrarSenha ? "text" : "password"} name="confirmarSenha" className="pg-cad-campo" value={form.confirmarSenha} onChange={handleChange} />
