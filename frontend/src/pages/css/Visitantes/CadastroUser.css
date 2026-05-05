@@ -236,3 +236,121 @@
   .pg-cad-social-icones { gap: 10px; }
   .pg-cad-btn-social { width: 80px; }
 }
+
+/* =====================================
+   CAIXA DE REGRAS DE SENHA (CORREÇÃO DE POSIÇÃO E LEGIBILIDADE)
+====================================== */
+
+/* PASSO 1: Forçar o contexto de posicionamento no pai.
+   Usamos o seletor mais específico do formulário para garantir que vença outros estilos. */
+.pg-cad-formulario .pg-cad-grupo-input {
+    position: relative !important; /* Força o elemento pai a ser a referência */
+    display: flex;
+    flex-direction: column;
+}
+
+/* PASSO 2: Posicionar a caixinha flutuante precisamente relative ao pai fixado acima. */
+.pg-cad-regras-senha-box {
+    position: absolute;
+    /* Alinhado exatamente na borda inferior do pai (.pg-cad-grupo-input) */
+    top: calc(100% + 5px); 
+    left: 0;
+    width: 100%; /* Mesma largura do input pai */
+    z-index: 100; /* Sits super high, over confirm input, btn, etc. */
+
+    /* VITAL PARA LEGIBILIDADE: Use um fundo SÓLIDO e OPACO.
+       Na sua imagem, a transparência está se misturando com o botão e o texto de baixo, 
+       ficando impossível de ler. Use o mesmo azul escuro do fundo principal. */
+    background-color: #004a7c; /* Ajuste para o tom exato de azul escuro do seu formulário */
+    
+    /* Adicionamos uma borda e sombra mais fortes para destacar o flutuante */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5); /* Sombra boa para dar separação */
+    border-radius: 8px;
+    padding: 12px;
+    box-sizing: border-box;
+
+    /* Mantém os estilos de flex/gap existentes */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 12px;
+}
+
+/* O resto das regras (span, regra-erro, regra-ok) permanecem iguais */
+.pg-cad-regras-senha-box span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+}
+
+.regra-erro {
+    color: #ff6b6b; 
+    opacity: 0.9;
+}
+
+.regra-ok {
+    color: #4cd137; 
+    font-weight: bold;
+    opacity: 1;
+}
+
+
+/* =====================================
+   RESPONSIVIDADE (MOBILE) - TELAS ATÉ 768px
+====================================== */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Empilha os campos que estavam lado a lado */
+    .pg-cad-linha-campos {
+        display: flex;
+        flex-direction: column;
+        gap: 0; /* O espaçamento vertical já deve vir do próprio input */
+        width: 100%;
+    }
+
+    /* 2. Garante que todos os campos ocupem 100% da largura da tela */
+    .pg-cad-linha-campos .pg-cad-grupo-input,
+    .pg-cad-flex-07, 
+    .pg-cad-flex-05 {
+        width: 100% !important;
+        flex: none !important;
+        margin-bottom: 15px; /* Adiciona um respiro entre os campos empilhados */
+    }
+
+    /* 3. Empilha os botões de selecionar "Usuário" ou "ONG" */
+    .pg-cad-selecao-botoes {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .pg-cad-btn-selecao {
+        width: 100%;
+    }
+
+    /* 4. Ajusta o espaçamento interno (padding) da caixa azul para não espremer no celular */
+    .pg-cad-moldura-azul {
+        padding: 20px 15px; 
+        margin: 10px; /* Garante que a caixa azul não cole nas bordas do celular */
+    }
+
+    /* 5. Diminui um pouco o tamanho dos títulos para caber melhor */
+    .pg-cad-chamada-topo {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .pg-cad-subtitulo-form {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    /* 6. Ajuste fino na caixa de regras da senha para telas muito pequenas */
+    .pg-cad-regras-senha-box {
+        padding: 10px;
+        font-size: 11px; /* Fonte levemente menor para não quebrar a linha */
+    }
+}

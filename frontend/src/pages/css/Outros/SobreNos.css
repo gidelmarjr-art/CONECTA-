@@ -1,26 +1,35 @@
+/* =====================================
+   ESTRUTURA GERAL
+====================================== */
 .sn-main-wrapper {
     width: 100%;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden; /* Evita rolagem horizontal indesejada */
 }
 
-/* Hero Section - Banner Principal */
+/* =====================================
+   HERO SECTION
+====================================== */
 .sn-hero-section {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 20px 0;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .sn-hero-container {
     background-color: #05649E;
-    width: 850px;
+    width: 100%;
+    max-width: 850px; /* Alterado de width fixo para max-width */
     border-radius: 60px;
     padding: 40px 60px 0 60px; 
     color: white;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .sn-hero-title {
@@ -36,13 +45,16 @@
 }
 
 .sn-img7 {
-    width: 450px;
+    width: 100%;
+    max-width: 450px; /* Responsivo mantendo o limite do original */
     height: auto;
     display: block;
-    margin: -100px  auto -118px auto; 
+    margin: -100px auto -118px auto; 
 }
 
-/* Títulos das Seções */
+/* =====================================
+   TÍTULOS E CARDS
+====================================== */
 .sn-blue-title {
     color: #05649E;
     font-size: 28px;
@@ -52,17 +64,20 @@
     text-transform: uppercase;
 }
 
-/* Cards Arredondados */
 .sn-blue-card {
     background-color: #05649E;
-    width: 850px;
+    width: 100%;
+    max-width: 850px; /* Alterado para max-width */
     border-radius: 50px;
     padding: 40px;
     color: white;
     margin-bottom: 20px;
+    box-sizing: border-box;
 }
 
-/* Layout da Equipe */
+/* =====================================
+   LAYOUT DA EQUIPE
+====================================== */
 .sn-team-header {
     display: flex;
     gap: 30px;
@@ -104,52 +119,14 @@
 }
 
 .sn-img8 {
-    width: 200px;
-    margin: 30px  -30px -30px -25px; 
+    width: 100%;
+    max-width: 200px;
+    margin: 30px -30px -30px -25px; 
 }
 
-/* Formulário de Contato */
-.sn-input-row {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 15px;
-}
-
-.sn-field {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.sn-field label {
-    font-size: 12px;
-    margin-bottom: 5px;
-}
-
-.sn-field input, .sn-field textarea {
-    background-color: transparent;
-    border: 1px solid white;
-    border-radius: 10px;
-    padding: 10px;
-    color: white;
-}
-
-.sn-button-center {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.sn-send-btn {
-    background-color: white;
-    color: #05649E;
-    border: none;
-    padding: 10px 60px;
-    border-radius: 15px;
-    font-weight: 800;
-    cursor: pointer;
-}
-
+/* =====================================
+   FORMULÁRIO DE CONTATO
+====================================== */
 .sn-contact-form {
     display: flex;
     flex-direction: column;
@@ -180,6 +157,7 @@
     padding: 12px;
     color: white;
     outline: none;
+    font-family: inherit;
 }
 
 .sn-field input::placeholder {
@@ -201,9 +179,99 @@
     font-weight: 800;
     font-size: 16px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s, background-color 0.2s;
 }
 
 .sn-send-btn:hover {
     transform: scale(1.05);
+    background-color: #f0f0f0;
+}
+
+
+/* =====================================
+   MEDIA QUERIES (RESPONSIVIDADE)
+====================================== */
+
+/* =====================================
+   MEDIA QUERIES - SOBRE NÓS
+====================================== */
+@media (max-width: 900px) {
+    .sn-hero-container, 
+    .sn-blue-card {
+        width: 90%;
+        margin: 0 auto 20px auto; /* Centraliza o card na tela */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Ajustes dos Cards Azuis e Textos */
+    .sn-hero-container, 
+    .sn-blue-card {
+        width: 92%; /* Dá um respiro nas laterais */
+        padding: 30px 20px; /* Reduz o padding interno para caber melhor o texto */
+        border-radius: 30px; /* Bordas mais suaves no mobile */
+        margin: 0 auto 20px auto;
+        box-sizing: border-box;
+    }
+
+    .sn-hero-title {
+        font-size: 38px; /* Reduz o título para não quebrar a palavra */
+    }
+
+    .sn-hero-description {
+        font-size: 16px;
+    }
+
+    .sn-img7 {
+        margin: -30px auto -40px auto; /* Reduz as margens negativas */
+        max-width: 200px; /* Evita que a imagem vase da tela */
+    }
+
+    /* Ajuste da Equipe */
+    .sn-team-header {
+        flex-direction: column; /* Coloca foto em cima, texto embaixo */
+        text-align: center;
+    }
+
+    .sn-team-intro {
+        font-size: 16px;
+        margin-top: 15px;
+    }
+
+    .sn-equipe-img {
+        width: 100%;
+        height: auto;
+    }
+
+    .sn-integrantes-footer {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+        gap: 20px;
+    }
+
+    .sn-img8 {
+        margin: 0 auto;
+    }
+
+    /* Ajuste do Formulário (Para não ficar espremido) */
+    .sn-input-row {
+        flex-direction: column; /* Empilha os campos Nome e Telefone, etc. */
+        gap: 15px;
+    }
+
+    .sn-send-btn {
+        width: 100%; /* Botão largo no mobile fica mais bonito e fácil de clicar */
+        padding: 15px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .sn-hero-title {
+        font-size: 32px;
+    }
+    .sn-list {
+        grid-template-columns: 1fr; /* Lista de nomes em uma coluna só */
+        text-align: center;
+    }
 }
