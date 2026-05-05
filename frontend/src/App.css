@@ -21,3 +21,32 @@
 .conteudo-principal { 
   flex: 1; 
 }
+@media (max-width: 768px) {
+    /* Verifique se existe alguma regra escondendo o mascote */
+    .classe-do-seu-mascote {
+        display: none !important; /* ISSO faria ele sumir no celular */
+    }
+}
+/* =========================================
+   ADAPTAÇÃO PARA MOBILE (TELAS MENORES)
+   ========================================= */
+@media (max-width: 768px) {
+  .mascote-wrapper-global { 
+    /* Remove o display: none (ele estava escondendo o mascote!) */
+    display: flex; 
+    
+    /* Reposiciona ele um pouco menor e mais no cantinho da tela */
+    bottom: 20px;
+    right: 20px;
+    
+    /* Escala todo o container (corpo, olhos, balão) para ficar 30% menor */
+    transform: scale(0.7);
+    transform-origin: bottom right; /* Garante que ele diminua encolhendo pro canto */
+  }
+
+  /* Se o balão de fala ficar muito grande, diminua a fonte aqui */
+  .balao-fala {
+    font-size: 16px; /* Ajusta a fonte para compensar o scale(0.7) */
+    padding: 10px 14px;
+  }
+}
