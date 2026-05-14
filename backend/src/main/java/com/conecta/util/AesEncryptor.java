@@ -23,7 +23,8 @@ public class AesEncryptor {
         try {
             Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.ENCRYPT_MODE, buildKey(secret), new IvParameterSpec(FIXED_IV));
-            return Base64.getEncoder().encodeToString(cipher.doFinal(value.getBytes("UTF-8")));
+            byte[] encryptedbytes = cipher.doFinal(value.getBytes());
+            return Base64.getEncoder().encodeToString(encryptedbytes);
         } catch (Exception e) {
             throw new RuntimeException("Erro ao criptografar", e);
         }
@@ -39,15 +40,15 @@ public class AesEncryptor {
         }
     }
 
-    public static List<String> encrypt(List<String> values, String secret) {
-        return values.stream()
-                .map(v -> encrypt(v, secret))
-                .collect(Collectors.toList());
+    public static List<String> encryptList(List<String> values, String secret) {
+        return values.parallelStream()
+            .map(v -> encrypt(v, secret))
+            .collect(Collectors.toList());
     }
 
-    public static List<String> decrypt(List<String> values, String secret) {
-        return values.stream()
-                .map(v -> decrypt(v, secret))
+    public static List<String> decryptList(List<String> values, String secret) {
+        return values.parallelStream()
+            .map(v -> decrypt(v, secret))
                 .collect(Collectors.toList());
     }
 }

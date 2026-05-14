@@ -1,4 +1,4 @@
-jpa.default.properties.hibernate.hbm2ddl.auto = 'update'
+jpa.default.properties.hibernate.hbm2ddl.auto = 'none'
 
 [micronaut.test.resources]
 enabled = false
@@ -7,9 +7,9 @@ enabled = false
 enabled = false
 
 [datasources.default]
-url = 'jdbc:mysql://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/${DATASOURCE_DB:conecta}'
-username = '${DATASOURCE_USERNAME:}'
-password = '${DATASOURCE_PASSWORD:}'
+url = 'jdbc:mysql://localhost:3306/conecta_db'
+username = 'root'
+password = 'root'
 driver-class-name = 'com.mysql.cj.jdbc.Driver'
 dialect = 'MYSQL'
 
@@ -31,15 +31,9 @@ build-self-signed = true
 application.name = 'backend'
 #server.ssl.enabled = 'true'
 
-#[datasources.default]
-#driver-class-name = 'com.mysql.cj.jdbc.Driver'
-#db-type = 'mysql'
-#dialect = 'MYSQL'
 
 [acme]
 enabled = false
-#enabled = 'true'
-#tos-agree = 'true'
 
 [micronaut.security]
 enabled = true

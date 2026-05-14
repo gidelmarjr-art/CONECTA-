@@ -1,26 +1,33 @@
 package com.conecta.controller;
 
+import org.mindrot.jbcrypt.BCrypt;
+
+import java.util.List;
+import java.util.Arrays;
+
 import com.conecta.entities.Databaseconnection;
 import com.conecta.repositories.UserRepository;
+import com.conecta.service.IAuthService;
 import com.conecta.service.SessionService;
 import com.conecta.util.AesEncryptor;
-import io.micronaut.http.annotation.Put;
-import io.micronaut.http.annotation.Delete;
-import io.micronaut.http.HttpStatus;
-import io.micronaut.http.annotation.Status;
-import org.mindrot.jbcrypt.BCrypt;
-import com.conecta.service.IAuthService;
+
 import io.micronaut.http.HttpResponse;
+import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MutableHttpResponse;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.CookieValue;
+import io.micronaut.http.annotation.Delete;
 import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.Put;
+import io.micronaut.http.annotation.Status;
 import io.micronaut.http.cookie.Cookie;
-import io.micronaut.serde.annotation.Serdeable;
 import io.micronaut.http.cookie.SameSite;
+import io.micronaut.scheduling.TaskExecutors;
+import io.micronaut.scheduling.annotation.ExecuteOn;
 import io.micronaut.security.annotation.Secured;
 import io.micronaut.security.rules.SecurityRule;
+import io.micronaut.serde.annotation.Serdeable;
 
 @Controller("/auth")
 @Secured(SecurityRule.IS_ANONYMOUS)
@@ -47,6 +54,7 @@ public class UserController {
     }
 
     @Post("/login")
+    @ExecuteOn(TaskExecutors.BLOCKING)
     public MutableHttpResponse<?> login(@Body LoginRequest body) {
         try {
             String[] tokens = authService.login(body.identifier(), body.password());
@@ -174,5 +182,41 @@ public class UserController {
     @Status(HttpStatus.NO_CONTENT)
     public void delete(@Body Databaseconnection user) {
         repository.delete(user);
+    }
+
+    @Post(value = "/register", consumes = "application/json")
+    @ExecuteOn(TaskExecutors.BLOCKING)
+    public MutableHttpResponse<?> Register(@Body Databaseconnection user) {
+        String secret = System.getenv("EAS_SECRET");
+        List<String> Cryptdata;
+        Cryptdata = Arrays.asList(
+            user.getName(), 
+            user.getEmail(), 
+            user.getSUB(), 
+            user.getFamilyname(), 
+            user.getCPF()
+        );
+        List<String> EncryptedData = AesEncryptor.encryptList(Cryptdata, secret);
+        user.setName(EncryptedData.get(0));
+        user.setEmail(EncryptedData.get(1));
+        user.setSUB(EncryptedData.get(2));
+        user.setFamilyname(EncryptedData.get(3));
+        user.setCPF(EncryptedData.get(4));
+        repository.save(user);
+        String sessionToken = sessionService.createSessionToken(user.getEmail());
+        String refreshToken = sessionService.createRefreshToken(user.getEmail());
+        user.setRtoken(refreshToken);
+        Cookie sessionCookie = Cookie.of("session_token", sessionToken)
+            .httpOnly(true)
+            .secure(true)
+            .sameSite(SameSite.Strict)
+            .maxAge(43200);
+        Cookie refreshCookie = Cookie.of("refresh_token", refreshToken)
+            .httpOnly(true)
+            .secure(true)
+            .sameSite(SameSite.Strict)
+            .maxAge(604800);
+
+        return HttpResponse.created(user).cookie(sessionCookie).cookie(refreshCookie);
     }
 }
