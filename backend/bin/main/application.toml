@@ -8,8 +8,8 @@ enabled = false
 
 [datasources.default]
 url = 'jdbc:mysql://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/${DATASOURCE_DB:conecta}'
-username = '${DATASOURCE_USERNAME:yamada}'
-password = '${DATASOURCE_PASSWORD:2005}'
+username = '${DATASOURCE_USERNAME:}'
+password = '${DATASOURCE_PASSWORD:}'
 driver-class-name = 'com.mysql.cj.jdbc.Driver'
 dialect = 'MYSQL'
 
