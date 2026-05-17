@@ -1,6 +1,9 @@
 # CONECTA+
 Sobre o Projeto O Conecta+ é uma plataforma digital integrada desenvolvida para aproximar Organizações Não Governamentais (ONGs), voluntários e doadores. O objetivo é transformar a intenção de ajudar em ações práticas, seguras e transparentes, fortalecendo a rede de apoio do terceiro setor.
 
+## 🌐Acompanhe de Perto o Projeto
+**https://conecta-lilac.vercel.app/**
+
 ## 🎯Objetivos Principais
  - **Conectar:** Facilitar o "match" entre as necessidades das ONGs e a disponibilidade de voluntários/doadores.
  - **Transparência:** Garantir a segurança através de verificação de perfis (CPF e dados institucionais).
@@ -25,17 +28,3 @@ Sobre o Projeto O Conecta+ é uma plataforma digital integrada desenvolvida para
 - **Backend**: Desenvolvido em **Java** utilizando o framework **Spring Boot**, que oferece uma estrutura eficiente e escalável para a criação de APIs.
 - **Frontend**: Criado com **REACT.JS** garantindo uma interface de usuário responsiva e fácil de navegar.
 - **Banco de Dados**: Utilização de **MySQL** para o armazenamento de dados e gerenciamento das informações dos usuários, eventos e resultados.
-
-## 📐Fluxograma do Sistema
-**O fluxo de trabalho do sistema baseia-se na seguinte lógica:**
-- **Início:** Cadastro e definição de perfil (Voluntário ou ONG).
-- **Interação:** Busca por causas ou publicação de necessidades.
-- **Ação:** Chat para alinhamento e execução da tarefa/doação.
-- **Conclusão:** Avaliação mútua e emissão de certificado/conquista.
-
-## 📚 Referências Académicas e Técnicas
-**O projeto foi fundamentado em fontes oficiais e estudos sobre o terceiro setor:**
-- **ECONOMATO:** Desafios na gestão de ONGs
-- **SQUIPP:** Dificuldades das ONGs
-- **SCIELO:** Perfil das ONGs no Brasil
-- **ONU:** Objetivos de Desenvolvimento Sustentável
