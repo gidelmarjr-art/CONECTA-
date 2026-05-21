@@ -8,8 +8,6 @@ plugins {
 version = "0.1"
 group = "com.conecta"
 
-
-
 repositories {
     mavenCentral()
 }
@@ -44,8 +42,6 @@ dependencies {
     aotPlugins("io.micronaut.security:micronaut-security-aot")
 }
 
-
-
 application {
     mainClass = "com.conecta.Application"
 }
@@ -54,8 +50,6 @@ java {
     sourceCompatibility = JavaVersion.toVersion("21")
     targetCompatibility = JavaVersion.toVersion("21")
 }
-
-
 
 tasks {
 
@@ -71,10 +65,6 @@ tasks {
 
 graalvmNative.toolchainDetection = false
 
-
-
-
-
 micronaut {
     runtime("netty")
     testRuntime("junit5")
@@ -83,8 +73,6 @@ micronaut {
         annotations("com.conecta.*")
     }
     aot {
-        // Please review carefully the optimizations enabled below
-        // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
         optimizeServiceLoading = false
         convertYamlToJava = false
         precomputeOperations = true
@@ -93,19 +81,16 @@ micronaut {
         deduceEnvironment = true
         optimizeNetty = true
         replaceLogbackXml = true
-        configurationProperties.put("micronaut.security.jwks.enabled","false")
+        configurationProperties.put("micronaut.security.jwks.enabled", "false")
     }
-
 }
-
 
 tasks.named<io.micronaut.gradle.docker.NativeImageDockerfile>("dockerfileNative") {
     jdkVersion = "21"
 }
 
-
-
-
-
-
-
+tasks.withType<JavaCompile>().configureEach {
+    options.compilerArgs.addAll(listOf(
+        "-Amicronaut.openapi.views.spec=swagger-ui.enabled=true,swagger-ui.theme=flattop"
+    ))
+}

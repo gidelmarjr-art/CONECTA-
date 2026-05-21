@@ -2,9 +2,6 @@ package com.conecta.controller;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.util.List;
-import java.util.Arrays;
-
 import com.conecta.entities.Databaseconnection;
 import com.conecta.repositories.UserRepository;
 import com.conecta.service.IAuthService;
@@ -54,6 +51,7 @@ public class UserController {
     }
 
     @Post("/login")
+    @Secured(SecurityRule.IS_ANONYMOUS)
     @ExecuteOn(TaskExecutors.BLOCKING)
     public MutableHttpResponse<?> login(@Body LoginRequest body) {
         try {
@@ -65,6 +63,8 @@ public class UserController {
     }
 
     @Post("/refresh")
+    @ExecuteOn(TaskExecutors.BLOCKING)
+    @Secured(SecurityRule.IS_AUTHENTICATED)
     public MutableHttpResponse<?> refresh(@Body RefreshRequest body) {
         try {
             String[] tokens = authService.refresh(body.refreshToken());
@@ -90,6 +90,8 @@ public class UserController {
     }
 
     @Post("/logout")
+    @ExecuteOn(TaskExecutors.BLOCKING)
+    @Secured(SecurityRule.IS_AUTHENTICATED)
     public MutableHttpResponse<?> logout(
             @CookieValue(value = "session_token", defaultValue = "") String sessionToken,
             @CookieValue(value = "refresh_token", defaultValue = "") String refreshToken) {
@@ -116,7 +118,10 @@ public class UserController {
         return HttpResponse.ok().cookie(expiredSession).cookie(expiredRefresh);
     }
 
-    @Post(value = "/", consumes = "application/json")
+    @Post(value = "/register", consumes = "application/json")
+    @Secured(SecurityRule.IS_ANONYMOUS)
+    @ExecuteOn(TaskExecutors.BLOCKING)
+    @jakarta.transaction.Transactional
     public MutableHttpResponse<?> register(@Body Databaseconnection user) {
         String secret = System.getenv("AES_SECRET");
         if (user.getPassword() != null) {
@@ -160,7 +165,9 @@ public class UserController {
         return HttpResponse.created(user).cookie(sessionCookie).cookie(refreshCookie);
     }
 
-    @Put(value = "/", consumes = "application/json")
+    @Put(value = "/update", consumes = "application/json")
+    @ExecuteOn(TaskExecutors.BLOCKING)
+    @Secured(SecurityRule.IS_AUTHENTICATED)
     public Databaseconnection update(@Body Databaseconnection user) {
         String secret = System.getenv("AES_SECRET");
         if (user.getName() != null) {
@@ -178,45 +185,10 @@ public class UserController {
         return repository.update(user);
     }
 
-    @Delete(value = "/", consumes = "application/json")
+    @Delete(value = "/delete", consumes = "application/json")
     @Status(HttpStatus.NO_CONTENT)
+    @Secured(SecurityRule.IS_AUTHENTICATED)
     public void delete(@Body Databaseconnection user) {
         repository.delete(user);
-    }
-
-    @Post(value = "/register", consumes = "application/json")
-    @ExecuteOn(TaskExecutors.BLOCKING)
-    public MutableHttpResponse<?> Register(@Body Databaseconnection user) {
-        String secret = System.getenv("EAS_SECRET");
-        List<String> Cryptdata;
-        Cryptdata = Arrays.asList(
-            user.getName(), 
-            user.getEmail(), 
-            user.getSUB(), 
-            user.getFamilyname(), 
-            user.getCPF()
-        );
-        List<String> EncryptedData = AesEncryptor.encryptList(Cryptdata, secret);
-        user.setName(EncryptedData.get(0));
-        user.setEmail(EncryptedData.get(1));
-        user.setSUB(EncryptedData.get(2));
-        user.setFamilyname(EncryptedData.get(3));
-        user.setCPF(EncryptedData.get(4));
-        repository.save(user);
-        String sessionToken = sessionService.createSessionToken(user.getEmail());
-        String refreshToken = sessionService.createRefreshToken(user.getEmail());
-        user.setRtoken(refreshToken);
-        Cookie sessionCookie = Cookie.of("session_token", sessionToken)
-            .httpOnly(true)
-            .secure(true)
-            .sameSite(SameSite.Strict)
-            .maxAge(43200);
-        Cookie refreshCookie = Cookie.of("refresh_token", refreshToken)
-            .httpOnly(true)
-            .secure(true)
-            .sameSite(SameSite.Strict)
-            .maxAge(604800);
-
-        return HttpResponse.created(user).cookie(sessionCookie).cookie(refreshCookie);
     }
 }

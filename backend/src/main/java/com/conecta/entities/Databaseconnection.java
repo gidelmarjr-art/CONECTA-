@@ -59,7 +59,6 @@ public class Databaseconnection extends BaseEntity {
 
     @Override
     public String toString() {
-        return "Databaseconnection[id=" + id + ", email=" + email
-            + ", registrationDate=" + getRegistrationDate() + "]";
+        return "Databaseconnection[id=" + id + ", email=" + email + ", registrationDate=" + getRegistrationDate() + "]";
     }
 }

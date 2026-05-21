@@ -1,16 +1,16 @@
 package com.conecta.util;
 
 import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Base64;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class AesEncryptor {
-
     private static final String ALGORITHM = "AES/CBC/PKCS5Padding";
     private static final byte[] FIXED_IV = "conecta-iv-16byt".getBytes();
 
@@ -41,14 +41,54 @@ public class AesEncryptor {
     }
 
     public static List<String> encryptList(List<String> values, String secret) {
-        return values.parallelStream()
-            .map(v -> encrypt(v, secret))
-            .collect(Collectors.toList());
+        List<String> results = Collections.synchronizedList(new ArrayList<>(Collections.nCopies(values.size(), null)));
+        List<Thread> threads = new ArrayList<>();
+        for(int i = 0; i < values.size(); i++){
+            int index = i;
+            String value = values.get(index);
+            Thread thread = new Thread(new Runnable(){
+                @Override
+                public void run(){
+                    String emcrypted = encrypt(value, secret);
+                    results.set(index, emcrypted);
+                }
+            });
+            threads.add(thread);
+            thread.start();
+        }
+        for(Thread t : threads){
+            try{
+                t.join();
+            }catch(InterruptedException e){
+                Thread.currentThread().interrupt();
+            }
+        }
+        return results;
     }
 
     public static List<String> decryptList(List<String> values, String secret) {
-        return values.parallelStream()
-            .map(v -> decrypt(v, secret))
-                .collect(Collectors.toList());
+        List<String> results = Collections.synchronizedList(new ArrayList<>(Collections.nCopies(values.size(), null)));
+        List<Thread> threads = new ArrayList<>();
+        for(int i = 0; i < values.size(); i++){
+            int index = i;
+            String value = values.get(index);
+            Thread thread = new Thread(new Runnable(){
+                @Override
+                public void run(){
+                    String emcrypted = decrypt(value, secret);
+                    results.set(index, emcrypted);
+                }
+            });
+            threads.add(thread);
+            thread.start();
+        }
+        for(Thread t : threads){
+            try{
+                t.join();
+            }catch(InterruptedException e){
+                Thread.currentThread().interrupt();
+            }
+        }
+        return results;
     }
 }
