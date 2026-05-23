@@ -1,6 +1,6 @@
 import React from 'react';
 import  '../../css/Visitantes/RedefinirSenha.css';
-import heroImg from '../../../images/ImgHome.png'; 
+import heroImg from '../../../images/Img3.png'; 
 
 const RedefinirSenha = () => {
   return (

@@ -99,6 +99,8 @@ function App() {
             <Route path="/FAQ" element={<FAQ />} />
             <Route path="/SobreNos" element={<SobreNos />} />
             <Route path="/Feed" element={<Feed />} />
+            <Route path="/RedefinirGmail" element={<RedefinirSenha />} />
+            <Route path="/RedefinirGmail" element={<RedefinirSenha />} />
   
 
             {/* --- ROTAS RESTRITAS: ONG --- */}

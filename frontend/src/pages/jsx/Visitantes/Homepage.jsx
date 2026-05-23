@@ -1,5 +1,4 @@
 import React from 'react';
-// 1. Importações do Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
@@ -9,7 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import '../../css/Visitantes/Homepage.css';
-import heroImg from '../../../images/ImgHome.png'; 
+import heroImg from '../../../images/Img1.png';  
 
 const Homepage = () => {
   // Dados mockados para as ONGs (Substitua por sua API futuramente)
@@ -23,8 +22,6 @@ const Homepage = () => {
 
   return (
     <div className="hp-main-wrapper">
-
-      {/* 1. HERO SECTION */}
       <section className="hp-hero-section">
         <div className="hp-hero-container">
           <div className="hp-hero-content">
@@ -56,12 +53,12 @@ const Homepage = () => {
         </div>
       </section>
 
-      {/* 2. IMPACT PHRASE */}
+
       <section className="hp-impact-phrase">
         <h2>O nosso compromisso <span>com o futuro.</span></h2>
       </section>
 
-      {/* 3. COMMITMENTS SECTION */}
+
       <section className="hp-commitments-section">
         <div className="hp-commitments-grid">
           <div className="hp-commitment-card">
@@ -110,7 +107,7 @@ const Homepage = () => {
         </div>
       </section>
 
-      {/* 4. FEATURED ONGS (CARROSSEL) */}
+
       <section className="hp-featured-ongs">
         <h2>ONGS EM DESTAQUE</h2>
         
@@ -156,7 +153,7 @@ const Homepage = () => {
         </div>
       </section>
 
-      {/* 5. REWARDS SECTION */}
+
       <section className="hp-rewards-section">
         <div className="hp-rewards-container">
           <div className="hp-rewards-content">
