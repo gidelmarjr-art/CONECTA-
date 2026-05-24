@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { 
   LayoutDashboard, User, MessageSquare, Bell, Settings, HelpCircle, ChevronLeft, ChevronRight,
-  Search, Bookmark, Award,
-  Briefcase, Users, HeartHandshake, FileText,
+  Search, Bookmark, Briefcase, Users, HeartHandshake, FileText,
   ShieldCheck, Building2, AlertTriangle, PieChart
 } from 'lucide-react';
 
 import '../css/Sidebar.css'; 
-import ilustracaoImg from '../../images/Img6.png';
 import logoImg from '../../images/identidade/logo.png'; 
+import ilustracaoImg from '../../images/Img6.png'; // Ilustração de volta!
 
 const Sidebar = ({ tipoUsuario = 'VOLUNTARIO' }) => {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -58,15 +57,20 @@ const Sidebar = ({ tipoUsuario = 'VOLUNTARIO' }) => {
 
   return (
     <aside className={`sidebar-container ${isExpanded ? 'expandida' : 'recolhida'}`}>
+      
+      {/* BOTÃO TOGGLE - Fora de caixas para flutuar centralizado na borda */}
+      <button className="btn-toggle" onClick={toggleSidebar} aria-label="Recolher menu">
+        {isExpanded ? <ChevronLeft size={14} strokeWidth={2.5} /> : <ChevronRight size={14} strokeWidth={2.5} />}
+      </button>
+
       <div className="sidebar-cabecalho">
         <div className="sidebar-logo">
           <img src={logoImg} alt="Conecta+" className="logo-icone-img" /> 
           {isExpanded && <span className="logo-texto">Conecta+</span>}
         </div>
-        <button className="btn-toggle" onClick={toggleSidebar}>
-          {isExpanded ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
-        </button>
       </div>
+
+      {/* MENU PRINCIPAL */}
       <nav className="sidebar-menu">
         {menuAtual.map((item, index) => {
           const Icone = item.icon;
@@ -85,52 +89,36 @@ const Sidebar = ({ tipoUsuario = 'VOLUNTARIO' }) => {
 
       <hr className="sidebar-divisor" />
 
-      {/* MENU SECUNDÁRIO (COMUM A TODOS) */}
+      {/* MENU SECUNDÁRIO */}
       <nav className="sidebar-menu secundario">
-        <NavLink to="/Perfil" className="menu-item">
+        <NavLink to="/Perfil" className={({ isActive }) => `menu-item ${isActive ? 'ativo' : ''}`}>
           <User size={20} />
           {isExpanded && <span>Meu Perfil</span>}
         </NavLink>
-        <NavLink to="/notificacoes" className="menu-item">
+        <NavLink to="/notificacoes" className={({ isActive }) => `menu-item ${isActive ? 'ativo' : ''}`}>
           <Bell size={20} />
           {isExpanded && <span>Notificações</span>}
         </NavLink>
-        <NavLink to="/configuracoes" className="menu-item">
+        <NavLink to="/configuracoes" className={({ isActive }) => `menu-item ${isActive ? 'ativo' : ''}`}>
           <Settings size={20} />
           {isExpanded && <span>Configurações</span>}
         </NavLink>
         
         {tipoNormalizado !== 'ADMIN' && (
-          <NavLink to="/FAQ" className="menu-item">
+          <NavLink to="/FAQ" className={({ isActive }) => `menu-item ${isActive ? 'ativo' : ''}`}>
             <HelpCircle size={20} />
             {isExpanded && <span>Suporte</span>}
           </NavLink>
         )}
       </nav>
 
-      {/* ÁREA INFERIOR (ILUSTRAÇÃO E PERFIL) */}
+      {/* RODAPÉ COM A ILUSTRAÇÃO (Apenas quando expandido) */}
       <div className="sidebar-rodape">
         {isExpanded && tipoNormalizado !== 'ADMIN' && (
           <div className="sidebar-ilustracao">
-             <img src={ilustracaoImg} alt="Ilustração" className="img-ilustracao" />
+            <img src={ilustracaoImg} alt="Ilustração de Apoio" className="img-ilustracao" />
           </div>
         )}
-        
-        <div className="sidebar-perfil">
-          <div className="perfil-avatar">
-            <User size={20} color="#ffffff" strokeWidth={2} />
-          </div>
-          {isExpanded && (
-            <div className="perfil-info">
-              <span className="perfil-saudacao">Bem-vindo(a) 👋</span>
-              <span className="perfil-nome">
-                {tipoNormalizado === 'ADMIN' ? 'Admin Global' : 
-                 tipoNormalizado === 'ONG' ? 'ONG Esperança' : 'Johnathan'}
-              </span>
-            </div>
-          )}
-          {isExpanded && <ChevronRight size={16} className="perfil-seta" />}
-        </div>
       </div>
     </aside>
   );
