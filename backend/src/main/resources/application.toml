@@ -7,9 +7,9 @@ enabled = false
 enabled = false
 
 [datasources.default]
-url = 'jdbc:mysql://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/${DATASOURCE_DB:CONECTA_DB}'
-username = '${DATASOURCE_USERNAME:yamada}'
-password = '${DATASOURCE_PASSWORD:2005}'
+url = 'jdbc:mysql://localhost:3306/CONECTA_DB'
+username = 'root'
+password = '2005'
 driver-class-name = 'com.mysql.cj.jdbc.Driver'
 dialect = 'MYSQL'
 
@@ -29,7 +29,6 @@ build-self-signed = true
 
 [micronaut]
 application.name = 'backend'
-#server.ssl.enabled = 'true'
 
 
 [acme]
@@ -39,6 +38,13 @@ enabled = false
 enabled = true
 authentication = 'bearer'
 token.jwt.signatures.secret.generator.secret = '${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}'
+reject-if-no-rule = false
+reject-not-found = false
+ip-patterns = []
+
+[[micronaut.security.intercept-url-map]]
+pattern = "/auth/**"
+access = ["isAnonymous()"]
 
 [[micronaut.security.intercept-url-map]]
 pattern = "/swagger/**"

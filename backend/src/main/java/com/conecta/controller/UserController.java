@@ -1,26 +1,30 @@
 package com.conecta.controller;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.conecta.entities.Databaseconnection;
 import com.conecta.repositories.UserRepository;
+import com.conecta.service.IAuthService;
 import com.conecta.service.SessionService;
 import com.conecta.util.AesEncryptor;
-import io.micronaut.http.annotation.Put;
-import io.micronaut.http.annotation.Delete;
-import io.micronaut.http.HttpStatus;
-import io.micronaut.http.annotation.Status;
-import org.mindrot.jbcrypt.BCrypt;
-import com.conecta.service.IAuthService;
+
 import io.micronaut.http.HttpResponse;
+import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MutableHttpResponse;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.CookieValue;
+import io.micronaut.http.annotation.Delete;
 import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.Put;
+import io.micronaut.http.annotation.Status;
 import io.micronaut.http.cookie.Cookie;
-import io.micronaut.serde.annotation.Serdeable;
 import io.micronaut.http.cookie.SameSite;
+import io.micronaut.scheduling.TaskExecutors;
+import io.micronaut.scheduling.annotation.ExecuteOn;
 import io.micronaut.security.annotation.Secured;
 import io.micronaut.security.rules.SecurityRule;
+import io.micronaut.serde.annotation.Serdeable;
 
 @Controller("/auth")
 @Secured(SecurityRule.IS_ANONYMOUS)
@@ -47,6 +51,8 @@ public class UserController {
     }
 
     @Post("/login")
+    @Secured(SecurityRule.IS_ANONYMOUS)
+    @ExecuteOn(TaskExecutors.BLOCKING)
     public MutableHttpResponse<?> login(@Body LoginRequest body) {
         try {
             String[] tokens = authService.login(body.identifier(), body.password());
@@ -57,6 +63,8 @@ public class UserController {
     }
 
     @Post("/refresh")
+    @ExecuteOn(TaskExecutors.BLOCKING)
+    @Secured(SecurityRule.IS_AUTHENTICATED)
     public MutableHttpResponse<?> refresh(@Body RefreshRequest body) {
         try {
             String[] tokens = authService.refresh(body.refreshToken());
@@ -82,6 +90,8 @@ public class UserController {
     }
 
     @Post("/logout")
+    @ExecuteOn(TaskExecutors.BLOCKING)
+    @Secured(SecurityRule.IS_AUTHENTICATED)
     public MutableHttpResponse<?> logout(
             @CookieValue(value = "session_token", defaultValue = "") String sessionToken,
             @CookieValue(value = "refresh_token", defaultValue = "") String refreshToken) {
@@ -108,7 +118,10 @@ public class UserController {
         return HttpResponse.ok().cookie(expiredSession).cookie(expiredRefresh);
     }
 
-    @Post(value = "/", consumes = "application/json")
+    @Post(value = "/register", consumes = "application/json")
+    @Secured(SecurityRule.IS_ANONYMOUS)
+    @ExecuteOn(TaskExecutors.BLOCKING)
+    @jakarta.transaction.Transactional
     public MutableHttpResponse<?> register(@Body Databaseconnection user) {
         String secret = System.getenv("AES_SECRET");
         if (user.getPassword() != null) {
@@ -152,7 +165,9 @@ public class UserController {
         return HttpResponse.created(user).cookie(sessionCookie).cookie(refreshCookie);
     }
 
-    @Put(value = "/", consumes = "application/json")
+    @Put(value = "/update", consumes = "application/json")
+    @ExecuteOn(TaskExecutors.BLOCKING)
+    @Secured(SecurityRule.IS_AUTHENTICATED)
     public Databaseconnection update(@Body Databaseconnection user) {
         String secret = System.getenv("AES_SECRET");
         if (user.getName() != null) {
@@ -170,8 +185,9 @@ public class UserController {
         return repository.update(user);
     }
 
-    @Delete(value = "/", consumes = "application/json")
+    @Delete(value = "/delete", consumes = "application/json")
     @Status(HttpStatus.NO_CONTENT)
+    @Secured(SecurityRule.IS_AUTHENTICATED)
     public void delete(@Body Databaseconnection user) {
         repository.delete(user);
     }

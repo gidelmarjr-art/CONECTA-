@@ -13,8 +13,6 @@ out/
 .settings
 .classpath
 .factorypath
-<<<<<<< HEAD
-=======
-*.hprof
-ChavedeCriptografica.md
->>>>>>> upstream/main
+bin/
+gradle/
+io/

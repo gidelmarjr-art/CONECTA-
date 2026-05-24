@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../css/Visitantes/Login.css';
-import heroImg from '../../../images/ImgHome.png'; 
+import heroImg from '../../../images/Img1.png'; 
 import { FaGoogle, FaApple, FaMicrosoft } from "react-icons/fa";
 
 const Login = () => {
