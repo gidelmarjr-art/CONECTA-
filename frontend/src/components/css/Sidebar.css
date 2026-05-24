@@ -7,13 +7,14 @@
   transition: width 0.3s ease;
   position: sticky;
   top: 0;
-  border-radius: 0 20px 20px 0; /* Arredonda os cantos direitos igual na imagem */
+  border-radius: 0 20px 20px 0; 
   margin-right: 20px;
   z-index: 10;
+  box-sizing: border-box;
 }
 
 .sidebar-container.expandida {
-  width: 250px;
+  width: 260px;
 }
 
 .sidebar-container.recolhida {
@@ -24,35 +25,49 @@
 .sidebar-cabecalho {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  position: relative;
+  padding: 24px 20px; /* Um pouco mais de respiro alinhado com a nova header */
+  min-height: 75px;
 }
 
 .sidebar-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-weight: bold;
   font-size: 18px;
   color: #1b365d;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
+/* =====================================
+   O BOTÃO TOGGLE PERFEITAMENTE NO MEIO DA BORDA
+====================================== */
 .btn-toggle {
   position: absolute;
-  right: -12px;
-  top: 25px;
-  background-color: #fff;
-  border: 1px solid #eee;
+  right: -12px; /* Metade para fora da borda */
+  top: 50%; /* Exatamente no meio vertical da tela */
+  transform: translateY(-50%); 
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  width: 40px; /* Sutilmente maior para melhor clique */
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  color: #555;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.06);
+  color: #64748b;
+  z-index: 15;
+  transition: all 0.2s ease;
+  
+}
+
+.btn-toggle:hover {
+  background-color: #f8fafc;
+  color: #007bff;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
 }
 
 /* Menus */
@@ -75,6 +90,12 @@
   font-weight: 500;
   font-size: 14px;
   transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.menu-item span {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .menu-item:hover {
@@ -82,8 +103,8 @@
 }
 
 .menu-item.ativo {
-  background-color: #dcf2ff; /* Azul clarinho de fundo */
-  color: #007bff; /* Azul forte no texto/ícone */
+  background-color: #dcf2ff; 
+  color: #007bff; 
 }
 
 .sidebar-container.recolhida .menu-item {
@@ -98,69 +119,33 @@
   margin: 15px 20px;
 }
 
-/* Rodapé (Perfil) */
+/* =====================================
+   RODAPÉ E ILUSTRAÇÃO REPOSICIONADA
+====================================== */
 .sidebar-rodape {
   margin-top: auto;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  width: 100%;
 }
 
 .sidebar-ilustracao {
-  text-align: center;
-  font-size: 40px;
-  padding: 20px 0;
-}
-
-.sidebar-perfil {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   width: 100%;
-  border: 1px solid #eee;
-  padding: 10px;
-  border-radius: 12px;
-  cursor: pointer;
-}
-
-.sidebar-container.recolhida .sidebar-perfil {
-  justify-content: center;
-  border: none;
-  padding: 0;
-}
-
-.perfil-avatar {
-  background-color: #ffc107;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: center;
-  font-size: 18px;
+  padding: 10px 0;
+  animation: float 6s ease-in-out infinite; /* Reutilizando o float que criamos na Home */
 }
 
-.perfil-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.perfil-saudacao {
-  font-size: 10px;
-  color: #888;
-}
-
-.perfil-nome {
-  font-size: 13px;
-  font-weight: bold;
-  color: #333;
-}
-
-.perfil-seta {
-  margin-left: auto;
-  color: #888;
+.img-ilustracao {
+  width: 100%;
+  max-width: 150px; 
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 /* Configuração para a Logo em Imagem */
@@ -168,14 +153,165 @@
   width: 32px;
   height: 32px;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
-/* Configuração para a Imagem de Ilustração */
-.img-ilustracao {
+/* =====================================
+   NOVAS ANIMAÇÕES DA SIDEBAR
+====================================== */
+
+/* Animação suave para a ilustração aparecer ao expandir */
+.sidebar-ilustracao {
   width: 100%;
-  max-width: 160px; /* Evita que fique gigante na sidebar */
-  height: auto;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  
+  /* Aplica o efeito flutuante contínuo */
+  animation: flutuarIlustracao 4s ease-in-out infinite; 
+  
+  /* Transição suave ao surgir na tela */
+  transition: opacity 0.3s ease;
+}
+
+/* Efeito de flutuar (sobe e desce suavemente) */
+@keyframes flutuarIlustracao {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px); /* Sobe 8 pixels no meio do ciclo */
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Suaviza o sumiço/surgimento do texto do logo */
+.logo-texto {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  opacity: 1;
+}
+
+/* Garante que os ícones do menu não dancem durante a transição de largura */
+.menu-item svg {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+/* Um leve efeito de escala no ícone do menu quando ativo */
+.menu-item.ativo svg {
+  transform: scale(1.1);
+}
+
+
+/* =====================================
+   RESPONSIVIDADE (MEDIA QUERIES)
+====================================== */
+
+/* 1. COMPORTAMENTO PARA TABLETS */
+@media (max-width: 1024px) {
+  /* Força a sidebar a iniciar recolhida em tablets para não esmagar o conteúdo */
+  .sidebar-container {
+    width: 80px;
+  }
+  
+  /* Esconde o texto dos itens e do logo por padrão */
+  .sidebar-container .logo-texto,
+  .sidebar-container .menu-item span,
+  .sidebar-container .sidebar-ilustracao {
+    display: none !important;
+  }
+  
+  .sidebar-container .menu-item {
+    justify-content: center;
+    padding: 12px 0;
+  }
+
+  /* Se o usuário clicar para expandir no tablet, ela cresce flutuando sobre o conteúdo */
+  .sidebar-container.expandida {
+    width: 260px;
+    position: fixed;
+    height: 100vh;
+    box-shadow: 4px 0 25px rgba(0,0,0,0.15);
+  }
+
+  /* Faz os textos reaparecerem quando expandida no tablet */
+  .sidebar-container.expandida .logo-texto,
+  .sidebar-container.expandida .menu-item span,
+  .sidebar-container.expandida .sidebar-ilustracao {
+    display: flex !important;
+  }
+  
+  .sidebar-container.expandida .menu-item {
+    justify-content: flex-start;
+    padding: 12px 15px;
+  }
+}
+
+/* 2. COMPORTAMENTO PARA CELULARES */
+@media (max-width: 768px) {
+  .sidebar-container {
+    /* Transforma a sidebar em uma barra fixa no rodapé do celular */
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100% !important; /* Ocupa a largura toda da tela */
+    height: 65px; /* Altura de barra de aplicativo */
+    flex-direction: row; /* Alinha os itens um ao lado do outro */
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px 20px 0 0; /* Arredonda apenas os cantos de cima */
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    padding: 0 10px;
+    margin-right: 0;
+    z-index: 999;
+  }
+
+  /* Esconde elementos desnecessários na barra inferior do celular */
+  .sidebar-cabecalho,
+  .btn-toggle,
+  .sidebar-divisor,
+  .sidebar-menu.secundario, /* Esconde o menu secundário (Perfil/Configurações já estão na Header!) */
+  .sidebar-rodape {
+    display: none !important;
+  }
+
+  /* Ajusta o container do menu para virar linha */
+  .sidebar-menu {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 0;
+    padding: 0;
+    gap: 0;
+  }
+
+  /* Transforma os itens de menu em botões estilo app de celular */
+  .menu-item {
+    flex-direction: column; /* Ícone em cima, texto sumido ou bem pequeno */
+    gap: 4px;
+    padding: 8px !important;
+    border-radius: 8px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Oculta o texto nos celulares para não amassar a barra; o foco fica nos ícones */
+  .menu-item span {
+    display: none !important;
+  }
+
+  .menu-item svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .menu-item.ativo {
+    background-color: transparent; /* Remove o fundo azul longo no celular */
+    color: #007bff;
+  }
 }

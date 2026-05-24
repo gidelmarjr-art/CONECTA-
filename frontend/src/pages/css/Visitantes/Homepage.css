@@ -1,4 +1,12 @@
 /* =====================================
+   RESET COMPLEMENTAR (Evita quebras de layout)
+====================================== */
+.hp-main-wrapper,
+.hp-main-wrapper * {
+    box-sizing: border-box;
+}
+
+/* =====================================
    ANIMAÇÕES (KEYFRAMES)
 ====================================== */
 @keyframes fadeInUp {
@@ -29,7 +37,7 @@
 .hp-hero-section {
     display: flex;
     justify-content: center;
-    padding: 0; /* Remove o padding para colar nas bordas */
+    padding: 0; 
     animation: fadeInUp 0.8s ease-out; 
 }
 
@@ -39,8 +47,7 @@
     min-height: 550px; 
     border-radius: 0; 
     display: flex;
-    /* Modificado: Aumentamos o valor da esquerda (15%) para empurrar tudo para a direita */
-    padding: 0 5% 0 15%; 
+    padding: 40px 5% 40px 15%; /* Ajustado padding superior/inferior */
     align-items: center;
     position: relative; 
     color: white;
@@ -49,12 +56,12 @@
 }
 
 .hp-hero-content {
-    max-width: 700px; /* Aumentado para acomodar os textos maiores */
+    max-width: 700px; 
     z-index: 2; 
 }
 
 .hp-hero-title {
-    font-size: 110px; /* Tamanho da fonte gigante para impacto */
+    font-size: 110px; 
     font-weight: 900;
     margin: 0;
     letter-spacing: -3px;
@@ -64,8 +71,7 @@
 .hp-hero-subtitle {
     font-size: 28px; 
     font-weight: 700;
-    /* Modificado: Aumentamos o primeiro valor (topo) de 20px para 40px para afastar do título */
-    margin: 40px 0 40px 0; 
+    margin: 40px 0; 
     max-width: 550px;
     line-height: 1.2;
 }
@@ -90,7 +96,7 @@
 }
 
 .hp-feature-box p {
-    font-size: px; /* Letra maior para os textos de apoio */
+    font-size: 16px; /* CORRIGIDO: Estava 'px' sem valor, quebrando o texto */
     line-height: 1.4;
     font-weight: 500;
     margin: 0;
@@ -99,19 +105,21 @@
 
 .hp-hero-btns {
     display: flex;
-    gap: 150px;
+    gap: 20px; /* CORRIGIDO: Reduzido de 150px para 20px para melhor consistência */
+    flex-wrap: wrap;
 }
 
 .hp-btn-white {
     background-color: #ffffff;
     color: #D62828; 
     border: none;
-    padding: 15px 35px; /* Botões maiores e mais chamativos */
+    padding: 15px 35px; 
     border-radius: 30px;
     font-weight: 800;
-    font-size: 18px; /* Fonte do botão maior */
+    font-size: 18px; 
     cursor: pointer;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .hp-btn-white:hover {
@@ -122,8 +130,8 @@
 
 .hp-hero-image {
     position: absolute;
-    right: 5%;   /* Diminuí um pouco para empurrar a imagem mais para o canto da tela */
-    bottom: -100px;   /* Deixa a imagem coladinha na base azul do container */
+    right: -12%;   
+    bottom: -100px; 
     display: flex;
     align-items: flex-end; 
     pointer-events: none;  
@@ -131,7 +139,7 @@
 
 .hp-hero-image img {
     height: auto;   
-    width: 650px; /* Altere este valor para controlar o tamanho. Pode aumentar para 700px, 750px, etc. */
+    width: 650px; 
     object-fit: contain;
     display: block;
 }
@@ -149,6 +157,7 @@
     font-size: 38px;
     font-weight: 800;
     margin: 0;
+    line-height: 1.3;
 }
 
 .hp-impact-phrase h2 span {
@@ -158,7 +167,7 @@
 .hp-commitments-section {
     display: flex;
     justify-content: center;
-    padding-bottom: 80px;
+    padding: 0 20px 80px 20px;
 }
 
 .hp-commitments-grid {
@@ -203,6 +212,7 @@
     justify-content: center;
     font-weight: 800;
     font-size: 18px;
+    flex-shrink: 0;
 }
 
 .hp-card-header h3 {
@@ -232,6 +242,7 @@
     height: auto;
     object-fit: contain;
     transition: transform 0.4s ease;
+    flex-shrink: 0;
 }
 
 .hp-commitment-card:hover img {
@@ -239,11 +250,11 @@
 }
 
 /* =====================================
-   ONGS EM DESTAQUE (AJUSTADO PARA CARROSSEL)
+   ONGS EM DESTAQUE
 ====================================== */
 .hp-featured-ongs {
     background-color: #1D9C49; 
-    padding: 60px 20px 80px 20px; /* Padding bottom maior para as bolinhas de paginação */
+    padding: 60px 20px 80px 20px; 
     text-align: center;
     color: white;
 }
@@ -254,26 +265,23 @@
     margin-bottom: 40px;
 }
 
-/* Container do Swiper em si */
 .hp-carousel-container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 40px; /* Dá espaço para as setas nas laterais no PC */
+    padding: 0 40px; 
     position: relative;
 }
 
-/* O Card Individual (sem float/grid) */
 .hp-ong-card {
     background-color: #ffffff;
     border-radius: 20px;
     padding: 20px;
-    margin: 15px 5px; /* Respiro para a sombra não ser cortada pelo slider */
+    margin: 15px 5px; 
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
     text-align: left;
-    color: #333; /* Força cor do texto já que a seção mãe é branca */
+    color: #333; 
     height: auto;
-    box-sizing: border-box;
 }
 
 .hp-ong-card:hover {
@@ -346,7 +354,6 @@
     letter-spacing: 1px; 
 }
 
-/* Customização de cores das setas e paginação do Swiper */
 .swiper-button-next, .swiper-button-prev {
     color: #ffffff !important;
 }
@@ -441,36 +448,85 @@
 }
 
 /* =====================================
-   MEDIA QUERIES (CORRIGIDO PARA MOBILE)
+   MEDIA QUERIES (CORRIGIDO E OTIMIZADO)
 ====================================== */
 
 @media (max-width: 850px) {
     /* 1. Ajuste Geral da Tela */
     .hp-main-wrapper {
-        width: 100vw;
+        width: 100%;
         overflow-x: hidden;
     }
 
     /* 2. Hero Section */
+    .hp-hero-section {
+        padding: 20px; /* Adicionado respiro nas laterais externas */
+    }
+
     .hp-hero-container {
-        width: 90%;
+        width: 100%;
         height: auto;
-        padding: 30px 20px;
+        padding: 40px 24px; /* CORRIGIDO: Retirado o recuo de 15% da esquerda */
         flex-direction: column;
         text-align: center;
         border-radius: 30px;
         margin: 0 auto;
     }
-    .hp-hero-title { font-size: 45px; }
-    .hp-hero-subtitle { font-size: 16px; margin-bottom: 20px; }
-    .hp-hero-image { display: none; }
-    .hp-hero-grid { flex-direction: column; align-items: center; }
+
+    .hp-hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hp-hero-title { 
+        font-size: 52px; /* Aumentado levemente para melhor legibilidade que 45px */
+        letter-spacing: -1px;
+    }
+
+    .hp-hero-subtitle { 
+        font-size: 18px; 
+        margin: 25px 0; 
+    }
+
+    .hp-hero-image { 
+        display: none; 
+    }
+
+    .hp-hero-grid { 
+        flex-direction: column; 
+        align-items: center; 
+        gap: 20px;
+    }
+
+    .hp-feature-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hp-hero-btns {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .hp-btn-white {
+        width: 100%;
+        max-width: 300px; /* Garante que o botão não fique gigante em tablets */
+    }
+
+    /* Frase de Impacto */
+    .hp-impact-phrase h2 {
+        font-size: 28px;
+    }
 
     /* 3. Tópicos (Compromissos) */
     .hp-commitments-grid {
         grid-template-columns: 1fr;
         gap: 20px;
-        padding: 0 20px;
+        padding: 0;
     }
     
     .hp-commitment-card {
@@ -484,48 +540,32 @@
         gap: 15px;
     }
 
-    .hp-card-content p {
-        font-size: 14px;
+    /* 4. ONGs EM DESTAQUE */
+    .hp-featured-ongs h2 {
+        font-size: 26px;
     }
 
-    .hp-card-content img {
-        width: 80px; 
-        height: auto;
-    }
-
-    /* 4. ONGs EM DESTAQUE (Swiper Mobile Adjustments) */
     .hp-carousel-container {
-        padding: 0; /* Remove padding lateral das setas para o card ocupar mais espaço */
+        padding: 0; 
     }
 
     .hp-ong-card {
-        margin: 15px auto; /* Centraliza o card individual */
+        margin: 15px auto; 
         padding: 15px;
     }
 
-    .hp-ong-image-container {
-        height: 180px; 
-    }
-
-    .hp-ong-info h3 {
-        font-size: 18px;
-        white-space: normal;
-    }
-
-    .hp-btn-help {
-        font-size: 14px;
-        padding: 12px;
-    }
-
-    /* Oculta as setas em telas pequenas (usuário usa o dedo para arrastar) */
+    /* Oculta as setas em telas pequenas */
     .swiper-button-next, .swiper-button-prev {
         display: none !important;
     }
 
     /* 5. RECOMPENSAS */
+    .hp-rewards-section {
+        padding: 50px 20px;
+    }
+
     .hp-rewards-container {
         flex-direction: column-reverse; 
-        text-align: center;
         gap: 30px;
     }
 
@@ -535,8 +575,7 @@
     }
 
     .hp-rewards-list li {
-        font-size: 14px;
-        text-align: left;
+        font-size: 15px;
     }
 
     .hp-rewards-image img {
@@ -544,9 +583,20 @@
     }
 }
 
-/* Ajuste para telas MUITO pequenas (iPhone SE, etc) */
-@media (max-width: 380px) {
-    .hp-hero-title { font-size: 35px; }
-    .hp-card-content { flex-direction: column; text-align: center; }
-    .hp-card-content img { width: 100px; margin-top: 10px; }
+/* Ajuste para telas MUITO pequenas (Mobile antigo / Vertical) */
+@media (max-width: 480px) {
+    .hp-hero-title { 
+        font-size: 40px; 
+    }
+    
+    .hp-card-content { 
+        flex-direction: column; 
+        text-align: center; 
+        align-items: center;
+    }
+    
+    .hp-card-content img { 
+        width: 100px; 
+        margin-top: 10px; 
+    }
 }
