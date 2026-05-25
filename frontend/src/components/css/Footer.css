@@ -109,3 +109,66 @@
     color: #ffffff;
     text-decoration: underline;
 }
+
+/* ==========================================================================
+   📱 RESPONSIVIDADE COMPLETA DO FOOTER (max-width: 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .main-footer {
+        padding: 40px 0 25px 0;
+    }
+
+    .footer-container {
+        padding: 0 20px;
+    }
+
+    /* 1. Mantém os blocos na mesma linha, com espaço no meio */
+    .footer-top {
+        display: flex;
+        flex-direction: row; /* Coloca lado a lado novamente */
+        justify-content: space-between; /* Joga um para cada canto */
+        align-items: flex-start; /* Alinha pelo topo */
+        gap: 15px; /* Espaço de segurança para telas muito pequenas */
+    }
+
+    /* Reduz um pouquinho a fonte dos títulos no mobile para garantir que cabem na mesma linha */
+    .footer-title {
+        font-size: 15px; 
+    }
+
+    /* 2. Mantém o bloco de Contato alinhado à direita */
+    .footer-right {
+        align-items: flex-end;
+        text-align: right;
+    }
+
+    /* Links de contato (Email, FAQ) acompanham a direita, mas podem quebrar linha se o email for longo */
+    .footer-contact {
+        justify-content: flex-end;
+        flex-wrap: wrap; 
+        gap: 12px;
+        margin-top: 5px;
+    }
+
+    /* 3. Ajusta a linha divisória */
+    .footer-divider {
+        margin: 30px 0;
+        opacity: 0.5;
+    }
+
+    /* 4. A parte de baixo (Copyright e Políticas) continua empilhada e centralizada */
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .footer-legal {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: -10px;
+    }
+}

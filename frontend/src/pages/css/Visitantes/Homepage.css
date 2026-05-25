@@ -1056,100 +1056,179 @@
 }
 
 
-/* =====================================
-   MEDIA QUERIES - RESPONSIVIDADE
-====================================== */
-
-/* Laptops pequenos e Tablets em modo paisagem */
-@media (max-width: 1024px) {
-    .hp-hero-content {
-        max-width: 60%; /* Impede o texto de encostar na imagem */
-    }
-    .hp-rewards-container {
-        gap: 30px;
-    }
-}
-
-/* Tablets em modo retrato e Celulares grandes */
+/* ==========================================================================
+   RESPONSIVIDADE BLINDADA PARA CELULARES (max-width: 768px)
+   ========================================================================== */
 @media (max-width: 768px) {
-    .hp-hero-section {
-        padding: 20px; 
-    }
-    .hp-hero-container {
-        padding: 40px 24px; 
-        flex-direction: column;
-        text-align: center;
-        border-radius: 30px;
-    }
-    .hp-hero-content {
+    /* Trava global para impedir qualquer vazamento lateral */
+    .hp-main-wrapper {
+        overflow-x: hidden !important;
+        width: 100vw;
         max-width: 100%;
+    }
+
+    /* 1. Hero / Banner Principal */
+    .hp-hero-container {
+        flex-direction: column;
+        padding: 40px 20px; 
+        text-align: center;
+        min-height: auto;
+    }
+    
+    .hp-hero-content {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
     }
-    .hp-hero-image { 
-        display: none; /* Esconde a imagem no mobile para não poluir */
+
+    /* 🔴 AJUSTE 1: Título Maior */
+    .hp-hero-title {
+        font-size: 60px; /* Aumentado para dar mais destaque */
+        letter-spacing: 0px;
+        word-wrap: break-word; 
+        line-height: 1;
     }
-    .hp-hero-grid { 
+
+    .hp-hero-subtitle {
+        font-size: 17px;
+        margin: 15px 0 30px 0;
+    }
+
+    .hp-hero-grid {
+        display: flex;
         flex-direction: column; 
-        align-items: center; 
+        gap: 15px;
+        width: 100%;
+        margin-bottom: 30px;
     }
+
+    /* 🔴 AJUSTE 2: Asteriscos lado a lado com o texto (igual PC) */
     .hp-feature-box {
+        display: flex;
+        flex-direction: row; /* Força ficar um do lado do outro */
+        align-items: flex-start; /* Alinha pelo topo */
+        text-align: left; /* Texto alinhado à esquerda */
+        gap: 12px;
+    }
+
+    .hp-asterisk {
+        font-size: 22px;
+        margin-top: -2px; /* Ajuste fino para alinhar perfeitamente com a primeira linha de texto */
+    }
+
+    .hp-feature-box p {
+        font-size: 14.5px;
+        line-height: 1.4;
+    }
+
+    .hp-hero-btns {
+        display: flex;
         flex-direction: column;
-        align-items: center;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .hp-btn-white {
+        width: 100%; 
+        white-space: normal !important; 
+        padding: 15px 20px;
+        font-size: 15px;
+    }
+
+    /* 🔴 AJUSTE 3: Imagem Maior */
+    .hp-hero-image {
+        position: relative; 
+        right: -50px;
+        bottom: 20px;
+        margin-top: 90px;
+        margin-bottom: -90px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .hp-hero-image img {
+        width: 100%;
+        max-width: 550px; /* Aumentado de 250px para 330px */
+        height: auto;
+    }
+
+    /* 3. Títulos Gerais das Seções */
+    .hp-impact-phrase {
+        padding: 40px 15px;
+    }
+    .hp-impact-phrase h2, .hp-featured-ongs h2 { 
+        font-size: 22px; 
+    }
+
+    /* 4. Compromissos (Cards cinzas) */
+    .hp-commitments-grid {
+        display: flex;
+        flex-direction: column; 
+        gap: 20px;
+        width: 100%;
+    }
+
+    .hp-commitment-card {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .hp-card-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .hp-card-content {
+        flex-direction: column; 
         text-align: center;
     }
-    .hp-hero-btns {
-        width: 100%;
-        justify-content: center;
+
+    .hp-card-content img {
+        margin-top: 15px;
+        width: 80px;
     }
-    
-    /* Compromissos */
-    .hp-commitments-grid {
-        grid-template-columns: 1fr;
-    }
-    .hp-commitment-card {
-        padding: 25px;
-        border-radius: 25px;
-    }
-    
-    /* Carrossel e ONGs */
+
+    /* 5. ONGs (Carrossel Swiper) */
     .hp-carousel-container {
-        padding: 0; 
+        padding: 0;
     }
+
     .swiper-button-next, .swiper-button-prev {
-        display: none !important; /* Remove setas laterais, force o touch/swipe no mobile */
+        display: none !important; 
     }
-    
-    /* Recompensas */
+
+    /* 6. Recompensas (Final da página) */
     .hp-rewards-section {
-        padding: 50px 20px;
+        padding: 40px 15px;
     }
+
     .hp-rewards-container {
         flex-direction: column-reverse; 
+        gap: 30px;
         text-align: center;
     }
-    .hp-rewards-content h2 {
-        text-align: center;
-    }
-    .hp-rewards-list li {
-        text-align: left; /* Mantém a lista alinhada à esquerda para facilitar leitura */
-        display: inline-block; /* Centraliza o bloco da lista */
-    }
-}
-
-/* Celulares pequenos (iPhone SE, etc) */
-@media (max-width: 480px) {
-    .hp-card-content { 
-        flex-direction: column; 
+    
+    .hp-rewards-content h2 { 
+        font-size: 20px; 
         text-align: center; 
-        align-items: center;
     }
-    .hp-card-content img { 
-        width: 100px; 
-        margin-top: 15px; 
+
+    .hp-rewards-list {
+        text-align: left;
     }
-    .hp-btn-white {
-        width: 100%; /* Botão ocupa a tela toda para facilitar o clique */
+
+    .hp-rewards-list li {
+        font-size: 14px;
+        line-height: 1.4;
+        margin-bottom: 15px;
+    }
+
+    .hp-rewards-image img {
+        max-width: 200px;
+        height: auto;
     }
 }

@@ -1,12 +1,10 @@
-
 import React, { useState } from 'react';
-import { Search, Settings, Bell, User, Menu, X } from 'lucide-react'; // <-- Adicionamos Menu e X
+import { Search, Settings, Bell, User, Menu, X } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import logoImg from '../../images/identidade/logo.png'; 
 import '../css/Header.css'; 
 
 const Header = ({ isLoggedIn }) => {
-  // Estado para controlar se o menu mobile está aberto ou fechado
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -24,24 +22,23 @@ const Header = ({ isLoggedIn }) => {
           </NavLink>
         )}
 
-        {/* NAVEGAÇÃO DESKTOP (Some no celular) */}
+        {/* NAVEGAÇÃO DESKTOP */}
         <nav className="header-nav desktop-only">
           <NavLink to="/Feed" className="nav-link nav-feed">FEED</NavLink>
           <NavLink to="/MuralVagas" className="nav-link nav-explorar">EXPLORAR</NavLink>
           <NavLink to="/SobreNos" className="nav-link nav-sobre">SOBRE NÓS</NavLink>
         </nav>
 
-        {/* BUSCA DESKTOP (Some no celular) */}
+        {/* BUSCA DESKTOP */}
         <div className="search-container desktop-only">
           <input type="text" className="search-input" placeholder="Buscar causas..." />
           <Search className="search-icon" size={16} strokeWidth={2} />
         </div>
 
-        {/* AÇÕES DA DIREITA (Perfil, Login, Menu) */}
-        <div className="header-actions">
+        {/* AÇÕES DA DIREITA (Somen no celular) */}
+        <div className="header-actions desktop-only">
           {isLoggedIn ? (
             <div className="header-perfil-logado">
-              {/* Engrenagem e Textos somem no celular para poupar espaço */}
               <button className="btn-icone bg-azul-claro desktop-only">
                 <Settings size={20} className="icone-azul" />
               </button>
@@ -71,15 +68,16 @@ const Header = ({ isLoggedIn }) => {
               </NavLink>
             </div>
           )}
-
-          {/* BOTÃO HAMBURGUER (Aparece só no celular) */}
-          <button className="mobile-menu-btn" onClick={toggleMenu}>
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
         </div>
+
+        {/* BOTÃO HAMBURGUER (Livre e solto para aparecer no celular) */}
+        <button className="mobile-menu-btn" onClick={toggleMenu}>
+          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+
       </div>
 
-      {/* MENU SUSPENSO MOBILE (Abre quando clica no botão hamburguer) */}
+      {/* MENU SUSPENSO MOBILE */}
       {isMobileMenuOpen && (
         <div className="mobile-menu-dropdown">
           <nav className="mobile-nav">
