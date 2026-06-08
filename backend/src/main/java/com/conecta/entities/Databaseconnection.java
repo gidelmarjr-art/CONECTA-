@@ -13,7 +13,7 @@ import lombok.Setter;
 
 @Serdeable
 @Entity
-@Table(name = "User_data")
+@Table(name = "ONG_DATA")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -51,10 +51,12 @@ public class Databaseconnection extends BaseEntity {
     @Column(nullable = true)
     private String password;
 
+    @Column(nullable = false)
+    private String role;
+
     @Override
     public boolean isValid() {
-        return email != null && !email.isBlank()
-            && password != null && !password.isBlank();
+        return email != null && !email.isBlank() && password != null && !password.isBlank();
     }
 
     @Override

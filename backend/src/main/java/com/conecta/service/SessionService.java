@@ -20,8 +20,13 @@ public class SessionService {
     }
 
     public String createSessionToken(String userIdentifier) {
+        return createSessionToken(userIdentifier, "VOLUNTEER");
+    }
+
+    public String createSessionToken(String userIdentifier, String role) {
         String token = UUID.randomUUID().toString();
-        redis.sync().setex(SESSION_PREFIX + token, SESSION_TTL_SECONDS, userIdentifier);
+        String data = userIdentifier + "|" + role;
+        redis.sync().setex(SESSION_PREFIX + token, SESSION_TTL_SECONDS, data);
         return token;
     }
 

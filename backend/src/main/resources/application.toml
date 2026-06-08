@@ -9,7 +9,7 @@ enabled = false
 [datasources.default]
 url = 'jdbc:mysql://localhost:3306/CONECTA_DB'
 username = 'root'
-password = '2005'
+password = 'root'
 driver-class-name = 'com.mysql.cj.jdbc.Driver'
 dialect = 'MYSQL'
 

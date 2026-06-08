@@ -1,0 +1,35 @@
+package com.conecta.DTO;
+
+import io.micronaut.serde.annotation.Serdeable;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDate;
+
+@Serdeable
+@Getter
+@Setter
+public class NGO {
+    private String name;
+    private String fantazyname;
+    private String CNPJ;
+    private String fundationname;
+    private String responsiblename;
+    private String responsablecpf;
+    private String email;
+    private String passwd;
+    private String phone;
+    private String publicSpace;
+    private String addressNumber;
+    private String supplement;
+    private String neighborhood;
+    private String city;
+    private String state;
+    private String zipcode;
+    private String objectives;
+    private LocalDate fundationDate;
+    @Override
+    public String toString(){
+        return getClass().getSimpleName()+"[ngo="+name+", fname="+fantazyname+", CNPJ="+CNPJ+" fundation="+fundationname+", responsiblename="+responsiblename+", responsablecpf="+responsablecpf+", email="+email+", password="+passwd+"]";
+    }
+}

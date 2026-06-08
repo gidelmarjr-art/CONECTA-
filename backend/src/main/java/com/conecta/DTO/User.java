@@ -1,4 +1,4 @@
-package com.conecta.controller;
+package com.conecta.DTO;
 
 import io.micronaut.serde.annotation.Serdeable;
 

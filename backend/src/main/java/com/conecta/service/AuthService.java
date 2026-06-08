@@ -1,6 +1,8 @@
 package com.conecta.service;
 
 import com.conecta.entities.Databaseconnection;
+import com.conecta.entities.NGOData;
+import com.conecta.repositories.NGORepository;
 import com.conecta.repositories.UserRepository;
 import com.conecta.util.AesEncryptor;
 import jakarta.inject.Singleton;
@@ -12,10 +14,12 @@ public class AuthService implements IAuthService {
 
     private final UserRepository userRepository;
     private final SessionService sessionService;
+    private final NGORepository ngoRepository;
 
-    public AuthService(UserRepository userRepository, SessionService sessionService) {
+    public AuthService(UserRepository userRepository, SessionService sessionService, NGORepository ngoRepository) {
         this.userRepository = userRepository;
         this.sessionService = sessionService;
+        this.ngoRepository = ngoRepository;
     }
 
     public String[] login(String identifier, String rawPassword) {
@@ -23,35 +27,45 @@ public class AuthService implements IAuthService {
         String encryptedIdentifier = AesEncryptor.encrypt(identifier, secret);
 
         Optional<Databaseconnection> userOpt = userRepository.findByEmail(encryptedIdentifier);
-        if (userOpt.isEmpty()) {
-            userOpt = userRepository.findByCPF(encryptedIdentifier);
+        if(userOpt.isPresent()){
+            Databaseconnection user = userOpt.get();
+            if(BCrypt.checkpw(rawPassword, user.getPassword())){
+                String role = user.getRole() != null ? user.getRole() : "VOLUNTEER";
+                String session = sessionService.createSessionToken(user.getEmail(), role);
+                String refresh = sessionService.createRefreshToken(user.getEmail());
+                return new String[]{session, refresh, role};
+            }
         }
 
-        Databaseconnection user = userOpt.orElseThrow(() ->
-            new IllegalArgumentException("Credenciais inválidas"));
-
-        if (!BCrypt.checkpw(rawPassword, user.getPassword())) {
-            throw new IllegalArgumentException("Credenciais inválidas");
+        Optional<NGOData> ngoOpt = ngoRepository.findByEmail(identifier);
+        if(ngoOpt.isPresent()){
+            NGOData ngo = ngoOpt.get();
+            if(BCrypt.checkpw(rawPassword, ngo.getPassword())){
+                String session = sessionService.createSessionToken(ngo.getEmail(), "NGO");
+                String refresh = sessionService.createRefreshToken(ngo.getEmail());
+                return new String[]{session, refresh, "NGO"};
+            }
         }
-
-        String sessionToken = sessionService.createSessionToken(user.getEmail());
-        String refreshToken = sessionService.createRefreshToken(user.getEmail());
-
-        user.setRtoken(refreshToken);
-        userRepository.update(user);
-
-        return new String[]{sessionToken, refreshToken};
+        throw new IllegalArgumentException("invalid credentials");
     }
 
+    @Override
     public String[] refresh(String oldRefreshToken) {
         String userIdentifier = sessionService.validateRefreshToken(oldRefreshToken);
         if (userIdentifier == null) {
-            throw new IllegalArgumentException("Refresh token inválido ou expirado");
+            throw new IllegalArgumentException(" refresh token");
         }
 
+        String role = findRoleByIdentifier(userIdentifier);
+
         sessionService.invalidateRefreshToken(oldRefreshToken);
-        String newSession = sessionService.createSessionToken(userIdentifier);
+
+        String newSession = sessionService.createSessionToken(userIdentifier, role);
         String newRefresh = sessionService.createRefreshToken(userIdentifier);
+
+        if ("NGO".equals(role)) {
+            return new String[]{newSession, newRefresh};
+        }
 
         userRepository.findByEmail(userIdentifier).ifPresent(user -> {
             user.setRtoken(newRefresh);
@@ -59,5 +73,21 @@ public class AuthService implements IAuthService {
         });
 
         return new String[]{newSession, newRefresh};
+    }
+
+    private String findRoleByIdentifier(String identifier) {
+        Optional<Databaseconnection> userOpt = userRepository.findByEmail(identifier);
+
+        if (userOpt.isPresent()) {
+            return userOpt.get().getRole();
+        }
+
+        Optional<NGOData> ngoOpt = ngoRepository.findByEmail(identifier);
+
+        if (ngoOpt.isPresent()) {
+            return "NGO";
+        }
+
+        return "UNKNOWN";
     }
 }
