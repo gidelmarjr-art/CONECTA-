@@ -1,14 +1,18 @@
 package com.conecta.entities;
 
+import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDateTime;
 
+@Serdeable
 @Entity
-@Table(name = "Volunter_data")
-@Getter @Setter @NoArgsConstructor
+@Table(name = "volunteer_data")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Vacancy {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

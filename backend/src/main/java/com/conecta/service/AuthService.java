@@ -23,29 +23,36 @@ public class AuthService implements IAuthService {
     }
 
     public String[] login(String identifier, String rawPassword) {
+
+        Optional<NGOData> ngoOpt = ngoRepository.findByEmail(identifier);
+        if (ngoOpt.isPresent()) {
+            NGOData ngo = ngoOpt.get();
+
+            if (BCrypt.checkpw(rawPassword, ngo.getPassword())) {
+                String session = sessionService.createSessionToken(ngo.getEmail(), "NGO");
+                String refresh = sessionService.createRefreshToken(ngo.getEmail());
+
+                return new String[]{session, refresh, "NGO"};
+            }
+
+        }
+
         String secret = System.getenv("AES_SECRET");
         String encryptedIdentifier = AesEncryptor.encrypt(identifier, secret);
-
         Optional<Databaseconnection> userOpt = userRepository.findByEmail(encryptedIdentifier);
-        if(userOpt.isPresent()){
+
+        if (userOpt.isPresent()) {
             Databaseconnection user = userOpt.get();
-            if(BCrypt.checkpw(rawPassword, user.getPassword())){
+
+            if (BCrypt.checkpw(rawPassword, user.getPassword())) {
                 String role = user.getRole() != null ? user.getRole() : "VOLUNTEER";
                 String session = sessionService.createSessionToken(user.getEmail(), role);
                 String refresh = sessionService.createRefreshToken(user.getEmail());
                 return new String[]{session, refresh, role};
             }
+
         }
 
-        Optional<NGOData> ngoOpt = ngoRepository.findByEmail(identifier);
-        if(ngoOpt.isPresent()){
-            NGOData ngo = ngoOpt.get();
-            if(BCrypt.checkpw(rawPassword, ngo.getPassword())){
-                String session = sessionService.createSessionToken(ngo.getEmail(), "NGO");
-                String refresh = sessionService.createRefreshToken(ngo.getEmail());
-                return new String[]{session, refresh, "NGO"};
-            }
-        }
         throw new IllegalArgumentException("invalid credentials");
     }
 

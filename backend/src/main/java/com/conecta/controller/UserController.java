@@ -72,15 +72,15 @@ public class UserController {
 
     //cirando os cookies
     private MutableHttpResponse<?> buildTokenResponse(String sessionToken, String refreshToken, String role) {
-        Cookie sessionCookie = Cookie.of("session_token", sessionToken).httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(43200);
-        Cookie refreshCookie = Cookie.of("refresh_token", refreshToken).httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(604800);
+        Cookie sessionCookie = Cookie.of("session_token", sessionToken).path("/").httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(43200);
+        Cookie refreshCookie = Cookie.of("refresh_token", refreshToken).path("/").httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(604800);
 
         return HttpResponse.ok(Map.of("role", role)).cookie(sessionCookie).cookie(refreshCookie);
     }
 
     private MutableHttpResponse<?> buildTokenResponse(String sessionToken, String refreshToken) {
-        Cookie sessionCookie = Cookie.of("session_token", sessionToken).httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(43200);
-        Cookie refreshCookie = Cookie.of("refresh_token", refreshToken).httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(604800);
+        Cookie sessionCookie = Cookie.of("session_token", sessionToken).path("/").httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(43200);
+        Cookie refreshCookie = Cookie.of("refresh_token", refreshToken).path("/").httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(604800);
 
         return HttpResponse.ok().cookie(sessionCookie).cookie(refreshCookie);
     }
@@ -113,17 +113,9 @@ public class UserController {
             sessionService.invalidateRefreshToken(refreshToken);
         }
 
-        Cookie expiredSession = Cookie.of("session_token", "")
-                .httpOnly(true)
-                .secure(true)
-                .sameSite(SameSite.Strict)
-                .maxAge(0);
+        Cookie expiredSession = Cookie.of("session_token", "").path("/").httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(0);
 
-        Cookie expiredRefresh = Cookie.of("refresh_token", "")
-                .httpOnly(true)
-                .secure(true)
-                .sameSite(SameSite.Strict)
-                .maxAge(0);
+        Cookie expiredRefresh = Cookie.of("refresh_token", "").path("/").httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(0);
 
         return HttpResponse.ok().cookie(expiredSession).cookie(expiredRefresh);
     }
@@ -164,17 +156,9 @@ public class UserController {
         user.setRtoken(refreshToken);
         repository.update(user);
 
-        Cookie sessionCookie = Cookie.of("session_token", sessionToken)
-                .httpOnly(true)
-                .secure(true)
-                .sameSite(SameSite.Strict)
-                .maxAge(43200);
+        Cookie sessionCookie = Cookie.of("session_token", sessionToken).path("/").httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(43200);
 
-        Cookie refreshCookie = Cookie.of("refresh_token", refreshToken)
-                .httpOnly(true)
-                .secure(true)
-                .sameSite(SameSite.Strict)
-                .maxAge(604800);
+        Cookie refreshCookie = Cookie.of("refresh_token", refreshToken).path("/").httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(604800);
 
         return HttpResponse.created(user).cookie(sessionCookie).cookie(refreshCookie);
     }
@@ -248,8 +232,8 @@ public class UserController {
         String sessionToken = sessionService.createSessionToken(ngodata.getEmail(), "NGO");
         String refreshToken = sessionService.createRefreshToken(ngodata.getEmail());
 
-        Cookie sessionCookie = Cookie.of("session_token", sessionToken).httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(43200);
-        Cookie refreshCookie = Cookie.of("refresh_token", refreshToken).httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(604800);
+        Cookie sessionCookie = Cookie.of("session_token", sessionToken).path("/") .httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(43200);
+        Cookie refreshCookie = Cookie.of("refresh_token", refreshToken).path("/") .httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(604800);
 
         return HttpResponse.created(ngodata).cookie(sessionCookie).cookie(refreshCookie);
     }

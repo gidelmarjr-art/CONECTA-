@@ -1,4 +1,8 @@
 jpa.default.properties.hibernate.hbm2ddl.auto = 'none'
+jpa.default.properties.hibernate.globally_quoted_identifiers = true
+
+[micronaut.environment]
+AES_SECRET = "minhaChaveSecreta123456"
 
 [micronaut.test.resources]
 enabled = true
@@ -14,7 +18,7 @@ driver-class-name = 'com.mysql.cj.jdbc.Driver'
 dialect = 'MYSQL'
 
 [redis]
-uri = 'redis://localhost:6379'
+uri = 'redis://root@localhost:6379'
 
 [redis.pool]
 enabled = true
@@ -61,3 +65,18 @@ mapping = '/swagger/**'
 [micronaut.router.static-resources.swagger-ui]
 paths = 'classpath:META-INF/swagger/views/swagger-ui'
 mapping = '/swagger-ui/**'
+
+[micronaut.server.cors]
+enabled = true
+
+[[micronaut.server.cors.allowedOrigins]]
+pattern = "http://localhost:8443"
+
+[micronaut.server.cors.allowedMethods]
+access = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+
+[micronaut.server.cors.allowedHeaders]
+access = ["Content-Type", "Authorization", "Cookie"]
+
+[micronaut.server.cors.allowCredentials]
+enabled = true
