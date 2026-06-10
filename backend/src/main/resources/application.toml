@@ -70,7 +70,7 @@ mapping = '/swagger-ui/**'
 enabled = true
 
 [[micronaut.server.cors.allowedOrigins]]
-pattern = "http://localhost:8443"
+pattern = "https://localhost:8443"
 
 [micronaut.server.cors.allowedMethods]
 access = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
