@@ -1,8 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // 1. Importe o hook de navegação
 import '../../css/Visitantes/RedefinirSenhaGmail.css';
-import heroImg from '../../../images/ImgHome.png'; 
+import heroImg from '../../../images/Img3.png'; 
 
 const RedefinirSenhaGmail = () => {
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();   
+    navigate('/RedefinirGmail');
+  };
+
   return (
     <div className="alt-s-envoltorio">
       <section className="alt-s-secao-principal">
@@ -11,7 +18,8 @@ const RedefinirSenhaGmail = () => {
           <div className="alt-s-bloco-conteudo">
             <h1 className="alt-s-titulo-principal">✱ PARA ALTERAR SUA SENHA VERIFIQUE SEU GMAIL</h1>
 
-            <form className="alt-s-formulario">
+            {/* 5. Adicionado o onSubmit aqui para escutar o botão de submit */}
+            <form className="alt-s-formulario" onSubmit={handleSubmit}>
               <div className="alt-s-grupo-entrada">
                 <label>✱E-mail:</label>
                 <input type="text" className="alt-s-campo-texto" />

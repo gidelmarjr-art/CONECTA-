@@ -88,14 +88,14 @@
 /* Imagem Lateral */
 .alt-s-imagem-destaque {
     position: absolute;
-    right: 20px; 
+    right:150px; 
     bottom: -20px;
     width: 450px; 
     z-index: 1; 
 }
 
 .alt-s-imagem-destaque img {
-    width: 100%; 
+    width: 150%; 
     height: auto; 
     object-fit: contain;
 }

@@ -1,179 +1,387 @@
+/* =====================================
+   SETUP GERAL DO CHAT
+====================================== */
 .cb-wrapper {
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
-    background-color: #f0f2f5;
-    min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: #f8fafc; /* Fundo mais claro e moderno */
+  min-height: calc(100vh - 80px);
+  font-family: 'Inter', sans-serif;
 }
 
 .cb-main-container {
-    display: flex;
-    width: 900px;
-    height: 900x;
-    background: white;
-    border-radius: 30px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  height: 80vh; /* Altura responsiva, se adapta à tela do usuário */
+  min-height: 550px;
+  max-height: 800px;
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08); /* Sombra mais elegante e difusa */
+  border: 1px solid #e2e8f0;
 }
 
-/* Sidebar */
+/* =====================================
+   SIDEBAR (CONTATOS)
+====================================== */
 .cb-sidebar {
-    width: 350px;
-    background-color: #05649E;
-    display: flex;
-    flex-direction: column;
+  width: 340px;
+  background-color: #05649E; /* Azul da marca */
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+
+.cb-sidebar-header {
+  padding: 24px 24px 10px 24px;
+}
+
+.cb-sidebar-header h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .cb-search-bar {
-    padding: 25px;
-    position: relative;
+  padding: 15px 24px;
+  position: relative;
 }
 
 .cb-search-bar input {
-    width: 100%;
-    padding: 12px 15px 12px 40px;
-    border-radius: 15px;
-    border: none;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-    outline: none;
+  width: 100%;
+  padding: 12px 15px 12px 45px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  outline: none;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
-.cb-search-bar input::placeholder { color: #e0e0e0; }
+.cb-search-bar input::placeholder { color: rgba(255, 255, 255, 0.7); }
+.cb-search-bar input:focus {
+  background-color: rgba(255, 255, 255, 0.25);
+}
 
 .cb-search-icon {
-    position: absolute;
-    left: 40px;
-    top: 38px;
-    color: white;
+  position: absolute;
+  left: 38px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.8);
 }
+
+/* Lista de Contatos e Scrollbar */
+.cb-contacts-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+
+/* Scrollbar Customizada (Chrome/Safari) */
+.cb-contacts-list::-webkit-scrollbar { width: 6px; }
+.cb-contacts-list::-webkit-scrollbar-track { background: transparent; }
+.cb-contacts-list::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
 
 .cb-contact-item {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    gap: 15px;
-    cursor: pointer;
-    transition: 0.3s;
-    color: white;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #ffffff;
+  border-left: 4px solid transparent; /* Preparação para a borda ativa */
 }
 
-.cb-contact-item.active { background-color: rgba(255, 255, 255, 0.15); }
+.cb-contact-item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.cb-contact-item.active { 
+  background-color: rgba(255, 255, 255, 0.12); 
+  border-left: 4px solid #ffffff;
+}
 
 .cb-contact-img {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    object-fit: cover;
-    background: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.cb-contact-info h4 { margin: 0; font-size: 14px; font-weight: 800; }
-.cb-contact-info p { margin: 5px 0 0; font-size: 12px; opacity: 0.8; }
+.cb-contact-info {
+  flex: 1;
+  overflow: hidden;
+}
 
-/* Chat Area */
+.cb-contact-info-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.cb-contact-info h4 { 
+  margin: 0; 
+  font-size: 15px; 
+  font-weight: 600; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cb-contact-time {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.cb-contact-info p { 
+  margin: 0; 
+  font-size: 13px; 
+  opacity: 0.7; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =====================================
+   ÁREA DO CHAT
+====================================== */
 .cb-chat-area {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f1f5f9; /* Fundo cinza bem claro para o chat */
 }
 
+/* Header do Chat */
 .cb-chat-header {
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    border-bottom: 1px solid #eee;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  z-index: 10;
+}
+
+.cb-header-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .cb-header-img { 
-    width: 45px; 
-    height: 45px; 
-    border-radius: 50%; 
+  width: 44px; 
+  height: 44px; 
+  border-radius: 50%; 
+  object-fit: cover;
 }
 
 .cb-header-text h3 { 
-    margin: 0; 
-    font-size: 16px; 
-    color: #05649E; 
-}
-.cb-header-text span { 
-    font-size: 12px; 
-    color: #2ecc71; 
-    font-weight: 600; 
+  margin: 0 0 2px 0; 
+  font-size: 16px; 
+  color: #1e293b; 
 }
 
+.cb-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px; 
+  color: #64748b;
+  font-weight: 500;
+}
+
+.cb-status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981; /* Verde esmeralda */
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.cb-header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.cb-icon-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.cb-icon-btn:hover {
+  background-color: #f1f5f9;
+  color: #05649E;
+}
+
+/* =====================================
+   LOG DE MENSAGENS E BOLHAS
+====================================== */
 .cb-messages-log {
-    flex: 1;
-    padding: 25px;
-    overflow-y: auto;
-    background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Scrollbar do Log */
+.cb-messages-log::-webkit-scrollbar { width: 6px; }
+.cb-messages-log::-webkit-scrollbar-track { background: transparent; }
+.cb-messages-log::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+.cb-date-divider {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.cb-date-divider span {
+  background-color: #e2e8f0;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 12px;
+  text-transform: uppercase;
 }
 
 .cb-msg-received, .cb-msg-sent {
-    max-width: 70%;
-    padding: 15px;
-    border-radius: 18px;
-    position: relative;
+  max-width: 65%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  position: relative;
+  font-size: 14px;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.cb-msg-received p, .cb-msg-sent p {
+  margin: 0;
 }
 
 .cb-msg-received {
-    align-self: flex-start;
-    background-color: #E8E8E8;
-    color: #333;
-    border-bottom-left-radius: 2px;
+  align-self: flex-start;
+  background-color: #ffffff;
+  color: #1e293b;
+  /* Retira o arredondamento na ponta de baixo para simular uma bolha de fala */
+  border-bottom-left-radius: 4px; 
 }
 
 .cb-msg-sent {
-    align-self: flex-end;
-    background-color: #05649E;
-    color: white;
-    border-bottom-right-radius: 2px;
+  align-self: flex-end;
+  background-color: #05649E;
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
 }
 
 .cb-time {
-    font-size: 10px;
-    display: block;
-    margin-top: 5px;
-    opacity: 0.7;
-    text-align: right;
+  font-size: 10px;
+  margin-top: 4px;
+  align-self: flex-end; /* Joga a hora para o canto direito da bolha */
 }
 
+.cb-msg-received .cb-time { color: #94a3b8; }
+.cb-msg-sent .cb-time { color: rgba(255, 255, 255, 0.7); }
+
+/* =====================================
+   RODAPÉ (INPUT DE MENSAGEM)
+====================================== */
 .cb-chat-footer {
-    padding: 20px;
-    border-top: 1px solid #eee;
+  padding: 16px 24px;
+  background-color: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
+
+.cb-attach-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  padding: 8px;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.cb-attach-btn:hover { color: #05649E; }
 
 .cb-input-group {
-    display: flex;
-    background-color: #f0f2f5;
-    padding: 10px 20px;
-    border-radius: 30px;
-    align-items: center;
+  flex: 1;
+  background-color: #f1f5f9;
+  border-radius: 24px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.cb-input-group:focus-within {
+  border-color: #cbd5e1;
+  background-color: #ffffff;
 }
 
 .cb-input-group input {
-    flex: 1;
-    border: none;
-    background: transparent;
-    outline: none;
-    padding: 10px;
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 14px 0;
+  font-size: 14px;
+  color: #1e293b;
 }
+
+.cb-input-group input::placeholder { color: #94a3b8; }
 
 .cb-btn-send {
-    background-color: #05649E;
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.2s;
+  background-color: #05649E;
+  color: white;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.cb-btn-send:hover { transform: scale(1.1); }
+.send-icon {
+  margin-left: -2px; /* Pequeno ajuste ótico pro ícone de avião parecer centralizado */
+}
+
+.cb-btn-send:hover { 
+  transform: scale(1.08); 
+  background-color: #044e7a;
+}
+.cb-btn-send:active { transform: scale(0.95); }
