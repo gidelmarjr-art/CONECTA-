@@ -29,6 +29,7 @@ public class AuthService implements IAuthService {
     public String[] login(String identifier, String rawPassword) {
 
         Optional<NGOData> ngoOpt = ngoRepository.findByEmail(identifier);
+
         if (ngoOpt.isPresent()) {
             NGOData ngo = ngoOpt.get();
 
@@ -62,6 +63,7 @@ public class AuthService implements IAuthService {
     @Override
     public String[] refresh(String oldRefreshToken) {
         String userIdentifier = sessionService.validateRefreshToken(oldRefreshToken);
+
         if (userIdentifier == null) {
             throw new IllegalArgumentException(" refresh token");
         }
