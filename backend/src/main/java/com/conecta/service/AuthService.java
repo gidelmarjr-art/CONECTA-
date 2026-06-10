@@ -5,12 +5,16 @@ import com.conecta.entities.NGOData;
 import com.conecta.repositories.NGORepository;
 import com.conecta.repositories.UserRepository;
 import com.conecta.util.AesEncryptor;
+import io.micronaut.context.annotation.Value;
 import jakarta.inject.Singleton;
 import org.mindrot.jbcrypt.BCrypt;
 import java.util.Optional;
 
 @Singleton
 public class AuthService implements IAuthService {
+
+    @Value("${AES_SECRET}")
+    private String secret;
 
     private final UserRepository userRepository;
     private final SessionService sessionService;
@@ -37,7 +41,6 @@ public class AuthService implements IAuthService {
 
         }
 
-        String secret = System.getenv("AES_SECRET");
         String encryptedIdentifier = AesEncryptor.encrypt(identifier, secret);
         Optional<Databaseconnection> userOpt = userRepository.findByEmail(encryptedIdentifier);
 
