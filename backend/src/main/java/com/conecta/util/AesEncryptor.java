@@ -40,7 +40,6 @@ public class AesEncryptor {
         }
     }
 
-<<<<<<< HEAD
     public static List<String> encrypt(List<String> values, String secret) {
             return values.parallelStream()
                 .map(v -> encrypt(v, secret))
@@ -51,58 +50,6 @@ public class AesEncryptor {
         return values.parallelStream() 
                  .map(v -> decrypt(v, secret))
                  .collect(Collectors.toList());
-=======
-    public static List<String> encryptList(List<String> values, String secret) {
-        List<String> results = Collections.synchronizedList(new ArrayList<>(Collections.nCopies(values.size(), null)));
-        List<Thread> threads = new ArrayList<>();
-        for(int i = 0; i < values.size(); i++){
-            int index = i;
-            String value = values.get(index);
-            Thread thread = new Thread(new Runnable(){
-                @Override
-                public void run(){
-                    String emcrypted = encrypt(value, secret);
-                    results.set(index, emcrypted);
-                }
-            });
-            threads.add(thread);
-            thread.start();
-        }
-        for(Thread t : threads){
-            try{
-                t.join();
-            }catch(InterruptedException e){
-                Thread.currentThread().interrupt();
-            }
-        }
-        return results;
-    }
-
-    public static List<String> decryptList(List<String> values, String secret) {
-        List<String> results = Collections.synchronizedList(new ArrayList<>(Collections.nCopies(values.size(), null)));
-        List<Thread> threads = new ArrayList<>();
-        for(int i = 0; i < values.size(); i++){
-            int index = i;
-            String value = values.get(index);
-            Thread thread = new Thread(new Runnable(){
-                @Override
-                public void run(){
-                    String emcrypted = decrypt(value, secret);
-                    results.set(index, emcrypted);
-                }
-            });
-            threads.add(thread);
-            thread.start();
-        }
-        for(Thread t : threads){
-            try{
-                t.join();
-            }catch(InterruptedException e){
-                Thread.currentThread().interrupt();
-            }
-        }
-        return results;
->>>>>>> 85c0ad56532052fe63908773f1f759907667dd12
     }
 
     public static void main(String[] args) {
