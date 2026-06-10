@@ -1,5 +1,6 @@
 package com.conecta.entities;
 
+import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,8 +8,9 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Serdeable
 @Entity
-@Table(name = "ONG_DATA")
+@Table(name = "ong_data")
 @Getter
 @Setter
 @NoArgsConstructor

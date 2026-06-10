@@ -26,7 +26,7 @@ public class AesEncryptor {
             byte[] encryptedbytes = cipher.doFinal(value.getBytes());
             return Base64.getEncoder().encodeToString(encryptedbytes);
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao criptografar", e);
+            throw new RuntimeException("Error when encrypting", e);
         }
     }
 
@@ -36,7 +36,7 @@ public class AesEncryptor {
             cipher.init(Cipher.DECRYPT_MODE, buildKey(secret), new IvParameterSpec(FIXED_IV));
             return new String(cipher.doFinal(Base64.getDecoder().decode(encrypted)), "UTF-8");
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao descriptografar", e);
+            throw new RuntimeException("Error when dencrypting", e);
         }
     }
 

@@ -33,7 +33,13 @@ public class NGOController {
 
     private String getEmailFromSession(String sessionToken) {
         String data = sessionService.validateSessionToken(sessionToken);
-        if (data == null || !data.contains("|")) return null;
+
+        System.out.println("Session data: " + data);
+
+        if (data == null || !data.contains("|")) {
+            return null;
+        }
+
         return data.split("\\|")[0];
     }
 
@@ -42,10 +48,16 @@ public class NGOController {
     @ExecuteOn(TaskExecutors.BLOCKING)
     public MutableHttpResponse<?> getDashboard(@CookieValue("session_token") String sessionToken) {
         String email = getEmailFromSession(sessionToken);
-        if (email == null) return HttpResponse.unauthorized();
+
+        if (email == null) {
+            return HttpResponse.unauthorized();
+        }
 
         NGOData ngo = ngoRepository.findByEmail(email).orElse(null);
-        if (ngo == null) return HttpResponse.notFound();
+
+        if (ngo == null) {
+            return HttpResponse.notFound();
+        }
 
         String cnpj = ngo.getCnpj();
         List<Vacancy> allVacancies = vacancyRepository.findByOngCnpj(cnpj);

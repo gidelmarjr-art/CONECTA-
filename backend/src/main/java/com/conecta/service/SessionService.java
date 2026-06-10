@@ -4,11 +4,13 @@ import io.lettuce.core.api.StatefulRedisConnection;
 import jakarta.inject.Singleton;
 import java.time.Duration;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Singleton
 public class SessionService {
 
-    private final StatefulRedisConnection<String, String> redis;
+    private final ConcurrentHashMap<String, String> sessionStore = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, String> refreshStore = new ConcurrentHashMap<>();
 
     private static final String SESSION_PREFIX = "session:";
     private static final String REFRESH_PREFIX = "refresh:";
@@ -16,7 +18,7 @@ public class SessionService {
     private static final long REFRESH_TTL_SECONDS = Duration.ofDays(7).getSeconds();
 
     public SessionService(StatefulRedisConnection<String, String> redis) {
-        this.redis = redis;
+
     }
 
     public String createSessionToken(String userIdentifier) {
@@ -26,29 +28,29 @@ public class SessionService {
     public String createSessionToken(String userIdentifier, String role) {
         String token = UUID.randomUUID().toString();
         String data = userIdentifier + "|" + role;
-        redis.sync().setex(SESSION_PREFIX + token, SESSION_TTL_SECONDS, data);
+        sessionStore.put(SESSION_PREFIX + token, data);
         return token;
     }
 
     public String createRefreshToken(String userIdentifier) {
         String token = UUID.randomUUID().toString();
-        redis.sync().setex(REFRESH_PREFIX + token, REFRESH_TTL_SECONDS, userIdentifier);
+        refreshStore.put(SESSION_PREFIX + token, userIdentifier);
         return token;
     }
 
     public String validateSessionToken(String token) {
-        return redis.sync().get(SESSION_PREFIX + token);
+        return sessionStore.get(SESSION_PREFIX + token);
     }
 
     public String validateRefreshToken(String token) {
-        return redis.sync().get(REFRESH_PREFIX + token);
+        return refreshStore.get(REFRESH_PREFIX + token);
     }
 
     public void invalidateSession(String token) {
-        redis.sync().del(SESSION_PREFIX + token);
+        sessionStore.remove(SESSION_PREFIX + token);
     }
 
     public void invalidateRefreshToken(String token) {
-        redis.sync().del(REFRESH_PREFIX + token);
+        refreshStore.remove(REFRESH_PREFIX + token);
     }
 }

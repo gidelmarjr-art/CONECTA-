@@ -13,7 +13,7 @@ import lombok.Setter;
 
 @Serdeable
 @Entity
-@Table(name = "ONG_DATA")
+@Table(name = "user_data")
 @Getter
 @Setter
 @NoArgsConstructor

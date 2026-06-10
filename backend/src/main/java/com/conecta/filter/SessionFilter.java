@@ -20,7 +20,9 @@ public class SessionFilter implements HttpServerFilter {
         "POST /auth/",
         "POST /auth/login",
         "POST /auth/refresh",
-        "POST /auth/logout"
+        "POST /auth/logout",
+        "POST /auth/register",
+        "POST /auth/register/ngo"
     );
 
     public SessionFilter(SessionService sessionService) {
