@@ -3,14 +3,13 @@ package com.conecta.DTO;
 import io.micronaut.serde.annotation.Serdeable;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.time.LocalDate;
 
 @Serdeable
 @Getter
 @Setter
-public class NGO {
-    private String name;
+public class NGO extends User { // 3. HERANÇA: NGO agora herda tudo de User
+
     private String fantazyname;
     private String CNPJ;
     private String fundationname;
@@ -28,8 +27,16 @@ public class NGO {
     private String zipcode;
     private String objectives;
     private LocalDate fundationDate;
+
+    // 4. POLIMORFISMO (Sobrescrita): Implementando o método abstrato do pai
+    @Override
+    public String getRole() {
+        return "ROLE_NGO"; // Define dinamicamente o papel da ONG
+    }
+
     @Override
     public String toString(){
-        return getClass().getSimpleName()+"[ngo="+name+", fname="+fantazyname+", CNPJ="+CNPJ+" fundation="+fundationname+", responsiblename="+responsiblename+", responsablecpf="+responsablecpf+", email="+email+", password="+passwd+"]";
+        // mudanças para usar o getName() herdado do pai encapsulado
+        return getClass().getSimpleName()+"[ngo="+ getName() +", fname="+fantazyname+", CNPJ="+CNPJ+" fundation="+fundationname+", responsiblename="+responsiblename+", responsablecpf="+responsablecpf+", email="+email+", password="+passwd+"]";
     }
 }
