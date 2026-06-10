@@ -12,6 +12,7 @@ import com.conecta.service.SessionService;
 import com.conecta.util.AesEncryptor;
 import com.conecta.repositories.NGORepository;
 
+import io.micronaut.context.annotation.Value;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MutableHttpResponse;
@@ -37,6 +38,9 @@ import java.util.Map;
 @Controller("/auth")
 @Secured(SecurityRule.IS_ANONYMOUS)
 public class UserController {
+
+    @Value("${AES_SECRET}")
+    private String secret;
 
     private final UserRepository repository;
     private final SessionService sessionService;
@@ -109,6 +113,7 @@ public class UserController {
         if (!sessionToken.isEmpty()) {
             sessionService.invalidateSession(sessionToken);
         }
+
         if (!refreshToken.isEmpty()) {
             sessionService.invalidateRefreshToken(refreshToken);
         }
@@ -126,28 +131,36 @@ public class UserController {
     @ExecuteOn(TaskExecutors.BLOCKING)
     @jakarta.transaction.Transactional
     public MutableHttpResponse<?> register(@Body Databaseconnection user) {
-        String secret = System.getenv("AES_SECRET");
+        user.setId(null);
+
         if (user.getPassword() != null) {
             user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         }
+
         if (user.getName() != null) {
             user.setName(AesEncryptor.encrypt(user.getName(), secret));
         }
+
         if (user.getEmail() != null) {
             user.setEmail(AesEncryptor.encrypt(user.getEmail(), secret));
         }
+
         if (user.getSUB() != null) {
             user.setSUB(AesEncryptor.encrypt(user.getSUB(), secret));
         }
+
         if (user.getFamilyname() != null) {
             user.setFamilyname(AesEncryptor.encrypt(user.getFamilyname(), secret));
         }
+
         if (user.getCPF() != null) {
             user.setCPF(AesEncryptor.encrypt(user.getCPF(), secret));
         }
+
         if(user.getRole() != null){
             user.setRole(user.getRole());
         }
+
         repository.save(user);
 
         String sessionToken = sessionService.createSessionToken(user.getEmail());
@@ -168,19 +181,23 @@ public class UserController {
     @ExecuteOn(TaskExecutors.BLOCKING)
     @Secured(SecurityRule.IS_AUTHENTICATED)
     public Databaseconnection update(@Body Databaseconnection user) {
-        String secret = System.getenv("AES_SECRET");
+
         if (user.getName() != null) {
             user.setName(AesEncryptor.encrypt(user.getName(), secret));
         }
+
         if (user.getEmail() != null) {
             user.setEmail(AesEncryptor.encrypt(user.getEmail(), secret));
         }
+
         if (user.getSUB() != null) {
             user.setSUB(AesEncryptor.encrypt(user.getSUB(), secret));
         }
+
         if (user.getFamilyname() != null) {
             user.setFamilyname(AesEncryptor.encrypt(user.getFamilyname(), secret));
         }
+
         return repository.update(user);
     }
 
@@ -198,8 +215,6 @@ public class UserController {
     @ExecuteOn(TaskExecutors.BLOCKING)
     @Transactional
     public MutableHttpResponse<?> register_ngo(@Body NGO request){
-        String secret = System.getenv("AES_SECRET");
-        String encriptedEmail = AesEncryptor.encrypt(request.getEmail(), secret);
 
         if (ngoRepository.findById(request.getCNPJ()).isPresent()) {
             return HttpResponse.badRequest("CNPJ already registered");
