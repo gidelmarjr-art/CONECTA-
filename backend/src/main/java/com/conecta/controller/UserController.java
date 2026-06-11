@@ -61,19 +61,6 @@ public class UserController {
     @Serdeable
     record RefreshRequest(String refreshToken) {}
 
-    //rota de login
-    @Post("/login")
-    @Secured(SecurityRule.IS_ANONYMOUS)
-    @ExecuteOn(TaskExecutors.BLOCKING)
-    public MutableHttpResponse<?> login(@Body LoginRequest body) {
-        try {
-            String[] tokens = authService.login(body.identifier(), body.password());
-            return buildTokenResponse(tokens[0], tokens[1], tokens[2]);
-        } catch (IllegalArgumentException e) {
-            return HttpResponse.unauthorized();
-        }
-    }
-
     //cirando os cookies
     private MutableHttpResponse<?> buildTokenResponse(String sessionToken, String refreshToken, String role) {
         Cookie sessionCookie = Cookie.of("session_token", sessionToken).path("/").httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(43200);
@@ -87,6 +74,19 @@ public class UserController {
         Cookie refreshCookie = Cookie.of("refresh_token", refreshToken).path("/").httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(604800);
 
         return HttpResponse.ok().cookie(sessionCookie).cookie(refreshCookie);
+    }
+
+    //rota de login
+    @Post("/login")
+    @Secured(SecurityRule.IS_ANONYMOUS)
+    @ExecuteOn(TaskExecutors.BLOCKING)
+    public MutableHttpResponse<?> login(@Body LoginRequest body) {
+        try {
+            String[] tokens = authService.login(body.identifier(), body.password());
+            return buildTokenResponse(tokens[0], tokens[1], tokens[2]);
+        } catch (IllegalArgumentException e) {
+            return HttpResponse.unauthorized();
+        }
     }
 
     //recarrega o session_token
