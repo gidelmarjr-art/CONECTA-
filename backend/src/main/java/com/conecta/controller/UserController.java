@@ -47,7 +47,7 @@ public class UserController {
     private final IAuthService authService;
     private final NGORepository ngoRepository;
 
-    //controller constructor
+    //sobrecarga
     public UserController(UserRepository repo, SessionService sessionService, IAuthService authService, NGORepository ngoRepository) {
         this.repository = repo;
         this.sessionService = sessionService;
