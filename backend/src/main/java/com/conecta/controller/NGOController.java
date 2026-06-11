@@ -166,7 +166,7 @@ public class NGOController {
     @Get("/donations")
     @ExecuteOn(TaskExecutors.BLOCKING)
     public MutableHttpResponse<?> getDonations(@CookieValue("session_token") String sessionToken) {
-        String email = getEmailFromSession(sessionToken);
+        String email = getEmailFromSession(sessionToken); // Funcionalidade
 
         if (email == null) {
             return HttpResponse.unauthorized();
