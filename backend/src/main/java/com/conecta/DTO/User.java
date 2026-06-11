@@ -4,11 +4,11 @@ import io.micronaut.serde.annotation.Serdeable;
 
 @Serdeable
 public abstract class User {
-    // 1. ENCAPSULAMENTO
+    // ENCAPSULAMENTO
     private String name;
     private String CPF;
 
-    // 2. ABSTRAÇÃO
+    // ABSTRAÇÃO
     public abstract String getRole();
 
     // Getters e Setters públicos
