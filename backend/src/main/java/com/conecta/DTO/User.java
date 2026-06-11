@@ -11,7 +11,7 @@ public abstract class User {
     // 2. ABSTRAÇÃO
     public abstract String getRole();
 
-    // Getters e Setters públicos (Encapsulamento na prática)
+    // Getters e Setters públicos
     public String getName() {
         return name;
     }
