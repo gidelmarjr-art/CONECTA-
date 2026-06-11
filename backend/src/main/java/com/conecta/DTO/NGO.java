@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Serdeable
 @Getter
 @Setter
-public class NGO extends User { // 3. HERANÇA: NGO agora herda tudo de User
+public class NGO extends User { // 3. HERANÇA
 
     private String fantazyname;
     private String CNPJ;
@@ -28,15 +28,14 @@ public class NGO extends User { // 3. HERANÇA: NGO agora herda tudo de User
     private String objectives;
     private LocalDate fundationDate;
 
-    // 4. POLIMORFISMO (Sobrescrita): Implementando o método abstrato do pai
+    // 4. POLIMORFISMO (Sobrescrita)
     @Override
     public String getRole() {
-        return "ROLE_NGO"; // Define dinamicamente o papel da ONG
+        return "ROLE_NGO";
     }
 
     @Override
     public String toString(){
-        // mudanças para usar o getName() herdado do pai encapsulado
         return getClass().getSimpleName()+"[ngo="+ getName() +", fname="+fantazyname+", CNPJ="+CNPJ+" fundation="+fundationname+", responsiblename="+responsiblename+", responsablecpf="+responsablecpf+", email="+email+", password="+passwd+"]";
     }
 }
