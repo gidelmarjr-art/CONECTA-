@@ -11,6 +11,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.util.Optional;
 
 @Singleton
+// Polimorfismo
 public class AuthService implements IAuthService {
 
     @Value("${AES_SECRET}")
