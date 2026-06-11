@@ -28,3 +28,5 @@ Sobre o Projeto O Conecta+ é uma plataforma digital integrada desenvolvida para
 - **Backend**: Desenvolvido em **Java** utilizando o framework **Spring Boot**, que oferece uma estrutura eficiente e escalável para a criação de APIs.
 - **Frontend**: Criado com **REACT.JS** garantindo uma interface de usuário responsiva e fácil de navegar.
 - **Banco de Dados**: Utilização de **MySQL** para o armazenamento de dados e gerenciamento das informações dos usuários, eventos e resultados.
+
+https://docs.google.com/presentation/d/1bVEw3yE5xneTRMtUDWuzbQGz8o0zceKr/edit?usp=sharing&ouid=116053448291466175717&rtpof=true&sd=true
