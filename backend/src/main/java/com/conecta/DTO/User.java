@@ -24,7 +24,6 @@ public abstract class User {
         return CPF;
     }
 
-    // Exemplo extra de validação no Setter para impressionar o professor:
     public void setCPF(String CPF) {
         if (CPF != null && (CPF.length() == 11 || CPF.length() == 14)) { 
             this.CPF = CPF;
