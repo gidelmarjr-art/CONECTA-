@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Serdeable
 @Getter
 @Setter
-public class NGO extends User { // 3. HERANÇA
+public class NGO extends User { // HERANÇA
 
     private String fantazyname;
     private String CNPJ;
@@ -28,7 +28,7 @@ public class NGO extends User { // 3. HERANÇA
     private String objectives;
     private LocalDate fundationDate;
 
-    // 4. POLIMORFISMO (Sobrescrita)
+    // Sobrescrita
     @Override
     public String getRole() {
         return "ROLE_NGO";
