@@ -47,7 +47,6 @@ public class UserController {
     private final IAuthService authService;
     private final NGORepository ngoRepository;
 
-    //sobrecarga
     public UserController(UserRepository repo, SessionService sessionService, IAuthService authService, NGORepository ngoRepository) {
         this.repository = repo;
         this.sessionService = sessionService;
@@ -61,7 +60,7 @@ public class UserController {
     @Serdeable
     record RefreshRequest(String refreshToken) {}
 
-    //cirando os cookies
+    //Sobrecarga
     private MutableHttpResponse<?> buildTokenResponse(String sessionToken, String refreshToken, String role) {
         Cookie sessionCookie = Cookie.of("session_token", sessionToken).path("/").httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(43200);
         Cookie refreshCookie = Cookie.of("refresh_token", refreshToken).path("/").httpOnly(true).secure(true).sameSite(SameSite.Strict).maxAge(604800);
