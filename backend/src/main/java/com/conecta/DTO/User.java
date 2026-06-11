@@ -4,11 +4,11 @@ import io.micronaut.serde.annotation.Serdeable;
 
 @Serdeable
 public abstract class User {
-    // 1. ENCAPSULAMENTO: Atributos privados para proteger os dados
+    // 1. ENCAPSULAMENTO
     private String name;
     private String CPF;
 
-    // 2. ABSTRAÇÃO: Método abstrato que as classes filhas serão obrigadas a implementar
+    // 2. ABSTRAÇÃO
     public abstract String getRole();
 
     // Getters e Setters públicos (Encapsulamento na prática)
