@@ -50,3 +50,37 @@
     padding: 10px 14px;
   }
 }
+
+/* =====================================
+   index.css (Global)
+====================================== */
+
+/* Tema Claro (Padrão) */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #F2F2F2;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --brand-blue: #05649E;
+  --brand-green: #1D9C49;
+  --card-bg: #ffffff;
+}
+
+/* Tema Escuro (Ativado via atributo data-theme) */
+[data-theme='dark'] {
+  --bg-primary: #121212;
+  --bg-secondary: #1E1E1E;
+  --text-primary: #F5F5F5;
+  --text-secondary: #CCCCCC;
+  --brand-blue: #4A90E2; /* Azul um pouco mais claro para dar contraste */
+  --brand-green: #27AE60; 
+  --card-bg: #242424;
+}
+
+/* Aplicando as variáveis no Body para afetar a página toda */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
