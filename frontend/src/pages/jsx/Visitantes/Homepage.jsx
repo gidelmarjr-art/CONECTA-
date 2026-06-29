@@ -2,7 +2,6 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
-// 2. Importações de estilos do Swiper
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -11,7 +10,6 @@ import '../../css/Visitantes/Homepage.css';
 import heroImg from '../../../images/Img1.png';  
 
 const Homepage = () => {
-  // Dados mockados para as ONGs (Substitua por sua API futuramente)
   const ongsDestaque = [
     { id: 1, nome: "ONG Vida Verde", meta: 80 },
     { id: 2, nome: "Educa Mais", meta: 45 },
@@ -53,11 +51,9 @@ const Homepage = () => {
         </div>
       </section>
 
-
       <section className="hp-impact-phrase">
         <h2>O nosso compromisso <span>com o futuro.</span></h2>
       </section>
-
 
       <section className="hp-commitments-section">
         <div className="hp-commitments-grid">
@@ -107,7 +103,6 @@ const Homepage = () => {
         </div>
       </section>
 
-
       <section className="hp-featured-ongs">
         <h2>ONGS EM DESTAQUE</h2>
         
@@ -153,7 +148,6 @@ const Homepage = () => {
         </div>
       </section>
 
-
       <section className="hp-rewards-section">
         <div className="hp-rewards-container">
           <div className="hp-rewards-content">
@@ -175,7 +169,6 @@ const Homepage = () => {
           </div>
         </div>
       </section>
-
     </div>
   );
 };
