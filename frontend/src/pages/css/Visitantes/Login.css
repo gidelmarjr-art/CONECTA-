@@ -1,203 +1,321 @@
-/* Container Principal */
-.pg-log-secao-principal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-    min-height: 100vh;
-    background-color: #fff;
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap');
+
+:root {
+  --color-blue: #05649E;
+  --color-blue-dark: #033b5a;
+  --color-green: #1D9C49;
+  --color-red: #D62828;
+  --color-bg: #F8FAFC;
+  --color-white: #FFFFFF;
+  --font-main: 'Sora', 'Arial', sans-serif;
 }
 
-.pg-log-titulo-principal {
-    font-size: 50px;
-    font-weight: 900;
-    letter-spacing: 0.5px;
-    margin-top: -40px;
-    margin-bottom: 35px;
+/* Wrapper que centraliza tudo na tela */
+.log-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  font-family: var(--font-main);
+  padding: 40px 20px;
 }
 
-/* O Card Azul */
-.pg-log-cartao-central {
-    background: linear-gradient(180deg, #05649E 10%, #033B5A 100%);
-    width: 100%;
-    max-width: 1000px; 
-    min-height: 550px; 
-    border-radius: 80px; 
-    display: flex;
-    position: relative;
-    color: white;
-    padding: 100px 80px;
-    align-items: flex-start; 
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+/* Container do Card Principal */
+.log-container {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  min-height: 600px; 
+  background-color: var(--color-white);
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(5, 100, 158, 0.15);
+  animation: fadeUp 0.6s ease-out forwards;
 }
 
-.pg-log-bloco-conteudo {
-    flex: 1;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    max-width: 450px;
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Formulário e Inputs */
-.pg-log-formulario-entrada {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+/* --- LADO VISUAL (ESQUERDA) --- */
+.log-visual-side {
+  flex: 1;
+  background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-blue-dark) 100%);
+  padding: 60px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Agora o texto fica perfeitamente centralizado verticalmente */
+  position: relative;
+  overflow: hidden;
 }
 
-.pg-log-grupo-entrada label {
-    display: block;
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 5px;
+.log-visual-content {
+  position: relative;
+  z-index: 3;
 }
 
-.pg-log-campo-texto {
-    width: 100%;
-    height: 48px;
-    background: transparent;
-    border: 1px solid white;
-    border-radius: 10px;
-    color: white;
-    padding: 0 15px;
-    font-size: 16px;
-    outline: none;
-    box-sizing: border-box;
+.log-brand {
+  font-weight: 800;
+  font-size: 28px;
+  margin-bottom: 40px;
+  color: #8cc3ff;
 }
 
-/* Botão LOGIN (Ajustado para padrão do cadastro) */
-.pg-log-botao-acessar {
-    width: 100%;
-    height: 52px;
-    background-color: #ffffff; 
-    color: #033b5a;
-    border: none;
-    border-radius: 12px;
-    font-weight: 800;
-    font-size: 18px;
-    margin-top: 30px;
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+.log-visual-side h1 {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
 }
 
-.pg-log-botao-acessar:hover {
-    transform: scale(1.03);
-    background-color: #f8f8f8;
+.log-visual-side p {
+  font-size: 16px;
+  opacity: 0.85;
+  line-height: 1.6;
+  max-width: 350px;
 }
 
-/* Divisor Social (Estilo linha com texto) */
-.pg-log-divisor-social {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 30px 0 20px 0;
-    width: 100%;
+/* Formas decorativas */
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 1;
+}
+.shape-1 { width: 300px; height: 300px; background: var(--color-green); bottom: -100px; left: -100px; opacity: 0.3; }
+.shape-2 { width: 250px; height: 250px; background: var(--color-red); top: -50px; right: -50px; opacity: 0.2; }
+
+
+/* --- LADO FORMULÁRIO (DIREITA) --- */
+.log-form-side {
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.pg-log-divisor-social::before, 
-.pg-log-divisor-social::after {
-    content: "";
-    flex: 1;
-    border-bottom: 2px solid white;
+.log-form-header {
+  margin-bottom: 30px;
 }
 
-.pg-log-divisor-social span {
-    padding: 0 15px;
-    font-size: 14px;
-    font-weight: 600;
-    white-space: nowrap;
+.log-form-header h3 {
+  font-size: 28px;
+  color: var(--color-blue-dark);
+  margin-bottom: 8px;
+  font-weight: 800;
 }
 
-/* Botões Sociais Brancos */
-.pg-log-grade-social {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    gap: 15px;
+.log-form-header p {
+  color: #64748b;
+  font-size: 15px;
 }
 
-.pg-log-btn-social {
-    flex: 1;
-    height: 65px;
-    background-color: white;
-    border: none;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
-    font-size: 30px; 
-    color: #033b5a;
+.log-form-header a {
+  color: var(--color-blue);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
-.pg-log-btn-social:hover {
-    transform: translateY(-5px);
-    background-color: #f0f0f0;
+.log-form-header a:hover {
+  color: var(--color-blue-dark);
+  text-decoration: underline;
 }
 
-/* Imagem Lateral */
-.pg-log-imagem-destaque {
-    position: absolute;
-    right: 0px; 
-    bottom: -50px;
-    display: flex;
-    align-items: flex-end;
-    width: 600px; 
-    z-index: 1; 
+/* Social Buttons */
+.log-social-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
 }
 
-.pg-log-imagem-destaque img {
-    width: 130%; 
-    height: auto; 
-    object-fit: contain;
+.social-btn {
+  flex: 1;
+  height: 52px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  font-size: 22px;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Links e Textos */
-.pg-log-texto-cadastro {
-    margin-top: 40px; 
-    font-size: 15px;
-    font-weight: 500;
-    text-align: center;
+.social-btn.google:hover { color: #DB4437; border-color: #DB4437; background-color: #fff5f5; }
+.social-btn.apple:hover { color: #000; border-color: #000; background-color: #f8f9fa; }
+.social-btn.ms:hover { color: #00A4EF; border-color: #00A4EF; background-color: #f0faff; }
+
+/* Divisor */
+.log-divider {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  color: #94a3b8;
+  font-size: 13px;
 }
 
-.pg-log-texto-cadastro a {
-    color: white; 
-    text-decoration: underline;
-    font-weight: 700;
+.log-divider::before, .log-divider::after { 
+  content: ""; 
+  flex: 1; 
+  border-bottom: 1px solid #e2e8f0; 
 }
 
-/* Esqueci minha senha */
-.pg-log-bloco-recuperar {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 5px;
+.log-divider span { 
+  padding: 0 15px; 
 }
 
-.pg-log-link-esqueci {
-    color: #ffffff; 
-    font-size: 13px;
-    text-decoration: none;
-    font-weight: 500;
+/* Inputs e Formulário */
+.log-main-form { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 22px; 
+}
+
+.log-input-box { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 8px; 
+}
+
+.log-input-box label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.label-icon { 
+  color: var(--color-blue); 
+  font-size: 16px;
+}
+
+.log-input-box input {
+  height: 50px;
+  background-color: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0 16px;
+  font-family: var(--font-main);
+  transition: 0.3s;
+  outline: none;
+  font-size: 15px;
+  color: var(--color-blue-dark);
+}
+
+.log-input-box input::placeholder {
+  color: #94a3b8;
+}
+
+.log-input-box input:focus {
+  border-color: var(--color-blue);
+  background-color: white;
+  box-shadow: 0 0 0 4px rgba(5, 100, 158, 0.1);
+}
+
+/* Senha */
+.log-password-wrapper { 
+  position: relative; 
+  display: flex; 
+  align-items: center; 
+}
+
+.log-password-wrapper input { 
+  width: 100%; 
+  padding-right: 45px; 
+}
+
+.log-password-wrapper button {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  transition: color 0.2s;
+}
+
+.log-password-wrapper button:hover {
+  color: var(--color-blue);
+}
+
+/* Esqueci a Senha */
+.log-forgot-password {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -2px;
+}
+
+.log-forgot-password a {
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.log-forgot-password a:hover {
+  color: var(--color-blue);
+  text-decoration: underline;
+}
+
+/* Botão Submit */
+.log-btn-submit {
+  height: 56px;
+  background-color: var(--color-green);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 800;
+  font-family: var(--font-main);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  box-shadow: 0 10px 15px -3px rgba(29, 156, 73, 0.3);
+}
+
+.log-btn-submit:hover {
+  background-color: #157a3d;
+  transform: translateY(-2px);
+  box-shadow: 0 15px 20px -3px rgba(29, 156, 73, 0.4);
 }
 
 /* Responsividade */
 @media (max-width: 900px) {
-    .pg-log-cartao-central {
-        flex-direction: column;
-        border-radius: 40px;
-        padding: 50px 30px;
-    }
-    .pg-log-bloco-conteudo {
-        max-width: 100%;
-        align-items: center;
-    }
-    .pg-log-imagem-destaque {
-        position: static;
-        margin-top: 30px;
-        width: 100%; 
-    }
+  .log-container { 
+    flex-direction: column; 
+    min-height: auto;
+  }
+  
+  .log-visual-side { 
+    padding: 40px; 
+    align-items: center;
+    text-align: center;
+  }
+
+  .log-visual-side p {
+    margin: 0 auto;
+  }
+
+  .log-form-side { 
+    padding: 40px 30px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .log-form-side { padding: 30px 20px; }
+  .log-visual-side { display: none; } 
 }
