@@ -39,8 +39,8 @@ const Sidebar = ({ tipoUsuario = 'VOLUNTARIO' }) => {
     { path: '/PainelAdmin', icon: PieChart, label: 'Dashboard Global' },
     { path: '/GestaoONGs', icon: Building2, label: 'Gestão de ONGs' },
     { path: '/GestaoVoluntarios', icon: Users, label: 'Voluntários' },
-    { path: '/Moderacao', icon: AlertTriangle, label: 'Moderação e Denúncias' },
-    { path: '/Auditoria', icon: ShieldCheck, label: 'Log de Auditoria' }
+    { path: '/ModeracaoDenuncias', icon: AlertTriangle, label: 'Moderação e Denúncias' },
+    { path: '/LogAuditoria', icon: ShieldCheck, label: 'Log de Auditoria' }
   ];
   
   const obterMenuAtual = () => {

@@ -1,57 +1,107 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../css/Visitantes/Login.css';
-import heroImg from '../../../images/Img1.png'; 
-import { FaGoogle, FaApple, FaMicrosoft } from "react-icons/fa";
+import { 
+  FaGoogle, FaApple, FaMicrosoft, 
+  FaUserCircle, FaLock, FaEye, FaEyeSlash 
+} from "react-icons/fa";
 
 const Login = () => {
+  const [mostrarSenha, setMostrarSenha] = useState(false);
+  const [credenciais, setCredenciais] = useState({
+    identificacao: "",
+    senha: ""
+  });
+
+  const handleChange = (e) => {
+    setCredenciais({
+      ...credenciais,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(!credenciais.identificacao || !credenciais.senha) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+    // Lógica de autenticação aqui
+    alert("Login efetuado com sucesso!");
+  };
+
   return (
-    <div className="pg-log-envoltorio">
-      <section className="pg-log-secao-principal">
-        <div className="pg-log-cartao-central">
+    <div className="log-wrapper">
+      <div className="log-container">
+        
+        {/* LADO ESQUERDO: VISUAL (Sem imagem, texto centralizado) */}
+        <div className="log-visual-side">
+          <div className="log-visual-content">
+            <h2 className="log-brand">Conecta+</h2>
+            <h1>Bem-vindo(a) de volta!</h1>
+            <p>Acesse a sua conta e continue a transformar o mundo com a nossa rede de impacto social.</p>
+          </div>
           
-          <div className="pg-log-bloco-conteudo">
-            <h1 className="pg-log-titulo-principal">✱ BEM-VINDO(A)</h1>
-
-            <form className="pg-log-formulario-entrada">
-              <div className="pg-log-grupo-entrada">
-                <label>✱ CPF/E-mail:</label>
-                <input type="text" className="pg-log-campo-texto" />
-              </div>
-
-              <div className="pg-log-grupo-entrada">
-                <label>✱ Senha:</label>
-                <input type="password" className="pg-log-campo-texto" />
-              </div>
-
-              <div className="pg-log-bloco-recuperar">
-                <a href="/redefinirsenhagmail" className="pg-log-link-esqueci">Esqueci minha senha?</a>
-              </div>
-
-              <button type="submit" className="pg-log-botao-acessar">
-                FAÇA O LOGIN
-              </button>
-            </form>
-
-            <div className="pg-log-divisor-social">
-              <span>Entre com uma conta</span>
-            </div>
-
-            <div className="pg-log-grade-social">
-              <button className="pg-log-btn-social"><FaGoogle /></button>
-              <button className="pg-log-btn-social"><FaApple /></button>
-              <button className="pg-log-btn-social"><FaMicrosoft /></button>
-            </div>
-
-            <p className="pg-log-texto-cadastro">
-              Não tem Conta? <a href="/CadastroUser">Crie aqui</a>
-            </p>
-          </div>
-
-          <div className="pg-log-imagem-destaque">
-            <img src={heroImg} alt="Ilustração Conecta+" />
-          </div>
+          {/* Formas decorativas de fundo */}
+          <div className="shape shape-1"></div>
+          <div className="shape shape-2"></div>
         </div>
-      </section>
+
+        {/* LADO DIREITO: FORMULÁRIO */}
+        <div className="log-form-side">
+          <div className="log-form-header">
+            <h3>Acessar plataforma</h3>
+            <p>Não tem uma conta? <a href="/CadastroUser">Crie aqui</a></p>
+          </div>
+
+          <div className="log-social-buttons">
+            <button type="button" className="social-btn google" title="Entrar com Google"><FaGoogle /></button>
+            <button type="button" className="social-btn apple" title="Entrar com Apple"><FaApple /></button>
+            <button type="button" className="social-btn ms" title="Entrar com Microsoft"><FaMicrosoft /></button>
+          </div>
+
+          <div className="log-divider"><span>ou entre com os seus dados</span></div>
+
+          <form className="log-main-form" onSubmit={handleSubmit}>
+            
+            <div className="log-input-box">
+              <label><FaUserCircle className="label-icon"/> CPF ou E-mail</label>
+              <input 
+                type="text" 
+                name="identificacao" 
+                placeholder="Digite seu e-mail ou CPF" 
+                value={credenciais.identificacao}
+                onChange={handleChange}
+                required 
+              />
+            </div>
+
+            <div className="log-input-box">
+              <label><FaLock className="label-icon"/> Senha</label>
+              <div className="log-password-wrapper">
+                <input 
+                  type={mostrarSenha ? "text" : "password"} 
+                  name="senha" 
+                  placeholder="Digite sua senha" 
+                  value={credenciais.senha}
+                  onChange={handleChange}
+                  required 
+                />
+                <button type="button" onClick={() => setMostrarSenha(!mostrarSenha)} tabIndex="-1">
+                  {mostrarSenha ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+              <div className="log-forgot-password">
+                <a href="/redefinirsenhagmail">Esqueci a minha senha</a>
+              </div>
+            </div>
+
+            <button type="submit" className="log-btn-submit">
+              FAZER LOGIN
+            </button>
+            
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

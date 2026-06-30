@@ -40,6 +40,10 @@ import MinhasInscricoes from './pages/jsx/Voluntarios/MinhasInscricoes';
 import Conquistas from './pages/jsx/Voluntarios/Conquistas';
 
 import PainelAdmin from './pages/jsx/SuperAdmin/PainelAdmin';
+import GestaoOngs from './pages/jsx/SuperAdmin/GestaoOngs';
+import GestaoVoluntarios from './pages/jsx/SuperAdmin/GestaoVoluntarios';
+import ModeracaoDenuncias from './pages/jsx/SuperAdmin/ModeracaoDenuncias';
+import LogAuditoria from './pages/jsx/SuperAdmin/LogAuditoria';
 
 import './App.css';
 
@@ -158,6 +162,32 @@ function App() {
                   <PainelAdmin />
                 </ProtectedRoute>
               } />
+                      
+              <Route path="/GestaoOngs" element={
+                <ProtectedRoute user={tipoUsuario} allowedTypes={['admin']}>
+                  <GestaoOngs />
+                </ProtectedRoute>
+              } />
+                      
+              <Route path="/GestaoVoluntarios" element={
+                <ProtectedRoute user={tipoUsuario} allowedTypes={['admin']}>
+                  <GestaoVoluntarios />
+                </ProtectedRoute>
+              } />
+
+              <Route path="/LogAuditoria" element={
+                <ProtectedRoute user={tipoUsuario} allowedTypes={['admin']}>
+                  <LogAuditoria/>
+                </ProtectedRoute>
+              } />
+
+              
+              <Route path="/ModeracaoDenuncias" element={
+                <ProtectedRoute user={tipoUsuario} allowedTypes={['admin']}>
+                  <ModeracaoDenuncias/>
+                </ProtectedRoute>
+              } />
+
 
               {/* --- ROTAS RESTRITAS: QUALQUER USUÁRIO LOGADO --- */}
               <Route path="/ChatBox" element={

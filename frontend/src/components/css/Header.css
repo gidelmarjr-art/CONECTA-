@@ -515,6 +515,499 @@
     }
 }
 
+/* =====================================
+   POP-UPS CRIATIVOS E MODERNOS
+====================================== */
+.popup-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Efeito Glassmorphism para o Dropdown */
+.modern-glass {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.popup-dropdown {
+    position: absolute;
+    top: 55px;
+    right: -10px;
+    width: 280px;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0,0,0,0.03);
+    z-index: 1005;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Mantém os cantos arredondados */
+}
+
+.popup-notificacoes {
+    width: 320px; /* Notificações precisam de mais espaço horizontal */
+}
+
+/* Seta apontando para o ícone */
+.popup-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: 22px;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    transform: rotate(45deg);
+    border-left: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.popup-header {
+    padding: 16px 20px 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.popup-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup-header h4 {
+    margin: 0;
+    font-size: 15px;
+    color: #1a1a1a;
+    font-weight: 800;
+}
+
+.mark-read-btn {
+    background: none;
+    border: none;
+    color: #0074BD;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.mark-read-btn:hover { opacity: 0.7; }
+
+/* Listas base */
+.popup-list {
+    list-style: none;
+    padding: 8px 10px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Estilo dos itens de Configuração */
+.popup-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.popup-item:hover {
+    background-color: #f8fafc;
+}
+
+.popup-item:active {
+    transform: scale(0.98);
+}
+
+.popup-item span {
+    font-size: 14px;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.popup-item-icon-wrapper {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-danger:hover {
+    background-color: #fff0f0;
+}
+.item-danger span { color: #e53e3e; }
+
+/* Estilo dos itens de Notificação */
+.popup-item-notif {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: relative;
+}
+
+.popup-item-notif:hover { background-color: #f8fafc; }
+.popup-item-notif.unread { background-color: #f0f7ff; }
+
+.notif-icon-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.notif-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-right: 15px;
+}
+
+.notif-content p {
+    margin: 0;
+    font-size: 13px;
+    color: #2d3748;
+    line-height: 1.4;
+}
+
+.notif-content span {
+    font-size: 11px;
+    color: #a0aec0;
+    font-weight: 500;
+}
+
+.notif-dot {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #0074BD;
+    border-radius: 50%;
+}
+
+/* Link para Expandir (Rodapé do Pop-up) */
+.popup-footer-link {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    background-color: #fafbfc;
+    border-top: 1px solid #f0f0f0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0074BD;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.popup-footer-link:hover {
+    background-color: #f0f4f8;
+    color: #00568c;
+}
+
+/* Botão de ícone ativo (Fica escuro quando o popup tá aberto) */
+.active-icon {
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    transform: scale(0.95);
+}
+
+/* Esconder barra de rolagem dos popups */
+.popup-list::-webkit-scrollbar { width: 4px; }
+.popup-list::-webkit-scrollbar-track { background: transparent; }
+.popup-list::-webkit-scrollbar-thumb { background: #cbd5e0; border-radius: 4px; }
+
+/* Melhorias pro mobile menu com framer motion */
+.mobile-menu-dropdown {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    border-top: 1px solid #f0f0f0;
+    z-index: 9999;
+}
+.mobile-settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #edf2f7;
+}
+.mobile-settings {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 12px;
+    transition: background 0.2s;
+}
+.mobile-settings:hover { background: #f8fafc; }
 
 
+/* =====================================
+   POP-UPS CRIATIVOS E MODERNOS
+====================================== */
+.popup-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
 
+/* Efeito Glassmorphism para o Dropdown */
+.modern-glass {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.popup-dropdown {
+    position: absolute;
+    top: 55px;
+    right: -10px;
+    width: 280px;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0,0,0,0.03);
+    z-index: 1005;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Mantém os cantos arredondados */
+}
+
+.popup-notificacoes {
+    width: 320px; /* Notificações precisam de mais espaço horizontal */
+}
+
+/* Seta apontando para o ícone */
+.popup-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: 22px;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    transform: rotate(45deg);
+    border-left: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.popup-header {
+    padding: 16px 20px 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.popup-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup-header h4 {
+    margin: 0;
+    font-size: 15px;
+    color: #1a1a1a;
+    font-weight: 800;
+}
+
+.mark-read-btn {
+    background: none;
+    border: none;
+    color: #0074BD;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.mark-read-btn:hover { opacity: 0.7; }
+
+/* Listas base */
+.popup-list {
+    list-style: none;
+    padding: 8px 10px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Estilo dos itens de Configuração */
+.popup-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.popup-item:hover {
+    background-color: #f8fafc;
+}
+
+.popup-item:active {
+    transform: scale(0.98);
+}
+
+.popup-item span {
+    font-size: 14px;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.popup-item-icon-wrapper {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-danger:hover {
+    background-color: #fff0f0;
+}
+.item-danger span { color: #e53e3e; }
+
+/* Estilo dos itens de Notificação */
+.popup-item-notif {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: relative;
+}
+
+.popup-item-notif:hover { background-color: #f8fafc; }
+.popup-item-notif.unread { background-color: #f0f7ff; }
+
+.notif-icon-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.notif-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-right: 15px;
+}
+
+.notif-content p {
+    margin: 0;
+    font-size: 13px;
+    color: #2d3748;
+    line-height: 1.4;
+}
+
+.notif-content span {
+    font-size: 11px;
+    color: #a0aec0;
+    font-weight: 500;
+}
+
+.notif-dot {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #0074BD;
+    border-radius: 50%;
+}
+
+/* Link para Expandir (Rodapé do Pop-up) */
+.popup-footer-link {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    background-color: #fafbfc;
+    border-top: 1px solid #f0f0f0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0074BD;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.popup-footer-link:hover {
+    background-color: #f0f4f8;
+    color: #00568c;
+}
+
+/* Botão de ícone ativo (Fica escuro quando o popup tá aberto) */
+.active-icon {
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    transform: scale(0.95);
+}
+
+/* Esconder barra de rolagem dos popups */
+.popup-list::-webkit-scrollbar { width: 4px; }
+.popup-list::-webkit-scrollbar-track { background: transparent; }
+.popup-list::-webkit-scrollbar-thumb { background: #cbd5e0; border-radius: 4px; }
+
+/* Melhorias pro mobile menu com framer motion */
+.mobile-menu-dropdown {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    border-top: 1px solid #f0f0f0;
+    z-index: 9999;
+}
+.mobile-settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #edf2f7;
+}
+.mobile-settings {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 12px;
+    transition: background 0.2s;
+}
+.mobile-settings:hover { background: #f8fafc; }

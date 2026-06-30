@@ -1,53 +1,97 @@
-/* Container que fica fixo e pode ser arrastado */
+/* =========================================
+   CONTAINER E ESTRUTURA BÁSICA
+   ========================================= */
 .mascote-wrapper-global {
   position: fixed;
-  bottom: 40px;
-  right: 40px;
+  bottom: 50px;
+  right: 50px;
   z-index: 9999;
   cursor: grab;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Quando você clica e segura, o cursor muda */
-.mascote-wrapper-global:active {
-  cursor: grabbing;
-}
+.mascote-wrapper-global:active { cursor: grabbing; }
 
 /* =========================================
    BALÃO DE FALA
    ========================================= */
+/* =========================================
+   BALÃO DE FALA INTELIGENTE
+   ========================================= */
+
 .balao-fala {
   position: absolute;
-  bottom: 100%;
-  margin-bottom: 20px;
   background: white;
-  color: var(--text-main, #1e293b);
+  color: #1e293b;
   padding: 10px 16px;
   border-radius: 12px;
+  font-weight: 700;
   font-size: 14px;
-  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   white-space: nowrap;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  pointer-events: none; /* Para não atrapalhar o arrasto */
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  animation: aparecerBalaoInteligente 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-/* Setinha do balão apontando para baixo */
-.balao-fala::after {
-  content: '';
-  position: absolute;
-  top: 100%;
+/* 1. Posição Padrão (Por cima) */
+.balao-fala.posicao-topo {
+  --transform-base: translateX(-50%);
+  bottom: calc(100% + 20px);
   left: 50%;
-  transform: translateX(-50%);
-  border-width: 8px;
-  border-style: solid;
-  border-color: white transparent transparent transparent;
+  transform: var(--transform-base);
+}
+.balao-fala.posicao-topo::after {
+  content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%);
+  border-width: 6px 6px 0; border-style: solid; border-color: white transparent transparent transparent;
 }
 
+/* 2. Posição Baixo (Se ele estiver muito em cima) */
+.balao-fala.posicao-baixo {
+  --transform-base: translateX(-50%);
+  top: calc(100% + 20px);
+  left: 50%;
+  transform: var(--transform-base);
+}
+.balao-fala.posicao-baixo::after {
+  content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%);
+  border-width: 0 6px 6px; border-style: solid; border-color: transparent transparent white transparent;
+}
+
+/* 3. Posição Direita (Se ele estiver colado à esquerda) */
+.balao-fala.posicao-direita {
+  --transform-base: translateY(-50%);
+  left: calc(100% + 20px);
+  top: 50%;
+  transform: var(--transform-base);
+}
+.balao-fala.posicao-direita::after {
+  content: ''; position: absolute; left: -6px; top: 50%; transform: translateY(-50%);
+  border-width: 6px 6px 6px 0; border-style: solid; border-color: transparent white transparent transparent;
+}
+
+/* 4. Posição Esquerda (Se ele estiver colado à direita) */
+.balao-fala.posicao-esquerda {
+  --transform-base: translateY(-50%);
+  right: calc(100% + 20px);
+  top: 50%;
+  transform: var(--transform-base);
+}
+.balao-fala.posicao-esquerda::after {
+  content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%);
+  border-width: 6px 0 6px 6px; border-style: solid; border-color: transparent transparent transparent white;
+}
+
+@keyframes aparecerBalaoInteligente {
+  0% { opacity: 0; transform: var(--transform-base) scale(0.5); }
+  100% { opacity: 1; transform: var(--transform-base) scale(1); }
+}
 /* =========================================
-   ESTRUTURA DO MASCOTE (O mesmo de antes)
+   O MASCOTE EM SI
    ========================================= */
 .mascote-conecta {
   display: flex;
@@ -56,252 +100,82 @@
 }
 
 .mascote-corpo {
-  width: 65px;
-  height: 60px;
-  background: var(--conecta-blue, #007fb2);
-  border-radius: 40% 40% 50% 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 10px 25px rgba(0, 127, 178, 0.4), inset -5px -5px 15px rgba(0,0,0,0.15), inset 5px 5px 15px rgba(255,255,255,0.2);
-  animation: mascoteFloat 3s ease-in-out infinite;
-  position: relative;
-}
-
-/* Antena */
-.mascote-corpo::before {
-  content: '';
-  position: absolute;
-  top: -12px;
-  width: 4px;
-  height: 15px;
-  background: var(--conecta-blue, #007fb2);
-  border-radius: 5px;
-}
-.mascote-corpo::after {
-  content: '';
-  position: absolute;
-  top: -16px;
-  width: 10px;
-  height: 10px;
-  background: var(--accent-gold, #f1c40f);
-  border-radius: 50%;
-  box-shadow: 0 0 10px var(--accent-gold, #f1c40f);
-}
-
-.mascote-olho {
-  width: 18px;
-  height: 22px;
-  background: white;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; 
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.mascote-pupila {
-  width: 8px;
-  height: 8px;
-  background: var(--text-main, #1e293b);
-  border-radius: 50%;
-  transition: transform 0.1s ease-out;
-}
-
-.mascote-sombra {
-  width: 40px;
-  height: 8px;
-  background: rgba(0,0,0,0.15);
-  border-radius: 50%;
-  margin-top: 15px;
-  filter: blur(3px);
-  animation: sombraFloat 3s ease-in-out infinite;
-}
-
-/* =========================================
-   ANIMAÇÕES
-   ========================================= */
-@keyframes mascoteFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-@keyframes sombraFloat {
-  0%, 100% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(0.7); opacity: 0.4; }
-}
-
-@keyframes popIn {
-  0% { opacity: 0; transform: scale(0.8) translateY(10px); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-@media (max-width: 768px) {
-  .mascote-wrapper-global {
-    display: none; /* Esconde no mobile para não ocupar espaço na tela de toque */
-  }
-}
-
-/* =========================================
-   EFEITOS DURANTE O ARRASTO (DRAG)
-   ========================================= */
-
-/* O corpo balança e aumenta de tamanho, a sombra fica mais intensa */
-.mascote-wrapper-global.arrastando .mascote-corpo {
-  animation: mascoteBalançando 0.4s ease-in-out infinite alternate;
-  box-shadow: 0 25px 35px rgba(0, 127, 178, 0.6), inset -5px -5px 15px rgba(0,0,0,0.15), inset 5px 5px 15px rgba(255,255,255,0.2);
-}
-
-/* Os olhos ficam um pouco mais "assustados/surpresos" enquanto voam */
-.mascote-wrapper-global.arrastando .mascote-olho {
-  height: 24px;
-}
-
-/* A sombra no chão diminui e fica transparente porque ele foi "levantado" */
-.mascote-wrapper-global.arrastando .mascote-sombra {
-  animation: none; /* Para a animação padrão da sombra */
-  transform: scale(0.3);
-  opacity: 0.1;
-  margin-top: 30px; /* Distancia a sombra para dar sensação de altura */
-  transition: all 0.2s ease;
-}
-
-/* Animação dele balançando pendurado pelo cursor */
-@keyframes mascoteBalançando {
-  0% { transform: scale(1.1) rotate(-8deg); }
-  100% { transform: scale(1.1) rotate(8deg); }
-}
-
-/* =========================================
-   CONTAINER E ESTRUTURA BÁSICA
-   ========================================= */
-.mascote-wrapper-global {
-  position: fixed;
-  bottom: 50px; /* Subi um pouquinho */
-  right: 50px;
-  z-index: 9999;
-  cursor: grab;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* Transição suave para efeitos de clique e soltar */
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.mascote-wrapper-global:active { cursor: grabbing; }
-
-/* =========================================
-   BALÃO DE FALA (Mais fofinho)
-   ========================================= */
-.balao-fala {
-  position: absolute;
-  bottom: 110%;
-  background: white;
-  color: #1e293b;
-  padding: 12px 18px;
-  border-radius: 20px; /* Mais arredondado */
-  border-bottom-left-radius: 2px; /* Pontinha charmosa */
-  font-size: 14px;
-  font-weight: 700; /* Mais negrito */
-  white-space: nowrap;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  animation: popInFala 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  pointer-events: none;
-  border: 2px solid #e2e8f0; /* Bordinha leve */
-}
-
-/* Setinha do balão */
-.balao-fala::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 20px; /* Alinhado com a pontinha torta */
-  border-width: 10px;
-  border-style: solid;
-  border-color: white transparent transparent transparent;
-}
-.balao-fala::before { /* Bordinha da setinha */
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 19px;
-  border-width: 11px;
-  border-style: solid;
-  border-color: #e2e8f0 transparent transparent transparent;
-}
-
-/* =========================================
-   O MASCOTE EM SI
-   ========================================= */
-.mascote-corpo {
-  width: 70px; /* Um tiquinho maior */
-  height: 65px;
-  background: #007fb2; /* var(--conecta-blue) */
+  width: 75px; 
+  height: 70px;
+  background: #05649E; /* Azul escuro principal */
   border-radius: 45% 45% 50% 50%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  box-shadow: 0 10px 25px rgba(0, 127, 178, 0.3), inset -5px -5px 15px rgba(0,0,0,0.1), inset 5px 5px 15px rgba(255,255,255,0.2);
-  /* Animação padrão: flutuar, girar leve e tremer antena */
+  box-shadow: 
+    0 10px 25px rgba(5, 100, 158, 0.4), 
+    inset -8px -8px 20px rgba(0,0,0,0.2), 
+    inset 8px 8px 20px rgba(255,255,255,0.3);
   animation: mascoteIdle 4s ease-in-out infinite;
   position: relative;
-  transform-origin: bottom center; /* Importante para efeito gelatina */
+  transform-origin: bottom center;
+  transition: all 0.3s ease;
 }
 
-/* Antena e Luzinha */
-.mascote-corpo::before { /* Haste */
-  content: '';
+/* Antena Fofa e Dinâmica */
+.mascote-antena-haste {
   position: absolute;
-  top: -14px;
+  top: -16px;
   left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 18px;
-  background: #007fb2;
+  width: 5px;
+  height: 20px;
+  background: #05649E;
   border-radius: 5px;
+  transform-origin: bottom center;
+  transition: transform 0.1s ease-out; /* Segue o mouse via JS */
 }
-.mascote-corpo::after { /* Bolinha */
-  content: '';
+
+.mascote-antena-luz {
   position: absolute;
-  top: -20px;
+  top: -6px;
   left: 50%;
   transform: translateX(-50%);
-  width: 12px;
-  height: 12px;
-  background: #f1c40f; /* var(--accent-gold) */
+  width: 14px;
+  height: 14px;
+  background: #1D9C49; /* Verde do sistema para ligar */
   border-radius: 50%;
-  box-shadow: 0 0 10px #f1c40f;
+  box-shadow: 0 0 10px #1D9C49;
   animation: luzPulsante 2s infinite;
+  transition: all 0.3s ease;
 }
 
 /* Olhos */
+.mascote-olhos-container {
+  display: flex;
+  gap: 10px;
+  margin-top: -5px; /* Sobe um pouco os olhos */
+}
+
 .mascote-olho {
-  width: 20px;
-  height: 24px;
+  width: 22px;
+  height: 26px;
   background: white;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden; 
-  box-shadow: inset 0 3px 5px rgba(0,0,0,0.15);
-  transition: all 0.2s ease; /* Para abrir no drag */
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
   position: relative;
 }
 
-/* Pálpebra para piscar (via classe adicionada no JS) */
 .mascote-olho::after {
   content: '';
   position: absolute;
   top: 0; left: 0; width: 100%; height: 0%;
-  background: #007fb2;
-  transition: height 0.1s ease-in-out;
+  background: #05649E;
+  transition: height 0.12s ease-in-out;
   border-radius: 50% 50% 0 0;
   z-index: 2;
 }
+
 .mascote-olho.piscar::after { height: 100%; }
 
 .mascote-pupila {
@@ -309,12 +183,37 @@
   height: 10px;
   background: #1e293b;
   border-radius: 50%;
-  transition: transform 0.05s linear; /* Pupila mais rápida e direta */
+  transition: transform 0.05s linear; /* Pupila segue rápido o rato */
+}
+
+/* Expressões: Bochechas e Boca */
+.mascote-bochecha {
+  position: absolute;
+  bottom: 22px;
+  width: 12px;
+  height: 6px;
+  background: #FF8A8A;
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(2px);
+  transition: opacity 0.3s ease;
+}
+.mascote-bochecha.esquerda { left: 10px; }
+.mascote-bochecha.direita { right: 10px; }
+
+.mascote-boca {
+  position: absolute;
+  bottom: 18px;
+  width: 10px;
+  height: 4px;
+  border-bottom: 2px solid #022030;
+  border-radius: 0 0 10px 10px;
+  transition: all 0.2s ease;
 }
 
 /* Sombra */
 .mascote-sombra {
-  width: 45px;
+  width: 50px;
   height: 10px;
   background: rgba(0,0,0,0.15);
   border-radius: 50%;
@@ -324,39 +223,79 @@
 }
 
 /* =========================================
-   ANIMAÇÕES DE INTERAÇÃO (Fofura extrema aqui)
+   INTERAÇÕES: HOVER, CLICK E DRAG
    ========================================= */
 
-/* 1. Efeito Gelatina ao Clicar (não arrastar ainda) */
-.mascote-wrapper-global.clicado {
-  transform: scaleX(1.3) scaleY(0.7);
+/* HOVER: Sorriso e Blush */
+.mascote-wrapper-global.hovered .mascote-corpo {
+  transform: scale(1.05);
+  cursor: grab;
+}
+.mascote-wrapper-global.hovered .mascote-bochecha {
+  opacity: 0.8; /* Fica envergonhado/feliz */
+}
+.mascote-wrapper-global.hovered .mascote-boca {
+  width: 14px;
+  height: 8px;
+  border-bottom: 3px solid #022030; /* Sorriso maior */
+}
+.mascote-wrapper-global.hovered .mascote-antena-luz {
+  background: #F1C40F; /* Muda luz pra amarelo feliz */
+  box-shadow: 0 0 15px #F1C40F;
 }
 
-/* 2. Efeitos durante o ARRASTO (Pânico Engraçado) */
+/* CÓCEGAS (Clique rápido) */
+.mascote-wrapper-global.clicado .mascote-corpo {
+  transform: scaleX(1.3) scaleY(0.7) translateY(10px);
+  background: #044D7A;
+}
+.mascote-wrapper-global.clicado .mascote-olho {
+  height: 8px; /* Fecha os olhinhos de tanto rir */
+  border-radius: 10px;
+}
+.mascote-wrapper-global.clicado .mascote-boca {
+  width: 20px;
+  height: 12px;
+  border-radius: 0 0 20px 20px;
+  background: #022030; /* Abre a boca rindo */
+}
+
+/* ARRASTANDO (Pânico) */
 .mascote-wrapper-global.arrastando .mascote-corpo {
-  /* Balança frenético e para animação idle */
   animation: mascoteArrastando 0.3s ease-in-out infinite alternate;
-  box-shadow: 0 30px 50px rgba(0, 127, 178, 0.5);
-  background: #006b96; /* Escurece um tiquinho de medo */
+  box-shadow: 0 30px 50px rgba(5, 100, 158, 0.5);
+  background: #033B5A;
 }
 
-/* Olhos arregalados de susto */
 .mascote-wrapper-global.arrastando .mascote-olho {
-  width: 26px; height: 26px; /* Ficam redondos e grandes */
-  box-shadow: inset 0 0 10px rgba(255,0,0,0.1); /* Leve vermelhinho de pânico */
+  width: 28px; height: 28px; /* Arregala os olhos */
+  box-shadow: inset 0 0 15px rgba(214, 40, 40, 0.2); /* Susto avermelhado */
 }
-/* Pupilas pequenas e trêmulas */
+
 .mascote-wrapper-global.arrastando .mascote-pupila {
   width: 6px; height: 6px;
-  animation: pupilaTreca 0.1s infinite;
+  animation: pupilaTreca 0.1s infinite; /* Pupila tremendo de medo */
 }
 
-/* Gotinha de suor engraçada */
+.mascote-wrapper-global.arrastando .mascote-boca {
+  width: 12px; height: 16px;
+  border-radius: 50%;
+  background: #022030;
+  border: none;
+}
+
+.mascote-wrapper-global.arrastando .mascote-antena-luz {
+  background: #D62828; /* Luz vermelha de emergência */
+  box-shadow: 0 0 20px #D62828;
+  animation: luzEmergencia 0.2s infinite;
+}
+
+/* Gotinha de suor no drag */
 .suor-engracado {
   position: absolute;
-  top: -10px;
-  right: -10px;
-  font-size: 20px;
+  top: -15px;
+  right: -15px;
+  font-size: 24px;
   opacity: 0;
   transform: translateY(10px);
   transition: all 0.2s ease;
@@ -370,26 +309,24 @@
 /* Sombra some no drag */
 .mascote-wrapper-global.arrastando .mascote-sombra {
   animation: none;
-  transform: scale(0.1);
-  opacity: 0;
-  margin-top: 40px;
+  transform: scale(0.2);
+  opacity: 0.1;
+  margin-top: 60px; /* Parece estar voando alto */
 }
 
-/* 3. Balanço fofo ao soltar (classe temporária do JS) */
-.mascote-wrapper-global.soltou {
-  animation: balaoSoltou 1s ease-out;
+/* Aterrissagem */
+.mascote-wrapper-global.soltou .mascote-corpo {
+  animation: balaoSoltou 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* =========================================
-   KEYFRAMES (O segredo da alma do bicho)
+   KEYFRAMES 
    ========================================= */
-
-/* Idle padrão: Flutua, rotaciona bem leve e antena dá tremidinha */
 @keyframes mascoteIdle {
-  0%, 100% { transform: translateY(0) rotate(-1deg); }
-  25% { transform: translateY(-8px) rotate(1deg) scaleX(1.02); }
-  50% { transform: translateY(-15px) rotate(-1deg); }
-  75% { transform: translateY(-8px) rotate(1deg) scaleX(0.98); }
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  25% { transform: translateY(-8px) rotate(2deg) scaleX(1.02); }
+  50% { transform: translateY(-12px) rotate(-2deg); }
+  75% { transform: translateY(-8px) rotate(2deg) scaleX(0.98); }
 }
 
 @keyframes sombraIdle {
@@ -398,17 +335,21 @@
 }
 
 @keyframes luzPulsante {
-  0%, 100% { box-shadow: 0 0 10px #f1c40f; transform: translateX(-50%) scale(1); }
-  50% { box-shadow: 0 0 20px #f1c40f, 0 0 30px #f1c40f; transform: translateX(-50%) scale(1.1); }
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
+  50% { transform: translateX(-50%) scale(1.2); opacity: 1; }
+}
+
+@keyframes luzEmergencia {
+  0%, 100% { opacity: 1; transform: translateX(-50%) scale(1.3); }
+  50% { opacity: 0.5; transform: translateX(-50%) scale(0.8); }
 }
 
 @keyframes popInFala {
-  0% { opacity: 0; transform: scale(0.5) translateY(20px); rotate: -10deg; }
-  70% { transform: scale(1.1) translateY(-5px); rotate: 2deg; }
-  100% { opacity: 1; transform: scale(1) translateY(0); rotate: 0deg; }
+  0% { opacity: 0; transform: scale(0.5) translateY(20px); }
+  70% { transform: scale(1.05) translateY(-5px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* Animação frenética de arrasto pendurado */
 @keyframes mascoteArrastando {
   0% { transform: scale(1.1) rotate(-10deg) translateY(-5px); }
   100% { transform: scale(1.1) rotate(10deg) translateY(5px); }
@@ -427,18 +368,244 @@
   100% { transform: translateY(20px) rotate(20deg); opacity: 0; }
 }
 
-/* Balanço elástico ao soltar */
 @keyframes balaoSoltou {
   0% { transform: scale(0.8) translateY(20px); }
-  20% { transform: scale(1.2) translateY(-10px); }
-  40% { transform: scale(0.9) translateY(5px); }
-  60% { transform: scale(1.05) translateY(-2px); }
-  80% { transform: scale(0.98) translateY(1px); }
+  30% { transform: scale(1.15) translateY(-10px); }
+  60% { transform: scale(0.9) translateY(5px); }
   100% { transform: scale(1) translateY(0); }
 }
 
-/* Esconder no mobile */
 @media (max-width: 768px) {
   .mascote-wrapper-global { display: none; }
 }
+/* =========================================
+   SOBREAQUECIMENTO (QUASE A EXPLODIR)
+   ========================================= */
 
+.mascote-wrapper-global.sobreaquecendo .mascote-corpo {
+  background: #D62828 !important; /* Fica Vermelho! */
+  animation: tremeliqueViolento 0.05s infinite alternate !important; /* Treme bué */
+  box-shadow: 0 0 40px rgba(214, 40, 40, 0.8), inset 0 0 20px rgba(0,0,0,0.5) !important;
+}
+
+/* Antena fica frenética e amarela */
+.mascote-wrapper-global.sobreaquecendo .mascote-antena-haste {
+  background: #D62828;
+  animation: antenaTremendo 0.1s infinite alternate;
+}
+.mascote-wrapper-global.sobreaquecendo .mascote-antena-luz {
+  background: #F1C40F;
+  box-shadow: 0 0 30px #F1C40F, 0 0 50px #F1C40F;
+  animation: luzEmergenciaRapida 0.1s infinite;
+}
+
+/* Olhos em pânico e boca a gritar */
+.mascote-wrapper-global.sobreaquecendo .mascote-olho {
+  width: 28px; height: 28px;
+  background: #FFD1D1;
+}
+.mascote-wrapper-global.sobreaquecendo .mascote-pupila {
+  width: 5px; height: 5px;
+  animation: pupilaTreca 0.05s infinite;
+}
+.mascote-wrapper-global.sobreaquecendo .mascote-boca {
+  width: 16px; height: 22px;
+  border-radius: 50%;
+  background: #2D0A0A;
+  border: none;
+}
+
+/* =========================================
+   A EXPLOSÃO (KABOOM) E RECUPERAÇÃO
+   ========================================= */
+
+.mascote-wrapper-global.explodido {
+  cursor: default !important;
+}
+
+.explosao-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+}
+
+.nuvem-explosao {
+  font-size: 80px;
+  position: absolute;
+  animation: explodirAnimacao 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  z-index: 10;
+}
+
+.fumaca-morta {
+  font-size: 50px;
+  position: absolute;
+  opacity: 0;
+  animation: fumaçaSubindo 1.5s ease-in forwards;
+  animation-delay: 0.3s;
+}
+
+/* Quando ele está a recuperar do choque */
+.mascote-wrapper-global.tonto .mascote-corpo {
+  background: #334155; /* Fica meio cinzento/queimado */
+  animation: tontoBalançando 3s ease-in-out infinite;
+}
+.mascote-wrapper-global.tonto .mascote-antena-haste {
+  transform: translateX(-50%) rotate(45deg) !important; /* Antena torta/quebrada */
+  background: #334155;
+}
+.mascote-wrapper-global.tonto .mascote-antena-luz {
+  background: #475569;
+  box-shadow: none; /* Luz apagada */
+  animation: none;
+}
+.mascote-wrapper-global.tonto .olho-tonto {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1e293b;
+  font-family: monospace;
+}
+.mascote-wrapper-global.tonto .mascote-boca {
+  width: 12px; height: 4px;
+  border-radius: 0;
+  border-bottom: none;
+  border-top: 2px solid #1e293b; /* Fica triste */
+}
+
+/* =========================================
+   NOVAS KEYFRAMES DE FÍSICA E DESTRUIÇÃO
+   ========================================= */
+
+@keyframes tremeliqueViolento {
+  0% { transform: scale(1.15) translate(-4px, -4px) rotate(-5deg); }
+  50% { transform: scale(1.15) translate(4px, 4px) rotate(5deg); }
+  100% { transform: scale(1.15) translate(-4px, 4px) rotate(-5deg); }
+}
+
+@keyframes antenaTremendo {
+  0% { transform: translateX(-50%) rotate(-30deg); }
+  100% { transform: translateX(-50%) rotate(30deg); }
+}
+
+@keyframes luzEmergenciaRapida {
+  0%, 100% { opacity: 1; transform: translateX(-50%) scale(1.5); }
+  50% { opacity: 0; transform: translateX(-50%) scale(0.5); }
+}
+
+@keyframes explodirAnimacao {
+  0% { transform: scale(0.1); opacity: 1; filter: brightness(3); }
+  60% { transform: scale(1.5); opacity: 1; filter: brightness(1); }
+  100% { transform: scale(1.8); opacity: 0; filter: blur(5px); }
+}
+
+@keyframes fumaçaSubindo {
+  0% { opacity: 0; transform: translateY(0) scale(0.5); }
+  20% { opacity: 0.8; transform: translateY(-20px) scale(1); }
+  100% { opacity: 0; transform: translateY(-60px) scale(1.5) rotate(20deg); }
+}
+
+@keyframes tontoBalançando {
+  0%, 100% { transform: translateY(0) rotate(-10deg); }
+  50% { transform: translateY(-5px) rotate(10deg); }
+}
+//* =========================================
+   MODO COPA DO MUNDO (BRASIL) - SEM ITENS E COM CONFETES
+   ========================================= */
+
+/* Aura vibrante (fundo do mascote) */
+.modo-copa .mascote-aura-copa {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px; height: 110px;
+  background: radial-gradient(circle, rgba(29,156,73,0.6) 0%, rgba(255,223,0,0.4) 50%, rgba(255,255,255,0) 70%);
+  border-radius: 50%;
+  z-index: -1;
+  filter: blur(8px);
+  animation: auraPulsante 1.5s ease-in-out infinite alternate;
+}
+
+/* EXPLOSÃO DE CONFETES */
+.mascote-chuva-confetes {
+  position: absolute;
+  top: 10px; left: 50%;
+  width: 0; height: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+.confete {
+  position: absolute;
+  width: 8px; height: 16px;
+  border-radius: 2px;
+  opacity: 0;
+  animation: explodirConfete 1.5s ease-out forwards;
+}
+
+/* Cores dos confetes */
+.c-verde { background-color: #1D9C49; }
+.c-amarelo { background-color: #FFDF00; }
+
+/* Direção de cada confete (Voam em direções diferentes) */
+.c-1 { --vx: -50px; --vy: -80px; --vr: 180deg; animation-delay: 0s; }
+.c-2 { --vx: -30px; --vy: -100px; --vr: 360deg; animation-delay: 0.1s; }
+.c-3 { --vx: -10px; --vy: -110px; --vr: 90deg;  animation-delay: 0s; }
+.c-4 { --vx: 10px;  --vy: -110px; --vr: -180deg; animation-delay: 0.2s; }
+.c-5 { --vx: 30px;  --vy: -100px; --vr: 270deg; animation-delay: 0.1s; }
+.c-6 { --vx: 50px;  --vy: -80px; --vr: 45deg;   animation-delay: 0.3s; }
+.c-7 { --vx: -70px; --vy: -50px; --vr: -90deg;  animation-delay: 0.15s; }
+.c-8 { --vx: 70px;  --vy: -50px; --vr: 120deg;  animation-delay: 0.05s; }
+
+/* Corpo Verde e Amarelo */
+.mascote-wrapper-global.modo-copa .mascote-corpo {
+  background: linear-gradient(135deg, #FFDF00 65%, #1D9C49 35%) !important;
+  border: 2px solid #05649E;
+  transform-origin: bottom center;
+}
+
+/* Faixinha na testa e Blush do Brasil nas bochechas */
+.faixa-copa {
+  position: absolute;
+  top: 18px; left: 0; width: 100%; height: 6px;
+  background: #1D9C49;
+  z-index: 5;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.modo-copa .mascote-bochecha {
+  background: linear-gradient(to right, #1D9C49, #FFDF00);
+  opacity: 0.7 !important;
+}
+
+/* Antena Brasileira */
+.mascote-wrapper-global.modo-copa .mascote-antena-haste {
+  background: #1D9C49 !important;
+}
+.mascote-wrapper-global.modo-copa .mascote-antena-luz {
+  background: #05649E !important;
+  box-shadow: 0 0 10px rgba(5, 100, 158, 0.8) !important;
+}
+
+/* Fervendo no Sobreaquecimento */
+.mascote-wrapper-global.modo-copa.sobreaquecendo .mascote-corpo {
+  background: linear-gradient(135deg, #FF4500 65%, #8B0000 35%) !important;
+  border-color: #4A0000;
+}
+.mascote-wrapper-global.modo-copa.sobreaquecendo .faixa-copa {
+  background: #FFD700;
+}
+
+/* =========================================
+   KEYFRAMES (ANIMAÇÕES DA COPA)
+   ========================================= */
+
+@keyframes auraPulsante {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+}
+
+@keyframes explodirConfete {
+  0% { transform: translate(0, 0) rotate(0deg) scale(0.5); opacity: 1; }
+  40% { transform: translate(var(--vx), var(--vy)) rotate(var(--vr)) scale(1.2); opacity: 1; }
+  100% { transform: translate(calc(var(--vx) * 1.5), calc(var(--vy) + 50px)) rotate(calc(var(--vr) * 2)) scale(0.8); opacity: 0; }
+}
