@@ -185,7 +185,7 @@ const Header = ({ isLoggedIn = true }) => { // Deixei true por padrão para voc�
               
               <div className="info-usuario-header desktop-only">
                 <span className="nome-usuario-header">Usúario</span>
-                <span className="arroba-usuario-header">@conectauser/span>
+                <span className="arroba-usuario-header">@conectauser</span>
               </div>
               
               <div className="avatar-usuario-header">
